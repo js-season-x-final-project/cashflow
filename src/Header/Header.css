@@ -1,0 +1,33 @@
+#wrap-header {
+    background-color: #00cf8d;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 7px -1px rgba(0, 0, 0, 0.75);
+}
+
+#main-header {
+    height: 80px;
+    width: 1200px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#logo-place {
+    width: 300px
+}
+
+#sign-place {
+    float: right;
+    width: 300px;
+}
+
+#motto {
+    width: 400px;
+}
+
+#motto>h3 {
+    color: white;
+    font-size: 1.6em;
+}

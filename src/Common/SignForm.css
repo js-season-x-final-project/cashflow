@@ -1,0 +1,30 @@
+.log-btn {
+    width: 90px;
+    height: 30px;
+    border: solid 1px green;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1em;
+    color: rgb(88, 88, 88);
+    margin-right: 20px;
+}
+
+.sign-in {
+    background-color: transparent;
+}
+
+.sign-in:hover {
+    cursor: pointer;
+    background-color: rgb(135, 241, 192);
+}
+
+.sign-up {
+    background-color: rgb(135, 241, 192);
+
+}
+
+.sign-up:hover {
+    cursor: pointer;
+    background-color: #00cf8d;
+}
+
