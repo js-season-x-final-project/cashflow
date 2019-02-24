@@ -1,13 +1,11 @@
 import React from 'react'
 import './SignForm.css'
 
-class SignButton extends React.Component{
-
-    render(){
+const signForm = props =>{
         return(
-                <button className={`log-btn ${this.props.id}`} >{this.props.name}</button>
+                <button className={`log-btn ${props.id}`} >{props.name}</button>
         )
-    }
 }
 
-export default SignButton
+
+export default signForm
