@@ -1,0 +1,9 @@
+.authButton {
+    margin-top: 30px;
+    width: 280px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+}

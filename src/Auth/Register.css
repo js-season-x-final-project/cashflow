@@ -1,0 +1,15 @@
+.registerWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: rgb(221, 221, 221);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerWrapper > .authButton {
+    background-color: royalblue;
+    color: white;
+}
