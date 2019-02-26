@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
-import Input from '../UI/Input';
-import Button from '../UI/Button';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
 import './Register.css';
+
+
+const styles = () => ({
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        boxSizing: 'border-box',
+        width: '100%',
+        paddingLeft: '60px',
+        paddingRight: '60px',
+    },
+    textField: {
+        width: '100%',
+    },
+    button: {
+        height: '50px',
+        marginTop: '30px',
+        borderRadius: '25px',
+        color: 'white',
+        backgroundColor: '#0080BD',
+        '&:hover': {
+            backgroundColor: '#0080BD',
+        },
+    },
+});
+
 
 class Register extends Component {
 
@@ -32,16 +60,58 @@ class Register extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div className="registerWrapper">
-                <h1>Register</h1>
-                <Input type={'email'} name={'register-email'} value={this.state.email} onChange={this.setEmail} placeholder={'Email'} />
-                <Input type={'password'} name={'register-password'} value={this.state.password} onChange={this.setPassword} placeholder={'Password'} />
-                <Input type={'password'} name={'register-passwordAgain'} value={this.state.passwordAgain} onChange={this.setPasswordAgain} placeholder={'Password Again'} />
-                <Button buttonText="Register" onClick={this.onRegister} />
+                <h2>Register</h2>
+                <form className={classes.container}>
+                    <TextField
+                        id="outlined-email-input"
+                        label="Email"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        margin="normal"
+                        variant="outlined"
+                        className={classes.textField}
+                        value={this.state.email}
+                        onChange={this.setEmail}
+                        />
+                    <TextField
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        name="password"
+                        autoComplete="password"
+                        margin="normal"
+                        variant="outlined"
+                        className={classes.textField}
+                        value={this.state.password}
+                        onChange={this.setPassword}
+                        />
+                    <TextField
+                        id="outlined-passwordAgain-input"
+                        label="Password Again"
+                        type="password"
+                        name="passwordAgain"
+                        autoComplete="password"
+                        margin="normal"
+                        variant="outlined"
+                        className={classes.textField}
+                        value={this.state.password}
+                        onChange={this.setPasswordAgain}
+                        />
+                    <Button variant="outlined" className={classes.button} onClick={this.onRegister}>Register</Button>
+                </form>
             </div>
         )
     }
 }
 
-export default Register;
+Register.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Register);
