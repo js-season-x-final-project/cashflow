@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import Auth from '../Auth/Auth';
@@ -23,14 +23,14 @@ class App extends Component {
         <Route exact path='/' component={Homepage} />
         <Route path='/auth' component={Auth} />
         {isLogged ? 
-          <Fragment>
+          <Switch>
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/records' component={Records} />
             <Route path='/analytics' component={Analytics} />
             <Route path='/blog' component={Blog} />
             <Route path='/settings' component={Settings} />
             <Route component={NotFound} />
-          </Fragment>
+          </Switch>
          : <Redirect to={{ pathname: '/auth' }} />
         }
       </Switch>
