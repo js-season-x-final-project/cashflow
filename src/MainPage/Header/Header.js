@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import CreateDialog from '../../Components/CreateDialog';
 
 const header = () => (
     <ul>
@@ -18,6 +19,7 @@ const header = () => (
         <li>
             <Link to="/settings">Settings</Link>
         </li>
+        <CreateDialog />
     </ul>
 )
 

@@ -29,10 +29,10 @@ class App extends Component {
             <Route path='/analytics' component={Analytics} />
             <Route path='/blog' component={Blog} />
             <Route path='/settings' component={Settings} />
+            <Route component={NotFound} />
           </Fragment>
          : <Redirect to={{ pathname: '/auth' }} />
         }
-        <Route component={NotFound} />
       </Switch>
     );
   }
