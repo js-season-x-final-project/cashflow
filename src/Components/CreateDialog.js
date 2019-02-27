@@ -3,7 +3,6 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTabs from './DialogTabs';
-import DialogButtons from './DialogButtons';
 
 class CreateDialog extends Component {
 
@@ -34,9 +33,7 @@ class CreateDialog extends Component {
                  aria-labelledby="form-dialog-title"
                  >
 
-                    <DialogTabs />
-
-                    <DialogButtons handleClose={this.handleClose} />
+                    <DialogTabs handleClose={this.handleClose} />
 
                 </Dialog>
 

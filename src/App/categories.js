@@ -18,6 +18,10 @@ const incomeCats = [
         category: 'Income',
         subcategories: ['General - Income', 'Salary', 'Lending, renting']
     },
+    {
+        category: 'Investment',
+        subcategories: ['General - Investment']
+    },
 ]
 
 export { expensesCats, incomeCats };

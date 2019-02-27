@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SingleTab from './SingleTab';
+import { expensesCats, incomeCats } from '../App/categories';
 
 function TabContainer(props) {
     return (
@@ -30,13 +31,13 @@ class DialogTabs extends Component {
         return (
             <div>
                 <AppBar position="static">
-                <Tabs value={value} onChange={this.handleChange}>
+                <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
                     <Tab label="Expenses" />
                     <Tab label="Income" />
                 </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer><SingleTab /></TabContainer>}
-                {value === 1 && <TabContainer>Income</TabContainer>}
+                {value === 0 && <TabContainer><SingleTab cats={expensesCats} handleClose={this.props.handleClose}/></TabContainer>}
+                {value === 1 && <TabContainer><SingleTab cats={incomeCats} handleClose={this.props.handleClose}/></TabContainer>}
             </div>
         )
     }
