@@ -36,26 +36,16 @@ class Register extends Component {
     state = {
         email: '',
         password: '',
-        passwordAgain: ''
+        passwordAgain: '',
     }
 
-    setEmail = event => {
-        const value = event.target.value;
-        this.setState({ email: value });
-    }
-
-    setPassword = event => {
-        const value = event.target.value;
-        this.setState({ password: value });
-    }
-
-    setPasswordAgain = event => {
-        const value = event.target.value;
-        this.setState({ passwordAgain: value });
-    }
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
     onRegister = event => {
         event.preventDefault();
+        this.props.registerUser(this.state.email, this.state.password);
         this.setState({ email: '', password: '', passwordAgain: '' });
     }
 
@@ -77,7 +67,7 @@ class Register extends Component {
                         variant="outlined"
                         className={classes.textField}
                         value={this.state.email}
-                        onChange={this.setEmail}
+                        onChange={this.handleChange}
                         />
                     <TextField
                         id="outlined-password-input"
@@ -89,7 +79,7 @@ class Register extends Component {
                         variant="outlined"
                         className={classes.textField}
                         value={this.state.password}
-                        onChange={this.setPassword}
+                        onChange={this.handleChange}
                         />
                     <TextField
                         id="outlined-passwordAgain-input"
@@ -100,8 +90,8 @@ class Register extends Component {
                         margin="normal"
                         variant="outlined"
                         className={classes.textField}
-                        value={this.state.password}
-                        onChange={this.setPasswordAgain}
+                        value={this.state.passwordAgain}
+                        onChange={this.handleChange}
                         />
                     <Button variant="outlined" className={classes.button} onClick={this.onRegister}>Register</Button>
                 </form>

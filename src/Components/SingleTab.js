@@ -61,6 +61,7 @@ class SingleTab extends Component {
         amount: 0,
         currency: 'BGN',
         date: today(),
+        note: '',
     }
 
     componentDidMount() {
@@ -145,6 +146,8 @@ class SingleTab extends Component {
                         id="date"
                         label="Day"
                         type="date"
+                        name="date"
+                        onChange={this.handleChange}
                         defaultValue={this.state.date}
                         InputLabelProps={{
                         shrink: true,
