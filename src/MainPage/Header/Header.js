@@ -20,7 +20,15 @@ const styles = {
     menuButton: {
         margin: '0px 5px',
         color: '#00aa70'
-    }
+    },
+    tooltip: {
+        fontSize: 12,
+        color: '#00aa70',
+        backgroundColor: 'white'
+    },
+    leftSide: {
+        flex: 1,
+    },
 }
 
 const header = props => {
@@ -31,39 +39,41 @@ const header = props => {
         <AppBar position="static" color="default" className={classes.mainBar}>
             <Toolbar>
 
-                <CreateDialog />
+                <div className={classes.leftSide}>
+                    <CreateDialog />
 
-                <Tooltip title="Dashboard">
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Dashboard" component={Link} to="/dashboard">
-                        <DashboardIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Dashboard" classes={{ tooltip: classes.tooltip}}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Dashboard" component={Link} to="/dashboard">
+                            <DashboardIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                <Tooltip title="Records">
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="List" component={Link} to="/records">
-                        <ListIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Records" classes={{ tooltip: classes.tooltip }}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="List" component={Link} to="/records">
+                            <ListIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                <Tooltip title="Analytics">
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Chart" component={Link} to="/analytics">
-                        <ChartIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Analytics" classes={{ tooltip: classes.tooltip }}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Chart" component={Link} to="/analytics">
+                            <ChartIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                <Tooltip title="Blog">
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Blog" component={Link} to="/blog">
-                        <NoteIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Blog" classes={{ tooltip: classes.tooltip }}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Blog" component={Link} to="/blog">
+                            <NoteIcon />
+                        </IconButton>
+                    </Tooltip>
 
-                <Tooltip title="Settings">
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Settings" component={Link} to="/settings">
-                        <SettingsIcon />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Settings" classes={{ tooltip: classes.tooltip }}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Settings" component={Link} to="/settings">
+                            <SettingsIcon />
+                        </IconButton>
+                    </Tooltip>
+                </div>
                 
-                <Tooltip title="Logout">
+                <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Logout">
                         <LogoutIcon />
                     </IconButton>

@@ -3,6 +3,16 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTabs from './DialogTabs';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    tooltip: {
+        fontSize: 12,
+        color: '#00aa70',
+        backgroundColor: 'white'
+    },
+}
 
 class CreateDialog extends Component {
 
@@ -20,12 +30,16 @@ class CreateDialog extends Component {
 
     render() {
 
+        const { classes } = this.props;
+
         return (
             <Fragment>
                 
-                <Fab size="small" color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-                    <AddIcon />
-                </Fab>
+                <Tooltip title="New Record" classes={{ tooltip: classes.tooltip}}>
+                    <Fab size="small" color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+                        <AddIcon />
+                    </Fab>
+                </Tooltip>
 
                 <Dialog
                  open={this.state.open}
@@ -42,4 +56,4 @@ class CreateDialog extends Component {
     }
 }
 
-export default CreateDialog;
+export default withStyles(styles)(CreateDialog);
