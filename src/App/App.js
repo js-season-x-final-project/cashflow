@@ -12,10 +12,6 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-
-  }
-
   render() {
     const isLogged = true;
     return (
