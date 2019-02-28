@@ -1,7 +1,9 @@
 import React from 'react';
 import classes from './Homepage.module.css'
 import Button from '../UI/Button'
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+// import CSSTransition from 'react-addons-css-transition-group'
+// import './homie.css'
 class Homepage extends React.Component {
 
     state={
@@ -13,19 +15,27 @@ class Homepage extends React.Component {
 
     render(){
         return( 
-        <div className={classes.Background}>
-            <div className={classes.MainheadingPosition}>
-                <h1 className={classes.Mainheading}>Control your money from every point </h1>
-            </div>
-            <div className={classes.AuthorizePlace}>
-                <h3>Get your cashflow controlled</h3>
-                <p>
-                    When you’re on top of your money, life is good. <br/>
-                    We help you effortlessly manage your finances in one place.
-                </p>
-                <Button buttonText="Authorize yourself" onClick={this.replaceHash}/>
-            </div>
-        </div>
+                <div className={classes.Background}>
+                    <div className={classes.MainheadingPosition}>
+                        <h1 className={classes.Mainheading}>Control your money from every point </h1>
+                    </div>
+                    <ReactCSSTransitionGroup
+                        transitionName="example"
+                        transitionAppear={true}
+                        transitionAppearTimeout={5000}
+                        transitionEnter={false}
+                        transitionLeave={false}
+                    >
+                     <div className={classes.AuthorizePlace}> 
+                        <h3>Get your cashflow controlled</h3>
+                        <p>
+                            When you’re on top of your money, life is good. <br/>
+                            We help you effortlessly manage your finances in one place.
+                        </p>
+                        <Button buttonText="Authorize yourself" onClick={this.replaceHash}/>
+                    </div>
+                    </ReactCSSTransitionGroup>
+                </div>
        )
     }
 }
