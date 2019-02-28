@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import Auth from '../Auth/Auth';
@@ -13,22 +13,23 @@ import './App.css';
 class App extends Component {
 
   render() {
-    const isLogged = true;
+    let isLogged = true;
     return (
       <Switch>
         <Route exact path='/' component={Homepage} />
-        <Route path='/auth' component={Auth} />
+        <Route exact path='/auth' component={Auth} />
         {isLogged ? 
           <Switch>
-            <Route path='/dashboard' component={Dashboard} />
-            <Route path='/records' component={Records} />
-            <Route path='/analytics' component={Analytics} />
-            <Route path='/blog' component={Blog} />
-            <Route path='/settings' component={Settings} />
-            <Route component={NotFound} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/records' component={Records} />
+            <Route exact path='/analytics' component={Analytics} />
+            <Route exact path='/blog' component={Blog} />
+            <Route exact path='/settings' component={Settings} />
+            
           </Switch>
          : <Redirect to={{ pathname: '/auth' }} />
         }
+        <Route component={NotFound} />
       </Switch>
     );
   }
