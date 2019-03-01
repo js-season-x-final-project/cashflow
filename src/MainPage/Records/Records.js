@@ -1,26 +1,46 @@
 import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 import Record from './Record';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+    recordsSpace: {
+        width: 920,
+        margin: 'auto'
+    },
+}
 
-const records = props => (
-    <Fragment>
-        <Header />
-        {props.expenses.map(expense => 
-            <Record key={expense.id} { ...expense } />)
-        }
-        {props.incomes.map(income => 
-            <Record key={income.id} { ...income } />)
-        }
-    </Fragment>
-)
+const records = props => {
+
+    const { classes } = props;
+
+    return (
+        <Fragment>
+            <Header />
+            <Paper className={classes.recordsSpace}>
+                {/* {props.records.forEach(day =>
+                    day.map(rec => 
+                    <Record key={rec.id} { ...rec } />
+                    )
+                )} */}
+                {props.records.map(rec => (
+                <Fragment>
+                    <Record key={rec.id} { ...rec } />
+                    <Divider />
+                </Fragment>
+                ))}
+            </Paper>
+        </Fragment>
+    )
+}
 
 const mapStateToProps = (state) => {
     return {
-        expenses: state.user.expenses,
-        incomes: state.user.incomes
+        records: state.user.records,
     }
 }
 
-export default connect(mapStateToProps, null)(records);
+export default connect(mapStateToProps, null)(withStyles(styles)(records));

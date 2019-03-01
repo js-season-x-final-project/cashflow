@@ -1,29 +1,33 @@
 import {
-    ADD_EXPENSE,
-    ADD_INCOME,
+    ADD_RECORD,
 } from '../actions/actionTypes';
 
 const initialState =  {
     user: {
         email: '',
-        expenses: [],
-        incomes: [],
+        // records: new Map(),
+        records: [],
     }
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_EXPENSE: {
-            const newAllExpenses = [ ...state.user.expenses, action.expense];
-            const newUser = { ...state.user, expenses: newAllExpenses};
-            return {...state, user: newUser};
-            // return {...state, user: { ...state.user, expenses: [ ...state.user.expenses, action.expense ]}}
-        };
-
-        case ADD_INCOME: {
-            const newAllIncomes = [ ...state.user.incomes, action.income];
-            const newUser = { ...state.user, incomes: newAllIncomes};
-            return {...state, user: newUser};
+        // case ADD_RECORD: {
+        //     const newRecords = new Map(state.user.records);
+        //     if (newRecords.has(action.key)) {
+        //         const day = newRecords.get(action.key);
+        //         const newDay = [ ...day, action.value ];
+        //         newRecords.set(action.key, newDay);
+        //     } else {
+        //         newRecords.set(action.key, [action.value]);
+        //     }
+        //     const newUser = { ...state.user, records: newRecords };
+        //     return { ...state, user: newUser };
+        // };
+        case ADD_RECORD: {
+            const newRecords = [ ...state.user.records, action.value ];
+            const newUser = { ...state.user, records: newRecords };
+            return { ...state, user: newUser };
         }
 
         default: return state;

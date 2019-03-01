@@ -1,18 +1,11 @@
 import {
-    ADD_EXPENSE,
-    ADD_INCOME,
+    ADD_RECORD
 } from './actionTypes';
 
-export const addExpense = expense => {
+export const addRecord = record => {
     return {
-        type: ADD_EXPENSE,
-        expense,
-    }
-}
-
-export const addIncome = income => {
-    return {
-        type: ADD_INCOME,
-        income,
+        type: ADD_RECORD,
+        key: record.key,
+        value: record.value
     }
 }

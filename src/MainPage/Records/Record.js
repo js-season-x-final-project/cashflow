@@ -2,6 +2,7 @@ import React from 'react';
 
 const record = props => (
     <div>
+        {console.log(props)}
         <h3>This is single record</h3>
         <p>{props.category}</p>
         <p>{props.subCategory}</p>
