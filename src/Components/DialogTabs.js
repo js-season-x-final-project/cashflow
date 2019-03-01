@@ -5,6 +5,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SingleTab from './SingleTab';
 import { expensesCats, incomeCats } from '../App/categories';
+import { addExpense, addIncome } from '../actions/userActions';
+import { connect } from 'react-redux';
 
 function TabContainer(props) {
     return (
@@ -24,6 +26,14 @@ class DialogTabs extends Component {
         this.setState({ value });
     };
 
+    onAddExpense = newRecord => {
+        this.props.onAddExpense(newRecord);
+    }
+
+    onAddIncome = newRecord => {
+        this.props.onAddIncome(newRecord);
+    }
+
     render() {
 
         const { value } = this.state;
@@ -36,11 +46,19 @@ class DialogTabs extends Component {
                     <Tab label="Income" />
                 </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer><SingleTab cats={expensesCats} handleClose={this.props.handleClose}/></TabContainer>}
-                {value === 1 && <TabContainer><SingleTab cats={incomeCats} handleClose={this.props.handleClose}/></TabContainer>}
+                {value === 0 && <TabContainer><SingleTab cats={expensesCats} handleClose={this.props.handleClose} handleAdd={this.onAddExpense} /></TabContainer>}
+                {value === 1 && <TabContainer><SingleTab cats={incomeCats} handleClose={this.props.handleClose} handleAdd={this.onAddIncome} /></TabContainer>}
             </div>
         )
     }
 }
 
-export default DialogTabs
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddExpense: expense => dispatch(addExpense(expense)),
+        onAddIncome: income => dispatch(addIncome(income))
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(DialogTabs);

@@ -56,6 +56,7 @@ function today() {
 class SingleTab extends Component {
 
     state = {
+        id: Date.now(),
         category: this.props.cats[0].category,
         subCategory: this.props.cats[0].subcategories[0],
         amount: 0,
@@ -73,6 +74,11 @@ class SingleTab extends Component {
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
+
+    onAddRecord = () => {
+        this.props.handleAdd(this.state);
+        this.props.handleClose();
+    }
 
     render() {
 
@@ -174,7 +180,7 @@ class SingleTab extends Component {
 
                 <FormControl className={classes.formControl}>
                     <DialogActions>
-                        <Button onClick={this.props.handleClose} color="primary">
+                        <Button onClick={this.onAddRecord} color="primary">
                             Add
                         </Button>
                         <Button onClick={this.props.handleClose} color="primary">
