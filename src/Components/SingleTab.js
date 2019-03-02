@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import { withStyles } from '@material-ui/core/styles';
-import { addRecord } from '../actions/userActions';
+import { addRecord } from '../actions/recordsActions';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
@@ -79,7 +79,7 @@ class SingleTab extends Component {
     };
 
     onAddRecord = () => {
-        this.props.onAddRecord({key: this.state.date, value: this.state});
+        this.props.addRecord(this.state);
         this.props.handleClose();
     }
 
@@ -197,10 +197,10 @@ class SingleTab extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAddRecord: record => dispatch(addRecord(record))
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onAddRecord: record => dispatch(addRecord(record))
+//     }
+// }
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(SingleTab))
+export default connect(null, { addRecord })(withStyles(styles)(SingleTab))

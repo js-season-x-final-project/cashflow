@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 import './Login.css';
 
 
@@ -38,6 +39,18 @@ class Login extends Component {
         password: ''
     }
 
+    // componentWillMount() {
+    //     if (this.props.user !== null) {
+    //         this.props.history.push('/dashboard');
+    //     }
+    // }
+
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.user !== null) {
+    //         nextProps.history.push('/dashboard');
+    //     }
+    // }
+
     setEmail = event => {
         const value = event.target.value;
         this.setState({ email: value });
@@ -50,6 +63,7 @@ class Login extends Component {
 
     onLogin = event => {
         event.preventDefault();
+        this.props.login(this.state.email, this.state.password);
         this.setState({ email: '', password: ''});
     }
 
@@ -85,15 +99,17 @@ class Login extends Component {
                         value={this.state.password}
                         onChange={this.setPassword}
                         />
-                    <Button variant="outlined" className={classes.button}>Login</Button>
+                    <Button variant="outlined" className={classes.button} onClick={this.onLogin} >Login</Button>
                 </form>
             </div>
         )
     }
 }
 
-Login.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+const mapStateToProps = (state) => {
+    return {
+        user: state.loggedUser,
+    }
+}
 
-export default withStyles(styles)(Login);
+export default connect(mapStateToProps, { login })(withStyles(styles)(Login));

@@ -10,8 +10,10 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import NoteIcon from '@material-ui/icons/Note';
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import Tooltip from '@material-ui/core/Tooltip';
+import { logout } from '../../actions/userActions';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 
 const styles = {
     mainBar: {
@@ -74,7 +76,7 @@ const header = props => {
                 </div>
                 
                 <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Logout">
+                    <IconButton className={classes.menuButton} color="inherit" aria-label="Logout" onClick={props.logout} >
                         <LogoutIcon />
                     </IconButton>
                 </Tooltip>
@@ -83,4 +85,14 @@ const header = props => {
     )
 }
 
-export default withStyles(styles)(header);
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    }
+}
+
+// const mapDispatchToProps = () => {
+//     return 
+// }
+
+export default connect(mapStateToProps, { logout })(withStyles(styles)(header));
