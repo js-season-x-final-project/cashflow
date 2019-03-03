@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-// import { register } from '../actions/userActions';
-// import { connect } from 'react-redux';
+import { register } from '../actions/userActions';
+import { connect } from 'react-redux';
 import './Register.css';
 
 
@@ -46,20 +46,20 @@ class Register extends Component {
 
     onRegister = event => {
         event.preventDefault();
-        // this.props.register(this.state.email, this.state.password);
+        this.props.register(this.state);
         this.setState({ email: '', password: '', passwordAgain: '' });
     }
 
     render() {
 
-        const { classes } = this.props;
+        const { classes, registerError } = this.props;
 
         return (
             <div className="registerWrapper">
                 <h2>Register</h2>
                 <form className={classes.container}>
                     <TextField
-                        id="outlined-email-input"
+                        id="register-email-input"
                         label="Email"
                         type="email"
                         name="email"
@@ -71,7 +71,7 @@ class Register extends Component {
                         onChange={this.handleChange}
                         />
                     <TextField
-                        id="outlined-password-input"
+                        id="register-password-input"
                         label="Password"
                         type="password"
                         name="password"
@@ -83,7 +83,7 @@ class Register extends Component {
                         onChange={this.handleChange}
                         />
                     <TextField
-                        id="outlined-passwordAgain-input"
+                        id="register-passwordAgain-input"
                         label="Password Again"
                         type="password"
                         name="passwordAgain"
@@ -95,11 +95,23 @@ class Register extends Component {
                         onChange={this.handleChange}
                         />
                     <Button variant="outlined" className={classes.button} onClick={this.onRegister}>Register</Button>
+                    { registerError ? <p>{registerError}</p> : null }
                 </form>
             </div>
         )
     }
 }
 
-// export default connect(null, { register })(withStyles(styles)(Register));
-export default withStyles(styles)(Register)
+const mapStateToProps = state => {
+    return {
+        registerError: state.user.registerError
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        register: newUser => dispatch(register(newUser))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Register));

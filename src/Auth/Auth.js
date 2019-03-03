@@ -1,25 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from './Login';
 import Register from './Register';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import './Auth.css';
-// import { auth } from '../config/firebase'
 
-
-class Auth extends Component {
+const auth = props => {
     
-    state = {
-        username: '',
-        password: ''
+    const { auth } = props;
+    if (auth.uid) {
+        props.history.push('/dashboard');
     }
 
-    render() {
-        return (
-            <div className="authWrapper">
-                <Login />
-                <Register />
-            </div>
-        )
+    return (
+        <div className="authWrapper">
+            <Login />
+            <Register />
+        </div>
+    )
+}
+
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth
     }
 }
 
-export default Auth;
+export default connect(mapStateToProps)(withRouter(auth));

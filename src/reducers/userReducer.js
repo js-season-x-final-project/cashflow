@@ -1,13 +1,35 @@
-import { GET_USER } from '../actions/actionTypes';
+import { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR } from '../actions/actionTypes';
 
-const userReducer = (state = {}, action) => {
+const initialState = {
+    loginError: null,
+    registerError: null
+}
+
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_USER:
-            return action.payload
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                loginError: null,
+            }
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                loginError: action.error.message,
+            }
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                registerError: null,
+            }
+        case REGISTER_ERROR:
+            return {
+                ...state,
+                registerError: action.error.message
+            }
 
         default: return state;
     }
 }
-
 
 export default userReducer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import Auth from '../Auth/Auth';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
@@ -11,27 +11,19 @@ import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.isLogged = true;
-  }
 
+  
   render() {
+
     return (
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route exact path='/auth' component={Auth} />
-        {this.isLogged ? 
-          <Switch>
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/records' component={Records} />
-            <Route exact path='/analytics' component={Analytics} />
-            <Route exact path='/blog' component={Blog} />
-            <Route exact path='/settings' component={Settings} />
-            
-          </Switch>
-         : <Redirect to={{ pathname: '/auth' }} />
-        }
+        <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/records' component={Records} />
+        <Route exact path='/analytics' component={Analytics} />
+        <Route exact path='/blog' component={Blog} />
+        <Route exact path='/settings' component={Settings} />
         <Route component={NotFound} />
       </Switch>
     );

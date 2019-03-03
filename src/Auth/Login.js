@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-// import { login } from '../actions/userActions';
+import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
-// import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './Login.css';
 
 
@@ -40,44 +40,26 @@ class Login extends Component {
         password: ''
     }
 
-    // componentWillMount() {
-    //     if (this.props.user !== undefined) {
-    //         this.props.history.push('/dashboard');
-    //     }
-    // }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.user !== null) {
-    //         nextProps.history.push('/dashboard');
-    //     }
-    // }
-
-    setEmail = event => {
-        const value = event.target.value;
-        this.setState({ email: value });
-    }
-
-    setPassword = event => {
-        const value = event.target.value;
-        this.setState({ password: value });
-    }
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
     onLogin = event => {
         event.preventDefault();
-        // this.props.login(this.state.email, this.state.password);
+        this.props.login(this.state);
         this.setState({ email: '', password: ''});
     }
 
     render() {
 
-        const { classes } = this.props;
+        const { classes, loginError } = this.props;
 
         return (
             <div className="loginWrapper">
                 <h2>Login</h2>
                 <form className={classes.container}>
                     <TextField
-                        id="outlined-email-input"
+                        id="login-email-input"
                         label="Email"
                         type="email"
                         name="email"
@@ -86,10 +68,10 @@ class Login extends Component {
                         variant="outlined"
                         className={classes.textField}
                         value={this.state.email}
-                        onChange={this.setEmail}
+                        onChange={this.handleChange}
                         />
                     <TextField
-                        id="outlined-password-input"
+                        id="login-password-input"
                         label="Password"
                         type="password"
                         name="password"
@@ -98,14 +80,26 @@ class Login extends Component {
                         variant="outlined"
                         className={classes.textField}
                         value={this.state.password}
-                        onChange={this.setPassword}
+                        onChange={this.handleChange}
                         />
                     <Button variant="outlined" className={classes.button} onClick={this.onLogin} >Login</Button>
+                    { loginError ? <p>{loginError}</p> : null }
                 </form>
             </div>
         )
     }
 }
 
-// export default withRouter(connect(null, { login })(withStyles(styles)(Login)));
-export default withStyles(styles)(Login)
+const mapStateToProps = state => {
+    return {
+        loginError: state.user.loginError,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: (credentials) => dispatch(login(credentials))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Login)))

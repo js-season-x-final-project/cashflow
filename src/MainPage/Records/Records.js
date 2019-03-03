@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import Record from './Record';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -19,7 +20,10 @@ class Records extends Component {
     
     render() {
 
-        const { classes } = this.props;
+        const { classes, auth } = this.props;
+        if (!auth.uid) {
+            return <Redirect to='/auth' />
+        }
 
         return (
             <Fragment>
@@ -40,7 +44,8 @@ class Records extends Component {
 
 const mapStateToProps = state => {
     return {
-        records: state.firestore.ordered.records
+        records: state.firestore.ordered.records,
+        auth: state.firebase.auth
     }
 }
 
