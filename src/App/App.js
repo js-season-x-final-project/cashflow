@@ -11,14 +11,17 @@ import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.isLogged = true;
+  }
 
   render() {
-    let isLogged = true;
     return (
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route exact path='/auth' component={Auth} />
-        {isLogged ? 
+        {this.isLogged ? 
           <Switch>
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/records' component={Records} />

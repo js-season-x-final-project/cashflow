@@ -20,3 +20,7 @@ export const addRecord = record => {
 export const deleteRecord = uid => {
     return () => database.child(uid).remove();
 }
+
+export const editRecord = (uid, record) => {
+    return () => database.child(uid).update(record);
+}

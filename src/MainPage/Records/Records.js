@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Record from './Record';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import { getUser } from '../../actions/userActions';
 import { getRecords } from '../../actions/recordsActions';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,6 +19,7 @@ class Records extends Component {
 
     componentDidMount() {
         this.props.getRecords();
+        this.props.getUser();
     }
     
     render() {
@@ -43,8 +45,9 @@ class Records extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        records: state.records,
+        user: state.user,
+        records: state.records
     }
 }
 
-export default connect(mapStateToProps, { getRecords })(withStyles(styles)(Records));
+export default connect(mapStateToProps, { getUser, getRecords })(withStyles(styles)(Records));

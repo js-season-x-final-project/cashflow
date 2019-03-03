@@ -12,19 +12,11 @@ class Auth extends Component {
         password: ''
     }
 
-    // registerUser = (username, password) => {
-    //     auth.createUserWithEmailAndPassword(username, password).then(res => console.log(res)).catch(err => console.log(err.message));
-    // }
-
-    // loginUser = (username, password) => {
-    //     auth.signInWithEmailAndPassword(username, password).then(res => console.log(res)).catch(err => console.log(err.message));
-    // }
-
     render() {
         return (
             <div className="authWrapper">
-                <Login loginUser={this.loginUser} />
-                <Register registerUser={this.registerUser} />
+                <Login />
+                <Register />
             </div>
         )
     }

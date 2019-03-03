@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './Login.css';
 
 
@@ -39,11 +40,11 @@ class Login extends Component {
         password: ''
     }
 
-    // componentWillMount() {
-    //     if (this.props.user !== null) {
-    //         this.props.history.push('/dashboard');
-    //     }
-    // }
+    componentWillMount() {
+        if (this.props.user !== undefined) {
+            this.props.history.push('/dashboard');
+        }
+    }
 
     // componentWillReceiveProps(nextProps) {
     //     if (nextProps.user !== null) {
@@ -106,10 +107,4 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.loggedUser,
-    }
-}
-
-export default connect(mapStateToProps, { login })(withStyles(styles)(Login));
+export default withRouter(connect(null, { login })(withStyles(styles)(Login)));
