@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import store from './config/store';
 
+
 ReactDOM.render(
 <Provider store={store}>
     <BrowserRouter>
