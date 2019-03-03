@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { login } from '../actions/userActions';
+// import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 import './Login.css';
 
 
@@ -40,11 +40,11 @@ class Login extends Component {
         password: ''
     }
 
-    componentWillMount() {
-        if (this.props.user !== undefined) {
-            this.props.history.push('/dashboard');
-        }
-    }
+    // componentWillMount() {
+    //     if (this.props.user !== undefined) {
+    //         this.props.history.push('/dashboard');
+    //     }
+    // }
 
     // componentWillReceiveProps(nextProps) {
     //     if (nextProps.user !== null) {
@@ -64,7 +64,7 @@ class Login extends Component {
 
     onLogin = event => {
         event.preventDefault();
-        this.props.login(this.state.email, this.state.password);
+        // this.props.login(this.state.email, this.state.password);
         this.setState({ email: '', password: ''});
     }
 
@@ -107,4 +107,5 @@ class Login extends Component {
     }
 }
 
-export default withRouter(connect(null, { login })(withStyles(styles)(Login)));
+// export default withRouter(connect(null, { login })(withStyles(styles)(Login)));
+export default withStyles(styles)(Login)

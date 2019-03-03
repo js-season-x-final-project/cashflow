@@ -197,10 +197,10 @@ class SingleTab extends Component {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onAddRecord: record => dispatch(addRecord(record))
-//     }
-// }
+const mapDispatchToProps = dispatch => {
+    return {
+        addRecord: record => dispatch(addRecord(record))
+    }
+}
 
-export default connect(null, { addRecord })(withStyles(styles)(SingleTab))
+export default connect(null, mapDispatchToProps)(withStyles(styles)(SingleTab))

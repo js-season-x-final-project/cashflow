@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { register } from '../actions/userActions';
-import { connect } from 'react-redux';
+// import { register } from '../actions/userActions';
+// import { connect } from 'react-redux';
 import './Register.css';
 
 
@@ -46,7 +46,7 @@ class Register extends Component {
 
     onRegister = event => {
         event.preventDefault();
-        this.props.register(this.state.email, this.state.password);
+        // this.props.register(this.state.email, this.state.password);
         this.setState({ email: '', password: '', passwordAgain: '' });
     }
 
@@ -101,4 +101,5 @@ class Register extends Component {
     }
 }
 
-export default connect(null, { register })(withStyles(styles)(Register));
+// export default connect(null, { register })(withStyles(styles)(Register));
+export default withStyles(styles)(Register)

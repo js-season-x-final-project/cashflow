@@ -1,7 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { deleteRecord, editRecord } from '../../actions/recordsActions';
-import { connect } from 'react-redux';
 
 const record = props => (
     <div>
@@ -10,9 +8,9 @@ const record = props => (
         <p>{props.subCategory}</p>
         <p>{props.amount}</p>
         <p>{props.note}</p>
-        <Button onClick={() => console.log('Click!')}>EDIT</Button>
-        <Button onClick={() => props.deleteRecord(props.uid)}>DELETE</Button>
+        <Button>EDIT</Button>
+        <Button>DELETE</Button>
     </div>
 )
 
-export default connect(null, { deleteRecord, editRecord })(record);
+export default record;

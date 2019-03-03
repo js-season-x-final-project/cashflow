@@ -10,10 +10,10 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import NoteIcon from '@material-ui/icons/Note';
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import Tooltip from '@material-ui/core/Tooltip';
-import { logout } from '../../actions/userActions';
+// import { logout } from '../../actions/userActions';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 const styles = {
     mainBar: {
@@ -85,10 +85,11 @@ const header = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         user: state.user,
+//     }
+// }
 
-export default connect(mapStateToProps, { logout })(withStyles(styles)(header));
+// export default connect(mapStateToProps, { logout })(withStyles(styles)(header));
+export default withStyles(styles)(header)
