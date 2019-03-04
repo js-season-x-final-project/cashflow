@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Homepage.module.css'
-import Button from '../UI/Button'
+import Button from '../_old/UI/Button'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // import CSSTransition from 'react-addons-css-transition-group'
 // import './homie.css'
