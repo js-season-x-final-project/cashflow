@@ -10,7 +10,7 @@ const record = props => (
         <p>{props.subCategory}</p>
         <p>{props.amount}</p>
         <p>{props.note}</p>
-        <Button onClick={()=>{props.deleteRecord(props.id)}}>DELETE</Button>
+        <Button onClick={()=>{props.deleteRecord(props.uid)}}>DELETE</Button>
         <Button>Edit</Button>
     </div>
 )
