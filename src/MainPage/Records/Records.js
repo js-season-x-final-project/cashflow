@@ -29,7 +29,7 @@ class Records extends Component {
             <Fragment>
                 <Header />
                 <Paper className={classes.recordsSpace}>
-                    {this.props.records ? Object.entries(this.props.records).map(rec => (           
+                    {this.props.records ? Object.entries(this.props.records).map(rec => (                  
                         <Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
@@ -42,26 +42,22 @@ class Records extends Component {
     }
 }
 
-const mapStateToProps =   state => {
-    console.log(state.firestore.data.users);
-    console.log(state.firestore.ordered.users);
-
-    // console.log(state.firestore.ordered.users);
+const mapStateToProps = state => {
     return {
-        records:state.firestore.ordered.users,
-        auth: state.firebase.auth
+        records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+        auth: state.firebase.auth ? state.firebase.auth : null
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect((props)=>{ 
-        return [
-        { collection: 'users',
-          doc: props.auth.uid,
-          subcollections:[
-             { collection: 'records'}
-          ]   
+    firestoreConnect((props)=>{
+        return props.auth.uid ? [
+        {collection: 'users',
+         doc: props.auth.uid ,
+         subcollections:[
+             {collection:'records'}
+         ]
         }
-    ]})
+        ]: []})
 )(withStyles(styles)(Records));
