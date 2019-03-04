@@ -22,6 +22,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 registerError: null,
+                uid: action.uid
             }
         case REGISTER_ERROR:
             return {

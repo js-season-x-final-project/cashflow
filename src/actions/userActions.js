@@ -40,13 +40,14 @@ export const register = (newUser) => {
         firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
             newUser.password
-        ).then((response) => {
-            firestore.collection('users').doc(response.user.uid).set({
+        ).then(async(response) => {
+           await firestore.collection('users').doc(response.user.uid).set({
                 email: newUser.email
-            }).then(()=>{
-                dispatch({ type: REGISTER_SUCCESS });
             })
-
+            await dispatch({
+                 type: REGISTER_SUCCESS,
+                uid: response.user.uid
+            });
         }).catch((error) => {
             dispatch({ type: REGISTER_ERROR, error });
         })
