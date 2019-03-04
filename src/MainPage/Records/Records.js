@@ -42,16 +42,26 @@ class Records extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps =   state => {
+    console.log(state.firestore.data.users);
+    console.log(state.firestore.ordered.users);
+
+    // console.log(state.firestore.ordered.users);
     return {
-        records: state.firestore.ordered.records,
+        records:state.firestore.ordered.users,
         auth: state.firebase.auth
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'records' }
-    ])
+    firestoreConnect((props)=>{ 
+        return [
+        { collection: 'users',
+          doc: props.auth.uid,
+          subcollections:[
+             { collection: 'records'}
+          ]   
+        }
+    ]})
 )(withStyles(styles)(Records));

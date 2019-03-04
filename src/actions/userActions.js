@@ -13,10 +13,9 @@ export const login = (credentials) => {
         firebase.auth().signInWithEmailAndPassword(
             credentials.email,
             credentials.password
-        ).then((response) => {
+        ).then(() => {
             dispatch({
                  type: LOGIN_SUCCESS,
-                 uid: response.user.uid
             })
         }).catch((error) => {
             dispatch({ type: LOGIN_ERROR, error })
@@ -45,8 +44,7 @@ export const register = (newUser) => {
                 email: newUser.email
             })
             await dispatch({
-                 type: REGISTER_SUCCESS,
-                uid: response.user.uid
+                type: REGISTER_SUCCESS,
             });
         }).catch((error) => {
             dispatch({ type: REGISTER_ERROR, error });
