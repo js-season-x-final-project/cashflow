@@ -13,11 +13,10 @@ const analytics = props => {
     return(
         <Fragment>
             <Header />
-            <h1>Analytics</h1>
-            {props.records ? props.records.forEach(rec=>{
-                console.log(rec);
-            })
-            : null}
+            <h1>Analytics</h1>                 
+                <div>
+                     <p>Total expenses: {props.records.reduce((acc,c2)=>{return acc + Number(c2.amount)},0)} лв.</p>
+                </div>
         </Fragment>
     )
 }
