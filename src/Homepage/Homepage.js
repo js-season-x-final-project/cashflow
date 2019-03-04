@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Homepage.module.css'
-import Button from '../_old/UI/Button'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Button from '@material-ui/core/Button';
 // import CSSTransition from 'react-addons-css-transition-group'
 // import './homie.css'
 class Homepage extends React.Component {
@@ -32,7 +32,7 @@ class Homepage extends React.Component {
                             When you’re on top of your money, life is good. <br/>
                             We help you effortlessly manage your finances in one place.
                         </p>
-                        <Button buttonText="Authorize yourself" onClick={this.replaceHash}/>
+                        <Button onClick={this.replaceHash} color="primary">Authorize yourself</Button> 
                     </div>
                     </ReactCSSTransitionGroup>
                 </div>
