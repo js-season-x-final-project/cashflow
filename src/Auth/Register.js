@@ -46,6 +46,7 @@ class Register extends Component {
 
     onRegister = event => {
         event.preventDefault();
+
         this.props.register(this.state);
         this.setState({ email: '', password: '', passwordAgain: '' });
     }

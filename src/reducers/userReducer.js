@@ -11,6 +11,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loginError: null,
+                uid: action.uid
             }
         case LOGIN_ERROR:
             return {
