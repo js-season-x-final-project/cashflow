@@ -5,7 +5,7 @@ export const addRecord = record => {
         const firestore = getFirestore();
         const uid = getState().firebase.auth.uid;
         console.log(uid);
-        firestore.collection('users').doc(uid).collection('records').add(record).then(() => {
+        firestore.collection(uid).add(record).then(() => {
             dispatch({ type: ADD_RECORD });
         }).catch(err => {
             dispatch({ type: ADD_RECORD_ERROR }, err)
