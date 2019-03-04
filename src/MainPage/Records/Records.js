@@ -31,7 +31,8 @@ shouldComponentUpdate(){
             <Fragment>
                 <Header />
                 <Paper className={classes.recordsSpace}>
-                    {this.props.records ? Object.entries(this.props.records).map(rec => (   
+                    {console.log(this.props)}
+                    {this.props.records ? Object.entries(this.props.records).map((rec) => (   
                         <Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
@@ -39,17 +40,20 @@ shouldComponentUpdate(){
                         ))
                         : null}
                 </Paper>
-            </Fragment>
+            </Fragment> 
         )
     }
 }
 
 const mapStateToProps = state => {
+    const hash = state.firebase.auth.uid
     return {
-        records: state.firestore.data.users ? state.firestore.data.users[state.firebase.auth.uid].records : null,
+        records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
         auth: state.firebase.auth ? state.firebase.auth : null
     }
 }
+
+// export default connect(mapStateToProps)(withStyles(styles)(Records))
 
 export default compose(
     connect(mapStateToProps),

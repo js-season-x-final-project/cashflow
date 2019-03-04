@@ -47,6 +47,7 @@ export const deleteRecord = record =>{
         const userId = state.firebase.auth.uid;
         firestore.collection('users').doc(userId).collection('records').doc(record).delete()
         .then(()=>{
+            console.log(getState().firestore.ordered.users[0]);
             dispatch({type: DELETE_RECORD})
         })
         .catch(err=>{
