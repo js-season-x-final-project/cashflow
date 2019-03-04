@@ -4,10 +4,11 @@ export const addRecord = record => {
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         const uid = getState().firebase.auth.uid;
-        console.log(uid);
-        firestore.collection(uid).add(record).then(() => {
+        firestore.collection('users').doc(uid).collection('records').add(record)
+        .then(() => {
             dispatch({ type: ADD_RECORD });
-        }).catch(err => {
+        })
+        .catch(err => {
             dispatch({ type: ADD_RECORD_ERROR }, err)
         })
     }
@@ -16,10 +17,14 @@ export const addRecord = record => {
 export const deleteRecord = record =>{
     return (dispatch,getState, { getFirestore })=>{
         const firestore = getFirestore();
+        let state = getState();
         console.log(record);
-        firestore.collection('records').doc(record.toString()).delete().then(()=>{
+        const userId = state.firebase.auth.uid;
+        firestore.collection('users').doc(userId).collection('records').doc(record).delete()
+        .then(()=>{
             dispatch({type: DELETE_RECORD})
-        }).catch(err=>{
+        })
+        .catch(err=>{
             console.log(err)
         })
     }

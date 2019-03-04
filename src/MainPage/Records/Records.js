@@ -17,19 +17,21 @@ const styles = {
 }
 
 class Records extends Component {
-    
-    render() {
+shouldComponentUpdate(){
+    console.log('[RECORDS] should Component update');
+    return true
+}
 
+    render() {
         const { classes, auth } = this.props;
-        if (!auth.uid) {
+        if (!auth.uid) {    
             return <Redirect to='/auth' />
         }
-
         return (
             <Fragment>
                 <Header />
                 <Paper className={classes.recordsSpace}>
-                    {this.props.records ? Object.entries(this.props.records).map(rec => (           
+                    {this.props.records ? Object.entries(this.props.records).map(rec => (   
                         <Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
@@ -42,26 +44,22 @@ class Records extends Component {
     }
 }
 
-const mapStateToProps =   state => {
-    console.log(state.firestore.data.users);
-    console.log(state.firestore.ordered.users);
-
-    // console.log(state.firestore.ordered.users);
+const mapStateToProps = state => {
     return {
-        records:state.firestore.ordered.users,
-        auth: state.firebase.auth
+        records: state.firestore.data.users ? state.firestore.data.users[state.firebase.auth.uid].records : null,
+        auth: state.firebase.auth ? state.firebase.auth : null
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect((props)=>{ 
-        return [
-        { collection: 'users',
-          doc: props.auth.uid,
-          subcollections:[
-             { collection: 'records'}
-          ]   
+    firestoreConnect((props)=>{
+        return props.auth.uid ? [
+        {collection: 'users',
+         doc: props.auth.uid ,
+         subcollections:[
+             {collection:'records'}
+         ]
         }
-    ]})
+        ]: []})
 )(withStyles(styles)(Records));
