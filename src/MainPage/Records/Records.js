@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-    recordsSpace: {
+    recordsExpenses: {
         width: 920,
         margin: 'auto'
     },
@@ -30,9 +30,9 @@ shouldComponentUpdate(){
         return (
             <Fragment>
                 <Header />
-                <Paper className={classes.recordsSpace}>
+                <Paper className={classes.recordsExpenses}>
                     {console.log(this.props)}
-                    {this.props.records ? Object.entries(this.props.records).map((rec) => (   
+                    {this.props.expenses ? Object.entries(this.props.expenses).filter(rec=> rec[1].type ==='expense').map((rec) => (   
                         <Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
@@ -48,7 +48,7 @@ shouldComponentUpdate(){
 const mapStateToProps = state => {
     const hash = state.firebase.auth.uid
     return {
-        records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
+        expenses: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
         auth: state.firebase.auth ? state.firebase.auth : null
     }
 }

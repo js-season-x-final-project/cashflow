@@ -6,8 +6,9 @@ const initialState ={
 
 const analyticsReducer = (state=initialState, action)=>{
     switch (action.type) {
-        case CALCULATE_EXPENSES: 
+        case CALCULATE_EXPENSES: return {...state, expenses: action.records.reduce((acc,c1)=>{return acc + Number(c1.amount)},0)}
         case CALCULATE_INCOMES:
-        default:
+        default: return state
     }
 }
+export default analyticsReducer

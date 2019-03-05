@@ -11,10 +11,8 @@ import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 class App extends Component {
-
-  
+ 
   render() {
-
     return (
       <Switch>
         <Route exact path='/' component={Homepage} />
