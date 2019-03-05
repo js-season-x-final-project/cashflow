@@ -19,6 +19,7 @@ const analytics = props => {
   // }
   return (
     <Fragment>
+      <MainPage />
       <h1>Analytics</h1>
       <div>
         <p>Total expenses: {props.expenses} лв.</p>
