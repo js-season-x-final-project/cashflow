@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Homepage from '../Homepage/Homepage';
+import Home from '../Homepage/Home/Home';
+import Start from '../Homepage/Start/Start';
+import Team from '../Homepage/Team/Team';
+import Support from '../Homepage/Support/Support';
 import Auth from '../Auth/Auth';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
@@ -17,7 +20,10 @@ class App extends Component {
 
     return (
       <Switch>
-        <Route exact path='/' component={Homepage} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/start' component={Start} />
+        <Route exact path='/team' component={Team} />
+        <Route exact path='/support' component={Support} />
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/records' component={Records} />

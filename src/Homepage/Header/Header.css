@@ -1,0 +1,18 @@
+.header {
+    height: 90px;
+    background-color: white;
+}
+
+.inner {
+    display: flex;
+    flex-direction: row;
+    width: 960px;
+    height: 90px;
+    margin: auto;
+    align-items: center;
+}
+
+.leftSide {
+    flex: 1;
+    height: 90px;
+}

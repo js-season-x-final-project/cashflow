@@ -123,9 +123,6 @@ class SingleTab extends Component {
                         {this.props.cats.find(cat => cat.category === this.state.category).subcategories.map(subCat => 
                             <MenuItem key={subCat} value={subCat}>{subCat}</MenuItem>
                         )}
-                        {/* {this.props.cats[0].subcategories.map(subCat => 
-                            <MenuItem key={subCat} value={subCat}>{subCat}</MenuItem>
-                        )} */}
                     </Select>
                 </FormControl>
 
