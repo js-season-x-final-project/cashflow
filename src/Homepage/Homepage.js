@@ -11,15 +11,13 @@ import { withRouter } from 'react-router-dom';
 
 const homepage = props => {
 
-  const { match } = props
-  console.log(match)
-
   return (
     <div>
       
       <Header />
 
         <Switch>
+          <Route exact path='/' component={Home} />
           <Route exact path='/home' component={Home} />
           <Route exact path='/home/start' component={Start} />
           <Route exact path='/home/support' component={Support} />

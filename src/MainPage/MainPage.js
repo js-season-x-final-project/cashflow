@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header/Header'
+import Dashboard from './Dashboard/Dashboard';
+import Records from './Records/Records';
+import Analytics from './Analytics/Analytics';
+import Blog from './Blog/Blog';
+import Settings from './Settings/Settings';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -21,7 +27,20 @@ class MainPage extends React.Component {
       this.props.history.push('/auth');
     }
     return (
-      <Header />
+      <Fragment>
+
+        <Header />
+
+        <Switch>
+          <Route exact path='/main' component={Dashboard} />
+          <Route exact path='/main/dashboard' component={Dashboard} />
+          <Route exact path='/main/records' component={Records} />
+          <Route exact path='/main/analytics' component={Analytics} />
+          <Route exact path='/main/blog' component={Blog} />
+          <Route exact path='/main/settings' component={Settings} />
+        </Switch>
+
+      </Fragment>
     )
   }
 }

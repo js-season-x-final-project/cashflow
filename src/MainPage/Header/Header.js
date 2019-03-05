@@ -45,31 +45,31 @@ const header = props => {
                     <CreateDialog />
 
                     <Tooltip title="Dashboard" classes={{ tooltip: classes.tooltip}}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Dashboard" component={Link} to="/dashboard">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Dashboard" component={Link} to="/main/dashboard">
                             <DashboardIcon />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Records" classes={{ tooltip: classes.tooltip }}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="List" component={Link} to="/records">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="List" component={Link} to="/main/records">
                             <ListIcon />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Analytics" classes={{ tooltip: classes.tooltip }}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Chart" component={Link} to="/analytics">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Chart" component={Link} to="/main/analytics">
                             <ChartIcon />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Blog" classes={{ tooltip: classes.tooltip }}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Blog" component={Link} to="/blog">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Blog" component={Link} to="/main/blog">
                             <NoteIcon />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Settings" classes={{ tooltip: classes.tooltip }}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Settings" component={Link} to="/settings">
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Settings" component={Link} to="/main/settings">
                             <SettingsIcon />
                         </IconButton>
                     </Tooltip>
