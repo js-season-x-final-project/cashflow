@@ -8,6 +8,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import {calculateExpenses, calculateIncomes,differentiateRecords} from '../../actions/analyticsActions'
 
 const styles = {
     recordsExpenses: {
@@ -17,11 +18,11 @@ const styles = {
 }
 
 class Records extends Component {
-shouldComponentUpdate(){
-    console.log('[RECORDS] should Component update');
-    return true
-}
-
+    componentDidUpdate(){
+        this.props.differentiateRecords(this.props.recs);
+        this.props.calculateExpenses();
+        this.props.calculateIncomes();
+    }
     render() {
         const { classes, auth } = this.props;
         if (!auth.uid) {    
@@ -29,10 +30,9 @@ shouldComponentUpdate(){
         }
         return (
             <Fragment>
-                <Header />
+                <Header />              
                 <Paper className={classes.recordsExpenses}>
-                    {console.log(this.props)}
-                    {this.props.expenses ? Object.entries(this.props.expenses).filter(rec=> rec[1].type ==='expense').map((rec) => (   
+                    {this.props.records ? Object.entries(this.props.records).map((rec) => (   
                         <Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
@@ -48,15 +48,22 @@ shouldComponentUpdate(){
 const mapStateToProps = state => {
     const hash = state.firebase.auth.uid
     return {
-        expenses: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
+        records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
+        recs: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
         auth: state.firebase.auth ? state.firebase.auth : null
     }
 }
 
-// export default connect(mapStateToProps)(withStyles(styles)(Records))
+const mapDispatchToProps = dispatch =>{
+    return{
+        differentiateRecords: (allRecs) => dispatch(differentiateRecords(allRecs)),
+        calculateExpenses: () => dispatch(calculateExpenses()),
+        calculateIncomes: () => dispatch(calculateIncomes()),
+    }
+}
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect((props)=>{
         return props.auth.uid ? [
         {collection: 'users',

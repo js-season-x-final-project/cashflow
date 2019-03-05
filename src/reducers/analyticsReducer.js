@@ -1,13 +1,21 @@
-import { CALCULATE_EXPENSES, CALCULATE_INCOMES } from "../actions/actionTypes";
+import {
+     CALCULATE_EXPENSES,
+     CALCULATE_INCOMES,
+     DIFFERENTIATE_RECORDS
+    } from "../actions/actionTypes";
 
 const initialState ={
-    value: 0
+    incomeRecords: [],
+    expenseRecords: [],
+    incomes: [],
+    expenses: []
 }
 
 const analyticsReducer = (state=initialState, action)=>{
     switch (action.type) {
-        case CALCULATE_EXPENSES: return {...state, expenses: action.records.reduce((acc,c1)=>{return acc + Number(c1.amount)},0)}
-        case CALCULATE_INCOMES:
+        case DIFFERENTIATE_RECORDS: return {...state, incomeRecords: action.records.filter(rec=>rec.type==='income'),expenseRecords: action.records.filter(rec=>rec.type==='expense')}
+        case CALCULATE_EXPENSES: return {...state, expenses: state.expenseRecords.reduce((acc,c1)=>{return acc + Number(c1.amount)},0)}
+        case CALCULATE_INCOMES: return {...state, incomes: state.incomeRecords.reduce((acc,c1)=>{return acc + Number(c1.amount)},0)}  
         default: return state
     }
 }

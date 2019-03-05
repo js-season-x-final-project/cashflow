@@ -1,10 +1,26 @@
-import { CALCULATE_EXPENSES } from "./actionTypes";
+import { 
+    CALCULATE_EXPENSES,
+    CALCULATE_INCOMES,
+    DIFFERENTIATE_RECORDS
+} from "./actionTypes";
 
-const calculateExpenses = someArray =>{
+const differentiateRecords = allRecords =>{
     return{
-        type: CALCULATE_EXPENSES,
-        records: someArray
+        type: DIFFERENTIATE_RECORDS,
+        records: allRecords
     }
 }
 
-export {calculateExpenses}
+const calculateExpenses = () =>{
+    return{
+        type: CALCULATE_EXPENSES,
+    }
+}
+
+const calculateIncomes = () =>{
+    return{
+        type: CALCULATE_INCOMES,
+    }
+}
+
+export {calculateExpenses,calculateIncomes,differentiateRecords}
