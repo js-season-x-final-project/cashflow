@@ -4,18 +4,28 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 
-const dashboard = props => {
-    return (
-        <Fragment>
-            <MainPage />
-            <h1>dashboard</h1>
-        </Fragment>
-    )
-}
+// const dashboard = props => {
+  class Dashboard extends React.Component {
+      
+    shouldComponentUpdate(){
 
-const mapStateToProps = state => {
-    return {
-        auth: state.firebase.auth
+      console.log(this.props);
     }
-}
-export default connect(mapStateToProps)(withRouter(dashboard));
+
+    render() {
+      return (
+        <Fragment>
+          <MainPage />
+          <h1>dashboard</h1>
+        </Fragment>
+      )
+    }
+  }
+
+  const mapStateToProps = state => {
+    return {
+      expense: state.statisticData.expenses,
+      auth: state.firebase.auth
+    }
+  }
+  export default connect(mapStateToProps)(withRouter(Dashboard));
