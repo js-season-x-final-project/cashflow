@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 const dashboard = props => {
 
@@ -23,5 +25,15 @@ const mapStateToProps = state => {
         auth: state.firebase.auth
     }
 }
-
-export default connect(mapStateToProps)(withRouter(dashboard));
+ export default compose(
+    connect(mapStateToProps),
+    firestoreConnect((props)=>{
+        return props.auth.uid ? [
+        {collection: 'users',
+         doc: props.auth.uid ,
+         subcollections:[
+             {collection:'records'}
+         ]
+        }
+        ]: []})
+)(withRouter(dashboard));
