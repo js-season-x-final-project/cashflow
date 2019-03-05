@@ -1,14 +1,5 @@
 import { ADD_RECORD, ADD_RECORD_ERROR, DELETE_RECORD } from '../actions/actionTypes';
 
-// const reducer = (state = {}, action) => {
-//     switch (action.type) {
-//         case GET_RECORDS:
-//             return action.payload;
-
-//         default: return state;
-//     }
-// }
-
 const recordsReducer = (state = {}, action) => {
     switch (action.type) {
         case ADD_RECORD:

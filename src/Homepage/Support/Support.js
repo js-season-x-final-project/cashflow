@@ -6,9 +6,7 @@ const support = props => {
 
     return(
         <Fragment>
-            <Header />
             <h1>Support</h1>
-            <Footer />
         </Fragment>
     )
 }

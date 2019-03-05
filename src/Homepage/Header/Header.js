@@ -27,10 +27,10 @@ const header = props => {
     <div className='header'>
       <div className='inner'>
         <div className='leftSide'>
-          <Button className={classes.button} component={Link} to="/">Home</Button>
-          <Button className={classes.button} component={Link} to="/start">How to start</Button>
-          <Button className={classes.button} component={Link} to="/team">Team</Button>
-          <Button className={classes.button} component={Link} to="/support">Support</Button>
+          <Button className={classes.button} component={Link} to="/home">Home</Button>
+          <Button className={classes.button} component={Link} to="/home/start">How to start</Button>
+          <Button className={classes.button} component={Link} to="/home/team">Team</Button>
+          <Button className={classes.button} component={Link} to="/home/support">Support</Button>
         </div>
         <Button variant="outlined" className={classes.authButton} component={Link} to="/auth" >Get In</Button>
       </div>

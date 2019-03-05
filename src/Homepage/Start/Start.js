@@ -6,9 +6,7 @@ const start = props => {
 
     return(
         <Fragment>
-            <Header />
             <h1>Start</h1>
-            <Footer />
         </Fragment>
     )
 }

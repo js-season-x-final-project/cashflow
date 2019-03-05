@@ -32,12 +32,12 @@ class Records extends Component {
             <Fragment>
                 <Header />              
                 <Paper className={classes.recordsExpenses}>
-                    {this.props.records ? Object.entries(this.props.records).map((rec) => (   
-                        <Fragment key={rec[0]}>
+                    {this.props.records ? Object.entries(this.props.records).map((rec) => {
+                        return rec[1] !== null ? (<Fragment key={rec[0]}>
                             <Record uid={rec[0]} { ...rec[1] } />
                             <Divider />
-                        </Fragment>
-                        ))
+                        </Fragment> ) : null
+                    })
                         : null}
                 </Paper>
             </Fragment> 

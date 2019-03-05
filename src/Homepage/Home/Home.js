@@ -9,8 +9,6 @@ const home = props => {
     <Fragment>
       <div className='wrapper'>
 
-        <Header />
-
         <div className='firstPart'>
           <div className='firstPartInner'>
           <h1>Your Finances in One Place</h1>
@@ -20,10 +18,8 @@ const home = props => {
         <div className='secondPart'>
 
         </div>
-
-
+        
       </div>
-      <Footer />
     </Fragment>
   )
 }

@@ -1,43 +1,35 @@
 import React from 'react';
-import classes from './Homepage.module.css'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import Button from '@material-ui/core/Button';
-// import CSSTransition from 'react-addons-css-transition-group'
-// import './homie.css'
-class Homepage extends React.Component {
+import { Route, Switch } from 'react-router-dom';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import Home from './Home/Home';
+import Start from './Start/Start';
+import Support from './Support/Support';
+import Team from './Team/Team';
+import { withRouter } from 'react-router-dom';
 
-    state={
-        newPath:'/auth'
-    }
-    replaceHash =() =>{
-        this.props.history.replace(this.state.newPath);
-    }
 
-    render(){
-        return( 
-                <div className={classes.Background}>
-                    <div className={classes.MainheadingPosition}>
-                        <h1 className={classes.Mainheading}>Control your money from every point </h1>
-                    </div>
-                    <ReactCSSTransitionGroup
-                        transitionName="example"
-                        transitionAppear={true}
-                        transitionAppearTimeout={5000}
-                        transitionEnter={false}
-                        transitionLeave={false}
-                    >
-                     <div className={classes.AuthorizePlace}> 
-                        <h3>Get your cashflow controlled</h3>
-                        <p>
-                            When you’re on top of your money, life is good. <br/>
-                            We help you effortlessly manage your finances in one place.
-                        </p>
-                        <Button onClick={this.replaceHash} color="primary">Authorize yourself</Button> 
-                    </div>
-                    </ReactCSSTransitionGroup>
-                </div>
-       )
-    }
+const homepage = props => {
+
+  const { match } = props
+  console.log(match)
+
+  return (
+    <div>
+      
+      <Header />
+
+        <Switch>
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/home/start' component={Start} />
+          <Route exact path='/home/support' component={Support} />
+          <Route exact path='/home/team' component={Team} />
+        </Switch>
+
+      <Footer />
+
+    </div>
+  )
 }
 
-export default Homepage;
+export default withRouter(homepage);
