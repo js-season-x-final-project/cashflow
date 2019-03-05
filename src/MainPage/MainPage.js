@@ -1,10 +1,17 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import Header from './Header/Header'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { calculateExpenses, calculateIncomes, differentiateRecords } from '../actions/analyticsActions'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
+import Dashboard from '../MainPage/Dashboard/Dashboard';
+import Records from '../MainPage/Records/Records';
+import Analytics from '../MainPage/Analytics/Analytics';
+import Blog from '../MainPage/Blog/Blog';
+import Settings from '../MainPage/Settings/Settings'
+
 
 
 class MainPage extends React.Component {
@@ -21,7 +28,20 @@ class MainPage extends React.Component {
       this.props.history.push('/auth');
     }
     return (
-      <Header />
+      <Fragment>
+
+        <Header />
+
+        <Switch>
+          <Route exact path='/main' component={Dashboard} />
+          <Route exact path='/main/dashboard' component={Dashboard} />
+          <Route exact path='/main/records' component={Records} />
+          <Route exact path='/main/analytics' component={Analytics} />
+          <Route exact path='/main/blog' component={Blog} />
+          <Route exact path='/main/settings' component={Settings} />
+        </Switch>
+
+      </Fragment>
     )
   }
 }

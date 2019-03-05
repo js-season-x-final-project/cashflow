@@ -20,6 +20,11 @@ const styles = {
 }
 
 class Records extends Component {
+
+  componentDidUpdate(){
+    console.log(this.props);
+  }
+
   render() {
     const { classes } = this.props;
     // if (!auth.uid) {
@@ -27,8 +32,7 @@ class Records extends Component {
     // }
     return (
       <Fragment>
-        {/* <Header /> */}
-        <MainPage />
+        {/* <MainPage / */}
         <Paper className={classes.recordsExpenses}>
           {this.props.records ? Object.entries(this.props.records).map((rec) => {
             return(rec[1] ?
