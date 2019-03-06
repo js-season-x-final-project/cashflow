@@ -4,14 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import classes from './Team.module.css';
-import { withStyles } from '@material-ui/core/styles';
+import Alex from '../../assets/images/alex.jpg'
 
-const styles = {
-  bigAvatar: {
-    width: 200,
-    height: 200,
-  },
-};
 
 const team = props => {
 
@@ -29,6 +23,7 @@ const team = props => {
         <div className={classes.secondPartInner}>
           <Card className={classes.card}>
             <CardContent>
+              <Avatar alt="Alex" src={Alex} className={classes.bigAvatar} />
               <Typography></Typography>
             </CardContent>
           </Card>
@@ -39,4 +34,4 @@ const team = props => {
   )
 }
 
-export default withStyles(styles)(team);
+export default team;
