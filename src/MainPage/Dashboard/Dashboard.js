@@ -1,17 +1,18 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import {  Line } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import Calendar from '../../Components/Calendar/Calendar'
 
 class Dashboard extends React.Component {
 
-  state ={
-    chartData:{}
+  state = {
+    chartData: {}
   }
 
-  componentWillMount(){
-    if (typeof(this.props.expenses)==='number' ) {
+  componentWillMount() {
+    if (typeof (this.props.expenses) === 'number') {
+      
       this.generateChartData();
     }
   }
@@ -24,24 +25,18 @@ class Dashboard extends React.Component {
   }
 
   generateChartData() {
-    // console.log(this.props.expenses);
     let currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 3 );
+    currentDate.setDate(currentDate.getDate() - 3);
     currentDate = currentDate.toLocaleDateString();
     this.setState({
       chartData: {
-        labels: this.props.expenseRecords.filter(exp=>{
-          let date = new Date(exp.date);
-          date = date.toLocaleDateString();
-           return date > currentDate 
-        })
-          .map(expense=> {
-            // console.log(expense);
-            return expense.subCategory}),
+        labels: this.props.expenseRecords.map(expense => {
+            return expense.subCategory
+          }),
         datasets: [
           {
-            labels:['Amount'],
-            data:this.props.expenseRecords.map(expense=> Number(expense.amount))
+            labels: ['Amount'],
+            data: this.props.expenseRecords.map(expense => { return Number(expense.amount)})
           }
         ]
       }

@@ -52,8 +52,6 @@ function today() {
         month = '0' + month
     }
     today = `${year}-${month}-${day}`;
-    // let today = new Date();
-    // console.log(today.toLocaleDateString());
     return today;
 }
 
