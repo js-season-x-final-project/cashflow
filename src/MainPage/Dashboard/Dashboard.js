@@ -1,39 +1,46 @@
 import React, { Fragment } from 'react';
-import MainPage from '../MainPage'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Bar, Radar, Pie, Line } from 'react-chartjs-2'
-import Header from '../Header/Header';
 
-
-// const dashboard = props => {
 class Dashboard extends React.Component {
 
   state ={
     chartData:{}
   }
 
+  componentWillMount(){
+    if (typeof(this.props.expenses)==='number' ) {
+      this.generateChartData();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps === this.props) {
-      console.log('true');
       return;
     }
     this.generateChartData();
-    console.log('[DASH] DID UPDATE');
   }
 
   generateChartData() {
     console.log(this.props.expenses);
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 3 );
+    currentDate = currentDate.toLocaleDateString();
     this.setState({
       chartData: {
-        labels: ['Expenses', 'Incomes'],
+        labels: this.props.expenseRecords.filter(exp=>{
+          let date = new Date(exp.date);
+          date = date.toLocaleDateString();
+           return date > currentDate 
+        })
+          .map(expense=> {
+            console.log(expense);
+            return expense.subCategory}),
         datasets: [
           {
             labels:['Amount'],
-            data:[
-              this.props.expenses,
-              this.props.incomes
-            ]
+            data:this.props.expenseRecords.map(expense=> Number(expense.amount))
           }
         ]
       }
@@ -44,9 +51,10 @@ class Dashboard extends React.Component {
     return (
       <Fragment>
         <h1>dashboard</h1>
-        <Bar data={this.state.chartData} />
-        <Radar data={this.state.chartData} />
+        {/* <Bar data={this.state.chartData} /> */}
+        {/* <Radar data={this.state.chartData} /> */}
         <Line data={this.state.chartData} />
+        {/* <Pie data={this.state.chartData}/> */}
       </Fragment>
     )
   }
@@ -56,6 +64,7 @@ const mapStateToProps = state => {
   return {
     expenses: state.statisticData.expenses,
     incomes: state.statisticData.incomes,
+    expenseRecords: state.statisticData.expenseRecords,
     auth: state.firebase.auth
   }
 }

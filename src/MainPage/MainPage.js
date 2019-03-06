@@ -19,7 +19,6 @@ class MainPage extends React.Component {
     this.props.differentiateRecords(this.props.records || []);
     this.props.calculateExpenses();
     this.props.calculateIncomes();
-    console.log(this.props);
   }
 
   render() {
@@ -29,9 +28,7 @@ class MainPage extends React.Component {
     }
     return (
       <Fragment>
-
         <Header />
-
         <Switch>
           <Route exact path='/main' component={Dashboard} />
           <Route exact path='/main/dashboard' component={Dashboard} />
@@ -40,7 +37,6 @@ class MainPage extends React.Component {
           <Route exact path='/main/blog' component={Blog} />
           <Route exact path='/main/settings' component={Settings} />
         </Switch>
-
       </Fragment>
     )
   }
@@ -49,6 +45,7 @@ class MainPage extends React.Component {
 const mapStateToProps = state => {
   return {
     records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+    period: state.statisticData.period,
     auth: state.firebase.auth ? state.firebase.auth : null
   }
 }

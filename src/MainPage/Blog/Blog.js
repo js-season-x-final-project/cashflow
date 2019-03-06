@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
-import MainPage from '../MainPage';
+// import MainPage from '../MainPage';
 import Header from '../../Homepage/Header/Header';
 // import { connect } from 'react-redux';
 
