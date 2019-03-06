@@ -5,11 +5,6 @@ import Auth from '../Auth/Auth';
 import Mainpage from '../MainPage/MainPage';
 import NotFound from '../NotFound/NotFound';
 import './App.css';
-// import Dashboard from '../MainPage/Dashboard/Dashboard';
-// import Records from '../MainPage/Records/Records';
-// import Analytics from '../MainPage/Analytics/Analytics';
-// import Blog from '../MainPage/Blog/Blog';
-// import Settings from '../MainPage/Settings/Settings'
 
 class App extends Component {
  

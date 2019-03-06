@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 const blog = props => {
     return(
         <Fragment>
+            {/* <Header/> */}
             <h1>Blog</h1>
         </Fragment>
     )

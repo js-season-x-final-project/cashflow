@@ -1,26 +1,35 @@
 .header {
-  height: 90px;
+  min-height: 90px;
   background-color: white;
 }
 
 .inner {
   display: flex;
   flex-direction: row;
-  width: 960px;
-  height: 90px;
+  justify-content: space-between;
+  min-width: 420px;
+  max-width: 960px;
+  min-height: 90px;
   margin: auto;
   align-items: center;
 }
 
 .leftSide {
-  flex: 1;
+  float: left;
+  padding-left: 20px;
+}
+
+.authButton {
+  float: right;
+  padding-right: 40px;
 }
 
 .hiddenMenu {
   display: none;
+  padding-left: 20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 620px) {
   .hiddenMenu {
     display: block;
   }
