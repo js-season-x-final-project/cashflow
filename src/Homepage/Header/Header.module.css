@@ -1,0 +1,31 @@
+.header {
+  height: 90px;
+  background-color: white;
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  width: 960px;
+  height: 90px;
+  margin: auto;
+  align-items: center;
+}
+
+.leftSide {
+  flex: 1;
+}
+
+.hiddenMenu {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .hiddenMenu {
+    display: block;
+  }
+
+  .leftSide {
+    display: none;
+  }
+}

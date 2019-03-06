@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
@@ -7,14 +7,16 @@ import Start from './Start/Start';
 import Support from './Support/Support';
 import Team from './Team/Team';
 import { withRouter } from 'react-router-dom';
+import './Homepage.css';
 
 
 const homepage = props => {
 
   return (
-    <div>
+    <Fragment className='mainWrapper'>
       
-      <Header />
+      <div className='withoutFooter'>
+        <Header />
 
         <Switch>
           <Route exact path='/' component={Home} />
@@ -23,10 +25,11 @@ const homepage = props => {
           <Route exact path='/home/support' component={Support} />
           <Route exact path='/home/team' component={Team} />
         </Switch>
+      </div>
 
-      <Footer />
+      <Footer className='footer' />
 
-    </div>
+    </Fragment>
   )
 }
 

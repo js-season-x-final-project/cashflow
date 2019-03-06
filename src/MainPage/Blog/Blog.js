@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
 
 const blog = props => {
 

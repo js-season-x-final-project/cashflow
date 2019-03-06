@@ -21,11 +21,11 @@ const styles = {
     },
     menuButton: {
         margin: '0px 5px',
-        color: '#00aa70'
+        color: '#00cf8d'
     },
     tooltip: {
         fontSize: 12,
-        color: '#00aa70',
+        color: '#00cf8d',
         backgroundColor: 'white'
     },
     leftSide: {

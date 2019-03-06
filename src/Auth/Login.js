@@ -25,9 +25,9 @@ const styles = () => ({
         marginTop: '30px',
         borderRadius: '25px',
         color: 'white',
-        backgroundColor: '#00aa70',
+        backgroundColor: '#00cf8d',
         '&:hover': {
-            backgroundColor: '#00aa70',
+            backgroundColor: '#00cf8d',
         },
     },
 });
