@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react';
+<<<<<<< HEAD
 import { Redirect } from 'react-router-dom';
 
+=======
+>>>>>>> 9044aa7ff59cf3e43b304603e05e29c0f0e15d33
 import Record from './Record';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
@@ -16,6 +19,7 @@ const styles = {
 
 class Records extends Component {
   render() {
+
     const { classes } = this.props;
     return (
       <Fragment>

@@ -1,0 +1,17 @@
+.Badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  padding: 19px;
+}
+
+.Badge > img {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+}
+
+.Badge > h3 {
+  margin-bottom: 10px;
+}

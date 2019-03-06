@@ -2,20 +2,14 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-// import Header from '../Header/Header'
 
 const analytics = props => {
 
-  // const { auth } = props;
-  // if (!auth.uid) {
-  //   props.history.push('/auth');
-  // }
   return (
     <Fragment>
       <h1>Analytics</h1>

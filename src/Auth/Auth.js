@@ -9,7 +9,7 @@ const auth = props => {
     
     const { auth } = props;
     if (auth.uid) {
-        props.history.push('/dashboard');
+        props.history.push('/main/dashboard');
     }
 
     return (

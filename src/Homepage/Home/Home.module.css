@@ -1,0 +1,41 @@
+.firstPart {
+    width: 100vw;
+    height: 300px;
+}
+
+.firstPartInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 960px;
+    margin: auto;
+    color: white;
+}
+
+.secondPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 400px;
+    margin: auto;
+    background-color: white;
+}
+
+.firstPartInner > h2 {
+    color: rgb(228, 228, 228);
+}
+
+.logo {
+    font-size: 4em;
+    letter-spacing: 0.15em;
+    font-family: 'Lobster', cursive;
+    margin-top: 60px;
+}
+
+.badges {
+    display: flex;
+    flex-direction: row;
+}
