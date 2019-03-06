@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Bar, Radar, Pie, Line } from 'react-chartjs-2'
+import {  Line } from 'react-chartjs-2'
+import Calendar from '../../Components/Calendar/Calendar'
 
 class Dashboard extends React.Component {
 
@@ -23,7 +24,7 @@ class Dashboard extends React.Component {
   }
 
   generateChartData() {
-    console.log(this.props.expenses);
+    // console.log(this.props.expenses);
     let currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 3 );
     currentDate = currentDate.toLocaleDateString();
@@ -35,7 +36,7 @@ class Dashboard extends React.Component {
            return date > currentDate 
         })
           .map(expense=> {
-            console.log(expense);
+            // console.log(expense);
             return expense.subCategory}),
         datasets: [
           {
@@ -51,6 +52,7 @@ class Dashboard extends React.Component {
     return (
       <Fragment>
         <h1>dashboard</h1>
+        <Calendar />
         {/* <Bar data={this.state.chartData} /> */}
         {/* <Radar data={this.state.chartData} /> */}
         <Line data={this.state.chartData} />

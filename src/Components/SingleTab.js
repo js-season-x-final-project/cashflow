@@ -52,6 +52,8 @@ function today() {
         month = '0' + month
     }
     today = `${year}-${month}-${day}`;
+    // let today = new Date();
+    // console.log(today.toLocaleDateString());
     return today;
 }
 
@@ -64,7 +66,7 @@ class SingleTab extends Component {
         subCategory: this.props.cats[0].subcategories[0],
         amount: 0,
         currency: 'BGN',
-        date: today(),
+        date:today(),
         note: '',
     }
 
@@ -73,9 +75,9 @@ class SingleTab extends Component {
             labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
         });
     }
-    
+
     handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+            this.setState({ [event.target.name]: event.target.value });
     };
 
     onAddRecord = () => {
@@ -102,7 +104,7 @@ class SingleTab extends Component {
                         name="category"
                         className={classes.selectEmpty}
                     >
-                        {this.props.cats.map(cat => 
+                        {this.props.cats.map(cat =>
                             <MenuItem key={cat.category} value={cat.category}>{cat.category}</MenuItem>
                         )}
                     </Select>
@@ -120,7 +122,7 @@ class SingleTab extends Component {
                         name="subCategory"
                         className={classes.selectEmpty}
                     >
-                        {this.props.cats.find(cat => cat.category === this.state.category).subcategories.map(subCat => 
+                        {this.props.cats.find(cat => cat.category === this.state.category).subcategories.map(subCat =>
                             <MenuItem key={subCat} value={subCat}>{subCat}</MenuItem>
                         )}
                     </Select>
@@ -130,9 +132,9 @@ class SingleTab extends Component {
                     <InputLabel shrink htmlFor="amount-label-placeholder">
                         Amount
                     </InputLabel>
-                    <Input 
-                        className={classes.amount} 
-                        type="number" 
+                    <Input
+                        className={classes.amount}
+                        type="number"
                         name="amount"
                         value={this.state.amount}
                         onChange={this.handleChange}
@@ -156,10 +158,11 @@ class SingleTab extends Component {
                         label="Day"
                         type="date"
                         name="date"
+
                         onChange={this.handleChange}
                         defaultValue={this.state.date}
                         InputLabelProps={{
-                        shrink: true,
+                            shrink: true,
                         }}
                     />
                 </FormControl>
@@ -178,7 +181,7 @@ class SingleTab extends Component {
                         defaultValue=""
                         value={this.state.note}
                         onChange={this.handleChange}
-                     />
+                    />
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
