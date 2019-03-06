@@ -3,7 +3,7 @@ import Login from './Login';
 import Register from './Register';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import './Auth.css';
+import classes from './Auth.module.css';
 
 const auth = props => {
     
@@ -13,9 +13,12 @@ const auth = props => {
     }
 
     return (
-        <div className="authWrapper">
-            <Login />
-            <Register />
+        <div className={classes.mainWrapper}>
+            <h1 className={classes.logo}>CASHFLOW</h1>
+            <div className={classes.authWrapper}>
+                <Login />
+                <Register />
+            </div>
         </div>
     )
 }

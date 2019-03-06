@@ -8,20 +8,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 960px;
+    min-width: 420px;
+    max-width: 960px;
     margin: auto;
     color: white;
 }
 
 .secondPart {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 400px;
-    margin: auto;
+    height: 100%;
+    padding: 20px 0px;
     background-color: white;
+}
+
+.secondPartInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 420px;
+    max-width: 960px;
 }
 
 .firstPartInner > h2 {
@@ -38,4 +47,6 @@
 .badges {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }

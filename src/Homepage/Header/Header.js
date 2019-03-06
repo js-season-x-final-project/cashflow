@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import classes from './Header.module.css';
@@ -51,6 +52,7 @@ class Header extends Component {
               aria-haspopup="true"
               onClick={this.handleClick}
             >
+              <MenuIcon />
               Menu
             </Button>
             <Menu
@@ -71,7 +73,9 @@ class Header extends Component {
             <Button className={classes.button} component={Link} to="/home/team">Team</Button>
             <Button className={classes.button} component={Link} to="/home/support">Support</Button>
           </div>
-          <Button variant="outlined" className={classes.authButton} component={Link} to="/auth" >Get In</Button>
+          <div className={classes.authButton}>
+            <Button variant="outlined" component={Link} to="/auth" >Get In</Button>
+          </div>
         </div>
       </div>
     )

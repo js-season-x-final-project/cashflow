@@ -5,7 +5,7 @@ const blog = props => {
 
     return(
         <Fragment>
-            <Header/>
+            {/* <Header/> */}
             <h1>Blog</h1>
         </Fragment>
     )

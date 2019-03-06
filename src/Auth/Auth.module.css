@@ -1,0 +1,24 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 100px;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 4em;
+    letter-spacing: 0.15em;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.authWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 740px;
+    height: 460px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    border-radius: 15px;
+}
