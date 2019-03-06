@@ -12,15 +12,17 @@ import Analytics from '../MainPage/Analytics/Analytics';
 import Blog from '../MainPage/Blog/Blog';
 import Settings from '../MainPage/Settings/Settings'
 
-
-
 class MainPage extends React.Component {
-  componentDidUpdate() {
+
+
+  componentDidUpdate(prevProps) {
     this.props.differentiateRecords(this.props.records || [],this.props.startDate, this.props.endDate);
-    this.props.calculateDataByFilter("date");
+    this.props.calculateDataByFilter();
     // this.props.calculateDataByFilter(filter)
-    this.props.calculateExpenses();
-    this.props.calculateIncomes();
+    if (prevProps.records !== this.props.records) {
+      this.props.calculateExpenses(this.props.records || []);
+      this.props.calculateIncomes(this.props.records || []);
+    }
   }
 
   render() {
@@ -57,9 +59,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     differentiateRecords: (records,startDate,endDate) => dispatch(differentiateRecords(records,startDate,endDate)),
-    calculateDataByFilter: (filter) => dispatch(calculateDataByFilter(filter)),
-    calculateExpenses: () => dispatch(calculateExpenses()),
-    calculateIncomes: () => dispatch(calculateIncomes()),
+    calculateDataByFilter: () => dispatch(calculateDataByFilter()),
+    calculateExpenses: (arr) => dispatch(calculateExpenses(arr)),
+    calculateIncomes: (arr) => dispatch(calculateIncomes(arr)),
   }
 }
 
