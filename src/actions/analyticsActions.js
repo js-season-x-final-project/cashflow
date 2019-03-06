@@ -1,13 +1,16 @@
 import { 
     CALCULATE_EXPENSES,
     CALCULATE_INCOMES,
-    DIFFERENTIATE_RECORDS
+    DIFFERENTIATE_RECORDS,
+    CHANGE_PERIOD
 } from "./actionTypes";
 
-const differentiateRecords = allRecords =>{
+const differentiateRecords = (allRecords,start,end) =>{
     return{
         type: DIFFERENTIATE_RECORDS,
-        records: allRecords
+        records: allRecords,
+        startDate:start,
+        endDate:end
     }
 }
 
@@ -23,4 +26,12 @@ const calculateIncomes = () =>{
     }
 }
 
-export {calculateExpenses,calculateIncomes,differentiateRecords}
+const changePeriod = (startDate,endDate)=>{
+    return{
+        type: CHANGE_PERIOD,
+        startDate,
+        endDate
+    }
+}
+
+export {calculateExpenses,calculateIncomes,differentiateRecords,changePeriod}

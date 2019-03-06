@@ -16,10 +16,9 @@ import Settings from '../MainPage/Settings/Settings'
 
 class MainPage extends React.Component {
   componentDidUpdate() {
-    this.props.differentiateRecords(this.props.records || []);
+    this.props.differentiateRecords(this.props.records || [],this.props.startDate, this.props.endDate);
     this.props.calculateExpenses();
     this.props.calculateIncomes();
-    console.log(this.props);
   }
 
   render() {
@@ -29,9 +28,7 @@ class MainPage extends React.Component {
     }
     return (
       <Fragment>
-
         <Header />
-
         <Switch>
           <Route exact path='/main' component={Dashboard} />
           <Route exact path='/main/dashboard' component={Dashboard} />
@@ -40,7 +37,6 @@ class MainPage extends React.Component {
           <Route exact path='/main/blog' component={Blog} />
           <Route exact path='/main/settings' component={Settings} />
         </Switch>
-
       </Fragment>
     )
   }
@@ -49,13 +45,15 @@ class MainPage extends React.Component {
 const mapStateToProps = state => {
   return {
     records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+    startDate: state.statisticData.startDate,
+    endDate: state.statisticData.endDate,
     auth: state.firebase.auth ? state.firebase.auth : null
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    differentiateRecords: records => dispatch(differentiateRecords(records)),
+    differentiateRecords: (records,startDate,endDate) => dispatch(differentiateRecords(records,startDate,endDate)),
     calculateExpenses: () => dispatch(calculateExpenses()),
     calculateIncomes: () => dispatch(calculateIncomes()),
   }
