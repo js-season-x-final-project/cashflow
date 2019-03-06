@@ -13,6 +13,11 @@ const styles = {
 }
 
 class Records extends Component {
+
+  componentDidUpdate(){
+    console.log(this.props);
+  }
+
   render() {
 
     const { classes } = this.props;

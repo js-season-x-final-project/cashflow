@@ -1,16 +1,17 @@
-import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React,{Fragment} from 'react';
 import Header from './Header/Header'
-import Dashboard from './Dashboard/Dashboard';
-import Records from './Records/Records';
-import Analytics from './Analytics/Analytics';
-import Blog from './Blog/Blog';
-import Settings from './Settings/Settings';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { calculateExpenses, calculateIncomes, differentiateRecords } from '../actions/analyticsActions'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
+import Dashboard from '../MainPage/Dashboard/Dashboard';
+import Records from '../MainPage/Records/Records';
+import Analytics from '../MainPage/Analytics/Analytics';
+import Blog from '../MainPage/Blog/Blog';
+import Settings from '../MainPage/Settings/Settings'
+
 
 
 class MainPage extends React.Component {
@@ -75,4 +76,3 @@ export default compose(
     ] : []
   })
 )(withRouter(MainPage))
-
