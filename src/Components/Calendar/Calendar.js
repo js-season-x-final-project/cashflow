@@ -8,11 +8,9 @@ import {changePeriod} from '../../actions/analyticsActions'
 class MyComponent extends Component {
 
 	handleSelect =(ranges)=>{
-		console.log(ranges);
 		const startDate = ranges.selection.startDate.getTime();
 		let currentEnd = ranges.selection.endDate.getDate();
 		let endDate = ranges.selection.endDate.setDate(currentEnd+1);
-		console.log(new Date(endDate));
 		this.props.changePeriod(startDate, endDate)
 	}
 	render(){

@@ -3,7 +3,7 @@ import Header from './Header/Header'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { calculateExpenses, calculateIncomes, differentiateRecords } from '../actions/analyticsActions'
+import { calculateExpenses, calculateIncomes, differentiateRecords,calculateDataByFilter } from '../actions/analyticsActions'
 import { withRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
@@ -17,6 +17,8 @@ import Settings from '../MainPage/Settings/Settings'
 class MainPage extends React.Component {
   componentDidUpdate() {
     this.props.differentiateRecords(this.props.records || [],this.props.startDate, this.props.endDate);
+    this.props.calculateDataByFilter("date");
+    // this.props.calculateDataByFilter(filter)
     this.props.calculateExpenses();
     this.props.calculateIncomes();
   }
@@ -45,6 +47,7 @@ class MainPage extends React.Component {
 const mapStateToProps = state => {
   return {
     records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+    currentFilter: state.statisticData.currentFilter,
     startDate: state.statisticData.startDate,
     endDate: state.statisticData.endDate,
     auth: state.firebase.auth ? state.firebase.auth : null
@@ -54,6 +57,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     differentiateRecords: (records,startDate,endDate) => dispatch(differentiateRecords(records,startDate,endDate)),
+    calculateDataByFilter: (filter) => dispatch(calculateDataByFilter(filter)),
     calculateExpenses: () => dispatch(calculateExpenses()),
     calculateIncomes: () => dispatch(calculateIncomes()),
   }

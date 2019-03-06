@@ -2,7 +2,9 @@ import {
     CALCULATE_EXPENSES,
     CALCULATE_INCOMES,
     DIFFERENTIATE_RECORDS,
-    CHANGE_PERIOD
+    CHANGE_PERIOD,
+    CALCULATE_FILTERED_DATA,
+    CALCULATE_DATE_DATA
 } from "./actionTypes";
 
 const differentiateRecords = (allRecords,start,end) =>{
@@ -33,5 +35,11 @@ const changePeriod = (startDate,endDate)=>{
         endDate
     }
 }
+const calculateDataByFilter = filter =>{
+    return{
+        type: CALCULATE_FILTERED_DATA,
+        filter
+    }
+}
 
-export {calculateExpenses,calculateIncomes,differentiateRecords,changePeriod}
+export {calculateExpenses,calculateIncomes,differentiateRecords,changePeriod, calculateDataByFilter}
