@@ -1,14 +1,41 @@
 .mainWrapper {
   display: flex;
   flex-direction: row;
-  padding: 10px;
+  padding: 10px 30px;
+  height: 100px;
 }
 
 .leftSide {
-  flex: 1;
+  flex: 2;
+}
+
+.middle {
+  flex: 2;
+  overflow: auto;
 }
 
 .rightSide {
+  flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.text {
+  padding-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.amount {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+
+.icon {
+  height: 10px;
 }
