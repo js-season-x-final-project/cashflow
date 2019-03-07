@@ -28,7 +28,7 @@ class MainPage extends React.Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) {
-      this.props.history.push('/auth');
+      this.props.history.push('/');
     }
     return (
       <Fragment>

@@ -1,0 +1,14 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.leftSide {
+  flex: 1;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+}

@@ -3,8 +3,11 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { HorizontalBar, Pie } from 'react-chartjs-2'
 import Calendar from '../../Components/Calendar/Calendar'
+import Paper from '@material-ui/core/Paper';
 // import Radios from '../../Components/Radios/Radios'
-import NestedList from '../../Components/List/List'
+// import NestedList from '../../Components/List/List'
+import classes from './Dashboard.module.css';
+
 class Dashboard extends React.Component {
 
   state = {
@@ -67,19 +70,35 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Fragment>
-        <h1>dashboard</h1>
         <Calendar />
-        {/* <NestedList /> */}
-        {/* <Bar data={this.state.chartData} /> */}
-        {/* <Radar data={this.state.chartData} /> */}
-        <h2>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h2>
-        <HorizontalBar
-          data={this.state.filteredChartData} />
-        <Pie
-          data={this.state.filteredChartData} />
-        <h3>Your lifetime stats for cashflow</h3>
-        <HorizontalBar
-          data={this.state.overallChartData}/>
+        <div className={classes.chartsWrapper}>
+          {/* <NestedList /> */}
+          {/* <Bar data={this.state.chartData} /> */}
+          {/* <Radar data={this.state.chartData} /> */}
+          <Paper className={classes.chart}>
+            <h2>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h2>
+            <HorizontalBar
+              data={this.state.filteredChartData}
+              responsive
+            />
+          </Paper>
+
+          <Paper className={classes.chart}>
+            <Pie
+              data={this.state.filteredChartData}
+              responsive
+            />
+          </Paper>
+
+          <Paper className={classes.chart}>
+            <h3>Your lifetime stats for cashflow</h3>
+            <HorizontalBar
+              data={this.state.overallChartData}
+              responsive
+            />
+          </Paper>
+        </div>
+
       </Fragment>
     )
   }

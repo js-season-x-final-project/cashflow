@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTabs from '../../Components/Dialog/DialogTabs';
 import { deleteRecord } from '../../actions/recordsActions';
 import { connect } from 'react-redux';
+import classes from './Record.module.css';
 
 class Record extends Component {
 
@@ -33,25 +34,22 @@ class Record extends Component {
     return (
       <Fragment>
 
-        <div>
-          {
-            /*
-            /* <h3>This is single record</h3>
-          <p>{this.state.record.category}</p>
-          <p>{this.state.record.subCategory}</p>
-          <p>{this.state.record.amount}</p>
-          <p>{this.state.record.note}</p>
-          <p>Date{this.state.record.date}</p>
-          <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
-          <Button onClick={this.handleClickOpen}>Edit</Button> */}
-          <h3>This is single record</h3>
-          <p>{this.props.category}</p>
-          <p>{this.props.subCategory}</p>
-          <p>{this.props.amount}</p>
-          <p>{this.props.note}</p>
-          <p>Date{this.props.date}</p>
-          <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
-          <Button onClick={this.handleClickOpen}>Edit</Button>
+        <div className={classes.mainWrapper}>
+          <div className={classes.leftSide}>
+            <h2>{this.props.category}</h2>
+            <h4>{this.props.subCategory}</h4>
+            <p>Date{this.props.date}</p>
+            <p>Note: {this.props.note}</p>
+          </div>
+          <div className={classes.rightSide}>
+          <div className={classes.buttons}>
+            <Button onClick={this.handleClickOpen}>Edit</Button>
+            <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
+          </div>
+          <div className={classes.amount}>
+            <p>{this.props.amount}</p>
+          </div>
+          </div>
         </div>
 
         <Dialog

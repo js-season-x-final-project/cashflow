@@ -91,5 +91,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// export default connect(mapStateToProps, { logout })(withStyles(styles)(header));
 export default connect(null, mapDispatchToProps)(withStyles(styles)(header))

@@ -7,6 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableFooter from '@material-ui/core/TableFooter';
+import classes from './Analytics.module.css';
 
 const analytics = props => {
 
@@ -17,7 +19,7 @@ const analytics = props => {
         <p>Total expenses: {props.expenses} лв.</p>
         <p>Total incomes: {props.incomes} лв.</p>
       </div>
-      <Paper>
+      <Paper className={classes.section}>
         <Table >
           <TableHead>
             <TableRow>
@@ -29,7 +31,7 @@ const analytics = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.expenseRecords ? props.expenseRecords.sort((c1,c2)=>{return c1.date > c2.date ? 1 : -1 }).map(expense => (
+            {props.expenseRecords ? props.expenseRecords.sort((c1, c2) => { return c1.date > c2.date ? 1 : -1 }).map(expense => (
               <TableRow key={expense.id}>
                 <TableCell component="th" scope="row">
                   {expense.category}
@@ -39,11 +41,19 @@ const analytics = props => {
                 <TableCell align="right">{expense.subCategory}</TableCell>
                 <TableCell align="right">{expense.note}</TableCell>
               </TableRow>
-            )):null}
+            )) : null}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3} />
+              <TableCell colSpan={1}>Total expenses:</TableCell>
+              <TableCell align="right">{props.expenses} лв.</TableCell>
+            </TableRow>
+          </TableFooter>
         </Table>
       </Paper>
-      <Paper>
+
+      <Paper className={classes.section}>
         <Table >
           <TableHead>
             <TableRow>
@@ -67,6 +77,13 @@ const analytics = props => {
               </TableRow>
             ))}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3} />
+              <TableCell colSpan={1}>Total incomes:</TableCell>
+              <TableCell align="right">{props.incomes} лв.</TableCell>
+            </TableRow>
+          </TableFooter>
         </Table>
       </Paper>
     </Fragment>

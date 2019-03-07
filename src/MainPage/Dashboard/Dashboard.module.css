@@ -1,0 +1,10 @@
+.chartsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.chart {
+  width: 400px;
+  margin: 10px;
+}
