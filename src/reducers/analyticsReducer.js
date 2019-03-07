@@ -20,7 +20,7 @@ const initialState = {
         labels:[],
         values:[]
     },
-    currentFilter: 'date'
+    currentFilter: 'subCategory'
 }
 
 const analyticsReducer = (state = initialState, action) => {
@@ -30,11 +30,11 @@ const analyticsReducer = (state = initialState, action) => {
             incomeRecords: action.records.filter(rec => {
                 let na = new Date(rec.date).getTime();
                 return rec.type === 'income' && na >= action.startDate && na <= action.endDate
-            }),
+            }).sort((rec1,rec2)=> {return rec1.date > rec2.date ? 1 : -1}),
             expenseRecords:[...action.records.filter(rec => {
                 let na = new Date(rec.date).getTime();
                 return rec.type === 'expense' && na >= action.startDate && na <= action.endDate
-            }).sort((rec1,rec2)=> {return rec1.date > rec2.date})]
+            }).sort((rec1,rec2)=> {return rec1.date > rec2.date ? 1 : -1})]
         }
         case CALCULATE_EXPENSES: return { ...state, expenses: action.arr.filter(c1=>c1.type==='expense').reduce((acc, c1) => { return acc + Number(c1.amount) }, 0) }
         case CALCULATE_INCOMES: return { ...state, incomes: action.arr.filter(c1=>c1.type==='income').reduce((acc, c1) => { return acc + Number(c1.amount) }, 0) }

@@ -29,7 +29,7 @@ const analytics = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.expenseRecords.map(expense => (
+            {props.expenseRecords ? props.expenseRecords.sort((c1,c2)=>{return c1.date > c2.date ? 1 : -1 }).map(expense => (
               <TableRow key={expense.id}>
                 <TableCell component="th" scope="row">
                   {expense.category}
@@ -39,7 +39,7 @@ const analytics = props => {
                 <TableCell align="right">{expense.subCategory}</TableCell>
                 <TableCell align="right">{expense.note}</TableCell>
               </TableRow>
-            ))}
+            )):null}
           </TableBody>
         </Table>
       </Paper>

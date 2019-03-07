@@ -34,12 +34,22 @@ class Record extends Component {
       <Fragment>
 
         <div>
-          <h3>This is single record</h3>
+          {
+            /*
+            /* <h3>This is single record</h3>
           <p>{this.state.record.category}</p>
           <p>{this.state.record.subCategory}</p>
           <p>{this.state.record.amount}</p>
           <p>{this.state.record.note}</p>
           <p>Date{this.state.record.date}</p>
+          <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
+          <Button onClick={this.handleClickOpen}>Edit</Button> */}
+          <h3>This is single record</h3>
+          <p>{this.props.category}</p>
+          <p>{this.props.subCategory}</p>
+          <p>{this.props.amount}</p>
+          <p>{this.props.note}</p>
+          <p>Date{this.props.date}</p>
           <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
           <Button onClick={this.handleClickOpen}>Edit</Button>
         </div>

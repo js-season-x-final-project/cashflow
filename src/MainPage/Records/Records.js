@@ -14,10 +14,16 @@ const styles = {
 
 class Records extends Component {
 
-  componentDidUpdate() {
-    
+  componentDidUpdate(prevPros) {
+    // console.log(prevPros.records === this.props.records)
   }
+
+
   
+  drawRecords() {
+
+  }
+
   render() {
 
     const { classes } = this.props;

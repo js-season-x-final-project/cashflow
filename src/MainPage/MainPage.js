@@ -9,19 +9,19 @@ import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
-import Blog from '../MainPage/Blog/Blog';
+import Blog from '../MainPage/Blog/Blog';   
 import Settings from '../MainPage/Settings/Settings'
 
 class MainPage extends React.Component {
 
-
   componentDidUpdate(prevProps) {
-    this.props.differentiateRecords(this.props.records || [],this.props.startDate, this.props.endDate);
+    const p =  this.props.records ? Object.entries(this.props.records).map(rec => {return{...rec[1],rid:rec[0]}}) : [];
+    // console.log(this.props.recsData);
+    this.props.differentiateRecords(p ,this.props.startDate, this.props.endDate);
     this.props.calculateDataByFilter();
-    // this.props.calculateDataByFilter(filter)
     if (prevProps.records !== this.props.records) {
-      this.props.calculateExpenses(this.props.records || []);
-      this.props.calculateIncomes(this.props.records || []);
+      this.props.calculateExpenses(p);
+      this.props.calculateIncomes(p);
     }
   }
 
@@ -47,8 +47,10 @@ class MainPage extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const hash = state.firebase.auth.uid;
   return {
-    records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+    records: state.firestore.data.users && hash ?state.firestore.data.users[hash].records: null,
+    // records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
     currentFilter: state.statisticData.currentFilter,
     startDate: state.statisticData.startDate,
     endDate: state.statisticData.endDate,

@@ -32,10 +32,11 @@ class Dashboard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data === this.props.data) {
+    if (prevProps.data === this.props.data) { 
       return;
     }
     this.generateChartData();
+
   }
 
   generateChartData() {
@@ -68,7 +69,7 @@ class Dashboard extends React.Component {
       <Fragment>
         <h1>dashboard</h1>
         <Calendar />
-        <NestedList />
+        {/* <NestedList /> */}
         {/* <Bar data={this.state.chartData} /> */}
         {/* <Radar data={this.state.chartData} /> */}
         <h2>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h2>
