@@ -81,6 +81,7 @@ class SingleTab extends Component {
   onAddRecord = () => {
     if (this.props.uid) {
       this.props.editRecord(this.props.uid, this.state);
+      this.forceUpdate();
       this.props.handleClose();
     } else {
       this.props.addRecord(this.state);

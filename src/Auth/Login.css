@@ -1,15 +1,15 @@
 .loginWrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    background-color: white;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .loginWrapper > .authButton {
-    background-color: #00cf8d;
-    color: white;
+  background-color: #00cf8d;
+  color: white;
 }

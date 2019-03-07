@@ -13,6 +13,10 @@ const styles = {
 }
 
 class Records extends Component {
+
+  componentDidUpdate() {
+    
+  }
   
   render() {
 
