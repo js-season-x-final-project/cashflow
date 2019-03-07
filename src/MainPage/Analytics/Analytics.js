@@ -2,25 +2,16 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow
-} from '@material-ui/core';
-import Radios from '../../Components/Radios/Radios'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableFooter from '@material-ui/core/TableFooter';
+import classes from './Analytics.module.css';
 
 // const analytics = props => {
 class Analytics extends React.Component {
-
-  state = {
-    sortBy: 'category'
-  }
-
-  madafaka(){
-    console.log('ebi se')
-  }
   render() {
     return (
       <Fragment>
@@ -29,8 +20,7 @@ class Analytics extends React.Component {
           <p>Total expenses: {this.props.expenses} лв.</p>
           <p>Total incomes: {this.props.incomes} лв.</p>
         </div>
-        <Radios onChange={this.madafaka} />
-        <Paper>
+        <Paper className={classes.section}>
           <Table >
             <TableHead>
               <TableRow>
@@ -42,7 +32,7 @@ class Analytics extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.expenseRecords ? this.props.expenseRecords.sort((c1, c2) => { return c1[this.state.sortBy] > c2[this.state.sortBy] ? 1 : -1 }).map(expense => (
+              {this.props.expenseRecords ? this.props.expenseRecords.sort((c1, c2) => { return c1.date > c2.date ? 1 : -1 }).map(expense => (
                 <TableRow key={expense.id}>
                   <TableCell component="th" scope="row">
                     {expense.category}
@@ -54,9 +44,17 @@ class Analytics extends React.Component {
                 </TableRow>
               )) : null}
             </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3} />
+                <TableCell colSpan={1}>Total expenses:</TableCell>
+                <TableCell align="right">{this.props.expenses} лв.</TableCell>
+              </TableRow>
+            </TableFooter>
           </Table>
         </Paper>
-        <Paper>
+
+        <Paper className={classes.section}>
           <Table >
             <TableHead>
               <TableRow>
@@ -80,6 +78,13 @@ class Analytics extends React.Component {
                 </TableRow>
               ))}
             </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3} />
+                <TableCell colSpan={1}>Total incomes:</TableCell>
+                <TableCell align="right">{this.props.incomes} лв.</TableCell>
+              </TableRow>
+            </TableFooter>
           </Table>
         </Paper>
       </Fragment>

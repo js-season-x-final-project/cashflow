@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import {changeFilter} from '../../actions/analyticsActions'
+import {connect} from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -28,6 +29,10 @@ class RadioButtonsGroup extends React.Component {
   handleChange = event => {
     this.setState({ value: event.target.value });
   };
+
+  componentDidUpdate(){
+    this.props.changeFilter(this.state.value);
+  }
 
   render() {
     const { classes } = this.props;
@@ -56,4 +61,10 @@ RadioButtonsGroup.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RadioButtonsGroup);
+const mapDispatchToProps = dispatch =>{
+  return{
+    changeFilter : (newFilter) => dispatch(changeFilter(newFilter))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(withStyles(styles)(RadioButtonsGroup));

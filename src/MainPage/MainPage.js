@@ -28,7 +28,7 @@ class MainPage extends React.Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) {
-      this.props.history.push('/auth');
+      this.props.history.push('/');
     }
     return (
       <Fragment>
@@ -49,7 +49,8 @@ class MainPage extends React.Component {
 const mapStateToProps = state => {
   const hash = state.firebase.auth.uid;
   return {
-    records: state.firestore.data.users && hash ?state.firestore.data.users[hash].records: null,
+    // records: state.firestore.data.users && hash ? console.log("true"): console.log("false"),
+    records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records: null,
     currentFilter: state.statisticData.currentFilter,
     startDate: state.statisticData.startDate,
     endDate: state.statisticData.endDate,
