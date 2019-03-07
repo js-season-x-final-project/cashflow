@@ -2,75 +2,89 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from '@material-ui/core';
+import Radios from '../../Components/Radios/Radios'
 
-const analytics = props => {
+// const analytics = props => {
+class Analytics extends React.Component {
 
-  return (
-    <Fragment>
-      <h1>Analytics</h1>
-      <div>
-        <p>Total expenses: {props.expenses} лв.</p>
-        <p>Total incomes: {props.incomes} лв.</p>
-      </div>
-      <Paper>
-        <Table >
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Subcategory</TableCell>
-              <TableCell align="right">Note</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.expenseRecords ? props.expenseRecords.sort((c1,c2)=>{return c1.date > c2.date ? 1 : -1 }).map(expense => (
-              <TableRow key={expense.id}>
-                <TableCell component="th" scope="row">
-                  {expense.category}
-                </TableCell>
-                <TableCell align="right">{expense.amount}</TableCell>
-                <TableCell align="right">{expense.date}</TableCell>
-                <TableCell align="right">{expense.subCategory}</TableCell>
-                <TableCell align="right">{expense.note}</TableCell>
+  state = {
+    sortBy: 'category'
+  }
+
+  madafaka(){
+    console.log('ebi se')
+  }
+  render() {
+    return (
+      <Fragment>
+        <h1>Analytics</h1>
+        <div>
+          <p>Total expenses: {this.props.expenses} лв.</p>
+          <p>Total incomes: {this.props.incomes} лв.</p>
+        </div>
+        <Radios onChange={this.madafaka} />
+        <Paper>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell>Category</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Subcategory</TableCell>
+                <TableCell align="right">Note</TableCell>
               </TableRow>
-            )):null}
-          </TableBody>
-        </Table>
-      </Paper>
-      <Paper>
-        <Table >
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Subcategory</TableCell>
-              <TableCell align="right">Note</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.incomeRecords.map(expense => (
-              <TableRow key={expense.id}>
-                <TableCell component="th" scope="row">
-                  {expense.category}
-                </TableCell>
-                <TableCell align="right">{expense.amount}</TableCell>
-                <TableCell align="right">{expense.date}</TableCell>
-                <TableCell align="right">{expense.subCategory}</TableCell>
-                <TableCell align="right">{expense.note}</TableCell>
+            </TableHead>
+            <TableBody>
+              {this.props.expenseRecords ? this.props.expenseRecords.sort((c1, c2) => { return c1[this.state.sortBy] > c2[this.state.sortBy] ? 1 : -1 }).map(expense => (
+                <TableRow key={expense.id}>
+                  <TableCell component="th" scope="row">
+                    {expense.category}
+                  </TableCell>
+                  <TableCell align="right">{expense.amount}</TableCell>
+                  <TableCell align="right">{expense.date}</TableCell>
+                  <TableCell align="right">{expense.subCategory}</TableCell>
+                  <TableCell align="right">{expense.note}</TableCell>
+                </TableRow>
+              )) : null}
+            </TableBody>
+          </Table>
+        </Paper>
+        <Paper>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell>Category</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Subcategory</TableCell>
+                <TableCell align="right">Note</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </Fragment>
-  )
+            </TableHead>
+            <TableBody>
+              {this.props.incomeRecords.map(expense => (
+                <TableRow key={expense.id}>
+                  <TableCell component="th" scope="row">
+                    {expense.category}
+                  </TableCell>
+                  <TableCell align="right">{expense.amount}</TableCell>
+                  <TableCell align="right">{expense.date}</TableCell>
+                  <TableCell align="right">{expense.subCategory}</TableCell>
+                  <TableCell align="right">{expense.note}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
+      </Fragment>
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -83,4 +97,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(withRouter(analytics));
+export default connect(mapStateToProps, null)(withRouter(Analytics));

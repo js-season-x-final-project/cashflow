@@ -43,6 +43,11 @@ const calculateDataByFilter = () =>{
         type: CALCULATE_FILTERED_DATA,
     }
 }
+const calculateDataByDate = () =>{
+    return{
+        type:  CALCULATE_DATE_DATA,
+    }
+}
 
 const changeFilter = filter =>{
     return{
@@ -51,4 +56,4 @@ const changeFilter = filter =>{
     }
 }
 
-export {calculateExpenses,calculateIncomes,differentiateRecords,changePeriod, calculateDataByFilter,changeFilter}
+export {calculateExpenses,calculateIncomes,differentiateRecords,changePeriod, calculateDataByFilter,changeFilter,calculateDataByDate}

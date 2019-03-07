@@ -35,15 +35,16 @@ class RadioButtonsGroup extends React.Component {
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Category</FormLabel>
+          <FormLabel component="legend">Sort By</FormLabel>
           <RadioGroup
             className={classes.group}
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <FormControlLabel value="Food and Drinks" control={<Radio />} label="Food" />
-            <FormControlLabel value="Shopping" control={<Radio />} label="Shopping" />
-            <FormControlLabel value="Housing" control={<Radio />} label="Housing" />
+            <FormControlLabel value="category" control={<Radio />} label="Category" />
+            <FormControlLabel value="date" control={<Radio />} label="Date" />
+            <FormControlLabel value="subCategory" control={<Radio />} label="Subcategory" />
+            <FormControlLabel value="amount" control={<Radio />} label="Amount" />
           </RadioGroup>
         </FormControl>
       </div>

@@ -4,7 +4,8 @@ import {
     DIFFERENTIATE_RECORDS,
     CHANGE_PERIOD,
     CALCULATE_FILTERED_DATA,
-    CHANGE_FILTER
+    CHANGE_FILTER,
+    CALCULATE_DATE_DATA
 } from "../actions/actionTypes";
 
 let startDate = new Date(new Date().setDate(-31))
@@ -20,7 +21,13 @@ const initialState = {
         labels:[],
         values:[]
     },
-    currentFilter: 'subCategory'
+    currentFilter: 'subCategory',
+    filteredByData:{
+        labelsForExpenses:[],
+        valuesForExpenses:[],
+        labelsForIncomes:[],
+        valuesForIncomes:[]
+    }
 }
 
 const analyticsReducer = (state = initialState, action) => {
@@ -45,6 +52,22 @@ const analyticsReducer = (state = initialState, action) => {
                 values: [...new Set(state.expenseRecords.map(expense => expense[state.currentFilter]))].map(label => {
                     return state.expenseRecords.reduce((acc, record) => {
                         return record[state.currentFilter] === label ? acc + Number(record.amount) : acc
+                    }, 0)
+                })
+            }
+        }
+        case CALCULATE_DATE_DATA:return {
+            ...state, filteredByData: {
+                labelsForExpenses: [...new Set(state.expenseRecords.map(expense => expense.date))],
+                valuesForExpenses: [...new Set(state.expenseRecords.map(expense => expense.date))].map(label => {
+                    return state.expenseRecords.reduce((acc, record) => {
+                        return record.date === label ? acc + Number(record.amount) : acc
+                    }, 0)
+                }),
+                labelsForIncomes: [...new Set(state.incomeRecords.map(income => income.date))],
+                valuesForIncomes: [...new Set(state.incomeRecords.map(income => income.date))].map(label => {
+                    return state.incomeRecords.reduce((acc, record) => {
+                        return record.date === label ? acc + Number(record.amount) : acc
                     }, 0)
                 })
             }

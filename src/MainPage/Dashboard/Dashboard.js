@@ -1,15 +1,18 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { HorizontalBar, Pie } from 'react-chartjs-2'
-import Calendar from '../../Components/Calendar/Calendar'
+import { HorizontalBar, Pie, Line, Radar } from 'react-chartjs-2'
+import Calendar from '../../Components/Calendar/Calendar';
+import Button from '@material-ui/core/Button';
+
 // import Radios from '../../Components/Radios/Radios'
-import NestedList from '../../Components/List/List'
+// import NestedList from '../../Components/List/List'
 class Dashboard extends React.Component {
 
   state = {
     filteredChartData: {},
     overallChartData: {},
+    radarChartData : {}
   }
 
   componentWillMount() {
@@ -36,7 +39,6 @@ class Dashboard extends React.Component {
       return;
     }
     this.generateChartData();
-
   }
 
   generateChartData() {
@@ -47,7 +49,24 @@ class Dashboard extends React.Component {
           {
             labels: ['Amount'],
             data: this.props.data.values,
-            backgroundColor: this.props.data.values.map(val => this.generateRandom())
+            backgroundColor: ['rgba(255, 99, 132, 0.6)']
+          }
+        ]
+      },
+      radarChartData: {
+        labels: [...new Set ([...this.props.filteredByData.labelsForIncomes],[...this.props.filteredByData.labelsForExpenses])],
+        datasets: [
+          {
+            key:1,
+            labels: this.props.filteredByData.labelsForExpenses,
+            data: this.props.filteredByData.valuesForExpenses,
+            backgroundColor: ['rgba(75, 192, 192, 0.6)'],
+          },
+          {
+            key:2,
+            labels: this.props.filteredByData.labelsForIncomes,
+            data: this.props.filteredByData.valuesForIncomes,
+            backgroundColor: ['rgba(255, 159, 64, 0.6)']
           }
         ]
       },
@@ -67,19 +86,27 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Fragment>
-        <h1>dashboard</h1>
+        <h1>Dashboard</h1>
         <Calendar />
         {/* <NestedList /> */}
         {/* <Bar data={this.state.chartData} /> */}
         {/* <Radar data={this.state.chartData} /> */}
         <h2>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h2>
         <HorizontalBar
-          data={this.state.filteredChartData} />
-        <Pie
-          data={this.state.filteredChartData} />
+          data={this.state.filteredChartData} 
+         />
+        <Radar 
+          data={this.state.radarChartData} 
+          redraw
+          />
+        <Line 
+          data={this.state.radarChartData} 
+          redraw
+          />
         <h3>Your lifetime stats for cashflow</h3>
         <HorizontalBar
-          data={this.state.overallChartData}/>
+          data={this.state.overallChartData}
+         />
       </Fragment>
     )
   }
@@ -91,7 +118,9 @@ const mapStateToProps = state => {
     endDate: state.statisticData.endDate,
     expenses: state.statisticData.expenses,
     incomes: state.statisticData.incomes,
+    incomeRecords: state.statisticData.incomeRecords,
     data: state.statisticData.filtered,
+    filteredByData: state.statisticData.filteredByData,
     auth: state.firebase.auth
   }
 }
