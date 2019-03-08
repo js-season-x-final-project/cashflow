@@ -10,7 +10,7 @@ class Records extends Component {
   render() {
 
     return (
-      <Fragment>
+      <div className={classes.mainWrapper}>
         <Paper className={classes.recordsExpenses}>
           {this.props.records ? Object.entries(this.props.records).map((rec) => {
             return(rec[1] ?
@@ -21,7 +21,7 @@ class Records extends Component {
           })
             : null}
         </Paper>
-      </Fragment>
+      </div>
     )
   }
 }

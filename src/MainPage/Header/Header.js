@@ -21,10 +21,16 @@ import { connect } from 'react-redux';
 
 const styles = {
   mainBar: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    height: 70,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  toolBar: {
+    width: '100%'
   },
   hiddenMenu: {
-    display: 'block',
+    display: 'none',
   },
   mainButtons: {
     display: 'block',
@@ -43,6 +49,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  rigthSide: {
+    justifyContent: 'flex-end',
   },
   '@media (max-width: 620px)': {
     hiddenMenu: {
@@ -76,7 +85,7 @@ class Header extends Component {
 
     return (
       <AppBar position="static" color="default" className={classes.mainBar}>
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
 
           <div className={classes.leftSide}>
 
@@ -132,11 +141,14 @@ class Header extends Component {
             </div>
           </div>
 
-          <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Logout" onClick={this.props.logout} >
-              <LogoutIcon />
-            </IconButton>
-          </Tooltip>
+          <div className={classes.rightSide}>
+            <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Logout" onClick={this.props.logout} >
+                <LogoutIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+          
         </Toolbar>
       </AppBar>
     )

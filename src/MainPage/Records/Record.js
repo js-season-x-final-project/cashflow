@@ -34,28 +34,20 @@ class Record extends Component {
 
   render() {
 
-    // switch (this.props.type) {
-    //   case 'income':
-    //     classes.amount += {color: 'red'}
-    //     break;
-    
-    //   default:
-    //     break;
-    // }
-
     return (
       <Fragment>
 
         <div className={classes.mainWrapper}>
 
+          <div style={this.props.type === 'income' ? { backgroundColor: '#00cf8d' } : { backgroundColor: 'red' }} className={classes.indicator}></div>
+
           <div className={classes.leftSide}>
             <h3 className={classes.text}>{this.props.category}</h3>
             <h5 className={classes.text}>{this.props.subCategory}</h5>
             <p className={classes.text}>Date: {this.props.date}</p>
-          </div>
-
-          <div className={classes.middle}>
-            <p>{this.props.note}</p>
+            <div className={classes.note}>
+              <p>{this.props.note}</p>
+            </div>
           </div>
 
           <div className={classes.rightSide}>
@@ -68,7 +60,11 @@ class Record extends Component {
               </IconButton>
             </div>
             <div className={classes.amount}>
-              <h4 style={this.props.type === 'income' ? {color: 'green'} : {color: 'red'}}>{this.props.type === 'income' ? '+ ' : '- '}{this.props.amount}</h4>
+              <h4 style={this.props.type === 'income' ? { color: '#00cf8d' } : { color: 'red' }}>
+                {this.props.type === 'income' ? '+ ' : '- '}
+                {this.props.amount}
+                <span className={classes.currency}> {this.props.currency}</span>
+              </h4>
             </div>
           </div>
 
