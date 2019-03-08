@@ -11,7 +11,6 @@ class MyComponent extends Component {
 		const startDate = ranges.selection.startDate.getTime();
 		let currentEnd = ranges.selection.endDate.getDate();
 		let endDate = ranges.selection.endDate.setDate(currentEnd+1);
-		console.log(ranges)
 		console.log(new Date(ranges.selection.startDate), new Date(endDate));
 		this.props.changePeriod(startDate, endDate)
 	}

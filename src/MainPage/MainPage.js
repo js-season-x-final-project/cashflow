@@ -9,7 +9,8 @@ import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
-import Blog from '../MainPage/Blog/Blog';   
+import Blog from '../MainPage/Blog/Blog';
+import ActivityIndicator from "../Components/ActivityIndicator/ActivityIndicator"
 
 class MainPage extends React.Component {
 
@@ -29,30 +30,26 @@ class MainPage extends React.Component {
     if (!auth.uid) {
       this.props.history.push('/');
     }
-    if (!this.props.records) {
-      return <ActivityIndicator />
-    } else {
-      return (
-        <Fragment>
-          <Header />
-          <Switch>
-            <Route exact path='/main' component={Dashboard} />
-            <Route exact path='/main/dashboard' component={Dashboard} />
-            <Route exact path='/main/records' component={Records} />
-            <Route exact path='/main/analytics' component={Analytics} />
-            <Route exact path='/main/blog' component={Blog} />
-            <Route exact path='/main/settings' component={Settings} />
-          </Switch>
-        </Fragment>
-      )
-    }
+
+    return (
+      <Fragment>
+        <Header />
+        <Switch>
+          <Route exact path='/main' component={Dashboard} />
+          <Route exact path='/main/dashboard' component={Dashboard} />
+          <Route exact path='/main/records' component={Records} />
+          <Route exact path='/main/analytics' component={Analytics} />
+          <Route exact path='/main/blog' component={Blog} />
+        </Switch>
+      </Fragment>
+    )
+
   }
 }
 
 const mapStateToProps = state => {
   const hash = state.firebase.auth.uid;
   return {
-    // records: state.firestore.data.users && hash ? console.log("true"): console.log("false"),
     records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
     currentFilter: state.statisticData.currentFilter,
     startDate: state.statisticData.startDate,
