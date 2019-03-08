@@ -6,12 +6,10 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { calculateExpenses, calculateIncomes, differentiateRecords, calculateDataByFilter, calculateDataByDate } from '../actions/analyticsActions'
 import { withRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router-dom';
-import ActivityIndicator from '../Components/ActivityIndicator/ActivityIndicator';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
 import Blog from '../MainPage/Blog/Blog';
-import ActivityIndicator from "../Components/ActivityIndicator/ActivityIndicator"
 
 class MainPage extends React.Component {
 
