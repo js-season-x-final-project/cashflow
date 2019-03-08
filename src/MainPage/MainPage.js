@@ -9,9 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
-import Blog from '../MainPage/Blog/Blog';
-import Settings from '../MainPage/Settings/Settings'
-import ActivityIndicator from '../Components/ActivityIndicator/ActivityIndicator';
+import Blog from '../MainPage/Blog/Blog';   
 
 class MainPage extends React.Component {
 

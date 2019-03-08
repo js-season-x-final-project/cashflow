@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTabs from '../../Components/Dialog/DialogTabs';
+import Delete from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit';
 import { deleteRecord } from '../../actions/recordsActions';
 import { connect } from 'react-redux';
 import classes from './Record.module.css';
@@ -31,25 +33,41 @@ class Record extends Component {
   };
 
   render() {
+
     return (
       <Fragment>
 
         <div className={classes.mainWrapper}>
+
+          <div style={this.props.type === 'income' ? { backgroundColor: '#00cf8d' } : { backgroundColor: 'red' }} className={classes.indicator}></div>
+
           <div className={classes.leftSide}>
-            <h2>{this.props.category}</h2>
-            <h4>{this.props.subCategory}</h4>
-            <p>Date{this.props.date}</p>
-            <p>Note: {this.props.note}</p>
+            <h3 className={classes.text}>{this.props.category}</h3>
+            <h5 className={classes.text}>{this.props.subCategory}</h5>
+            <p className={classes.text}>Date: {this.props.date}</p>
+            <div className={classes.note}>
+              <p>{this.props.note}</p>
+            </div>
           </div>
+
           <div className={classes.rightSide}>
-          <div className={classes.buttons}>
-            <Button onClick={this.handleClickOpen}>Edit</Button>
-            <Button onClick={() => { this.props.deleteRecord(this.props.uid) }}>DELETE</Button>
+            <div className={classes.buttons}>
+              <IconButton onClick={this.handleClickOpen}>
+                <Edit fontSize="small" />
+              </IconButton>
+              <IconButton onClick={() => { this.props.deleteRecord(this.props.uid) }}>
+                <Delete fontSize="small" />
+              </IconButton>
+            </div>
+            <div className={classes.amount}>
+              <h4 style={this.props.type === 'income' ? { color: '#00cf8d' } : { color: 'red' }}>
+                {this.props.type === 'income' ? '+ ' : '- '}
+                {this.props.amount}
+                <span className={classes.currency}> {this.props.currency}</span>
+              </h4>
+            </div>
           </div>
-          <div className={classes.amount}>
-            <p>{this.props.amount}</p>
-          </div>
-          </div>
+
         </div>
 
         <Dialog
