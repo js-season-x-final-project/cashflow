@@ -61,6 +61,9 @@ class SelectByCategory extends React.Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
+            <MenuItem value="All">
+              <em>All</em>
+            </MenuItem>
             {this.props.labels.map((label,index)=>
                 <MenuItem  key={index} value={label}>{label}</MenuItem>
             )}

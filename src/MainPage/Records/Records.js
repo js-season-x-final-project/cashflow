@@ -24,7 +24,7 @@ class Records extends Component {
       return;
     }
     this.setState({...this.state,
-      recordsToDisplay:  Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null)
+      recordsToDisplay:  this.props.records ?  Object.entries(this.props.records).map(record => {return{...record[1],uid:record[0]}}).filter(rec=>rec!==null):null
     })
   }
 
@@ -35,7 +35,12 @@ class Records extends Component {
   }
 
   filterRecords = (subcategory) => {
-    console.log(subcategory);
+    if (subcategory === "All") {
+      this.setState({
+        recordsToDisplay:Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null)
+      })
+      return;
+    }
     this.setState({
       recordsToDisplay:  Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record.subCategory === subcategory)
     })
