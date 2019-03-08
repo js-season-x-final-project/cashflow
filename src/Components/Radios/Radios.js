@@ -46,10 +46,9 @@ class RadioButtonsGroup extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <FormControlLabel value="category" control={<Radio />} label="Category" />
-            <FormControlLabel value="date" control={<Radio />} label="Date" />
-            <FormControlLabel value="subCategory" control={<Radio />} label="Subcategory" />
-            <FormControlLabel value="amount" control={<Radio />} label="Amount" />
+          {this.props.options.map((option, i)=>
+            <FormControlLabel key={i} value={option.value} control={<Radio />} label={option.label} />
+          )}
           </RadioGroup>
         </FormControl>
       </div>

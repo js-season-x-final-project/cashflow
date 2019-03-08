@@ -9,9 +9,44 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import classes from './Analytics.module.css';
-
+import { expensesCats, incomeCats } from "../../App/categories"
 // const analytics = props => {
 class Analytics extends React.Component {
+
+  state = {
+    expenseRecs: null,
+    incomeRecs: null,
+  }
+
+  filtrate = (array, c) => {
+    const arr = c === 0 ? expensesCats : incomeCats;
+    return arr.map(cat => {
+      return [
+        cat.category,
+        cat.subcategories.map(scat => [
+          scat,
+          array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)
+        ]),
+        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)
+      ]
+    })
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    if (prevProps.expenseRecords !== this.props.expenseRecords) {
+      this.setState({
+        expenseRecs: this.filtrate(this.props.expenseRecords, 0),
+        incomeRecs: this.filtrate(this.props.incomeRecords, 1)
+      })
+    }
+  }
+
+  handleClick = () => {
+    console.log('natisna me')
+  }
+
   render() {
     return (
       <Fragment>
@@ -23,32 +58,25 @@ class Analytics extends React.Component {
         <Paper className={classes.section}>
           <Table >
             <TableHead>
-              <TableRow>
+              <TableRow hover>
                 <TableCell>Category</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Subcategory</TableCell>
-                <TableCell align="right">Note</TableCell>
+                <TableCell align="center">Amount</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.expenseRecords ? this.props.expenseRecords.sort((c1, c2) => { return c1.date > c2.date ? 1 : -1 }).map(expense => (
-                <TableRow key={expense.id}>
-                  <TableCell component="th" scope="row">
-                    {expense.category}
+              {this.state.expenseRecs ? this.state.expenseRecs.map((expense, index) => (
+                <TableRow key={index}>
+                  <TableCell  onSelect={this.handleClick} component="th" scope="row">
+                    {expense[0]}
                   </TableCell>
-                  <TableCell align="right">{expense.amount}</TableCell>
-                  <TableCell align="right">{expense.date}</TableCell>
-                  <TableCell align="right">{expense.subCategory}</TableCell>
-                  <TableCell align="right">{expense.note}</TableCell>
+                  <TableCell align="center">{expense[2]}</TableCell>
                 </TableRow>
               )) : null}
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableCell colSpan={3} />
-                <TableCell colSpan={1}>Total expenses:</TableCell>
-                <TableCell align="right">{this.props.expenses} лв.</TableCell>
+                <TableCell >Total expenses:</TableCell>
+                <TableCell align="center"><strong>{this.state.expenseRecs ? this.state.expenseRecs.reduce((acc, rec) => acc + rec[2], 0) : null} лв.</strong></TableCell>
               </TableRow>
             </TableFooter>
           </Table>
@@ -60,29 +88,23 @@ class Analytics extends React.Component {
               <TableRow>
                 <TableCell>Category</TableCell>
                 <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Subcategory</TableCell>
-                <TableCell align="right">Note</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.incomeRecords.map(expense => (
-                <TableRow key={expense.id}>
+              {this.state.incomeRecs ? this.state.incomeRecs.map((expense, index) => (
+                <TableRow key={index}>
                   <TableCell component="th" scope="row">
-                    {expense.category}
+                    {expense[0]}
                   </TableCell>
-                  <TableCell align="right">{expense.amount}</TableCell>
-                  <TableCell align="right">{expense.date}</TableCell>
-                  <TableCell align="right">{expense.subCategory}</TableCell>
-                  <TableCell align="right">{expense.note}</TableCell>
+                  <TableCell align="right">{expense[2]}</TableCell>
                 </TableRow>
-              ))}
+              )) : null}
             </TableBody>
             <TableFooter>
               <TableRow>
                 <TableCell colSpan={3} />
                 <TableCell colSpan={1}>Total incomes:</TableCell>
-                <TableCell align="right">{this.props.incomes} лв.</TableCell>
+                <TableCell align="right"><strong>{this.state.incomeRecs ? this.state.incomeRecs.reduce((acc, rec) => acc + rec[2], 0) : null} лв.</strong></TableCell>
               </TableRow>
             </TableFooter>
           </Table>

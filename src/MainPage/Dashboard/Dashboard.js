@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { HorizontalBar, Pie, Radar, Line } from 'react-chartjs-2'
 import Calendar from '../../Components/Calendar/Calendar'
+import PickerDate from '../../Components/Calendar/NewCalendar'
 import Paper from '@material-ui/core/Paper';
 import Radios from '../../Components/Radios/Radios'
 import classes from './Dashboard.module.css';
@@ -10,6 +11,7 @@ import classes from './Dashboard.module.css';
 class Dashboard extends React.Component {
 
   state = {
+    properties:["category","subCategory","date","amount"],
     filteredChartData: {},
     overallChartData: {},
     radarChartData: {}
@@ -38,12 +40,10 @@ class Dashboard extends React.Component {
     if (prevProps.data === this.props.data) {
       return;
     }
-    console.log()
     this.generateChartData();
   }
 
   generateChartData() {
-    console.log(this.props.filteredByData)
     this.setState({
       filteredChartData: {
         labels: this.props.data.labels,
@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
           {
             labels: ['Amount'],
             data: [this.props.expenses, this.props.incomes],
-            backgroundColor: [this.generateRandom(), this.generateRandom()]
+            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)']
           }
         ]
       }
@@ -91,8 +91,8 @@ class Dashboard extends React.Component {
     return (
       <Fragment>
         <Calendar />
-        <Paper>
-          <Radios />
+        <Paper className={classes.radioButtons}>
+          <Radios options={this.state.properties.map(prop=> {return{value:prop,label:prop.toUpperCase()}})}/>
         </Paper>
 
         <div className={classes.chartsWrapper}>
