@@ -13,3 +13,11 @@
   background-color: #00cf8d;
   color: white;
 }
+
+.loginEmailError {
+  visibility: hidden;
+}
+
+.loginPasswordError {
+  visibility: hidden;
+}

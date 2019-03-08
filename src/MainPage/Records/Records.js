@@ -31,7 +31,7 @@ class Records extends Component {
       return;
     }
     this.setState({
-      recordsToDisplay:  Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record.subCategory === subcategory)
+      recordsToDisplay: Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record.subCategory === subcategory)
     })
   }
 
@@ -56,7 +56,7 @@ class Records extends Component {
       <div className={classes.mainWrapper}>
         <Paper className={classes.recordsExpenses}>
           <SelectByCategory labels={this.extractCategories()} onFilter={this.filterRecords} />
-          {console.log(this.state.recordsToDisplay)}
+          <Divider />
           {this.state.recordsToDisplay ? this.state.recordsToDisplay.map((rec) => {
             return (rec && rec.amount ?
               <Fragment key={rec.uid} >

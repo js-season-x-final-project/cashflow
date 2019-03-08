@@ -76,6 +76,9 @@ class SingleTab extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+    if (event.target.name === 'category') {
+      this.setState({ subCategory: this.props.cats[this.props.cats.findIndex(cat => cat.category === event.target.value)].subcategories[0]})
+    }
   };
 
   onAddRecord = () => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -70,6 +71,9 @@ class Login extends Component {
             onChange={this.handleChange}
             onBlur={() => console.log('Yes')}
           />
+          <Typography color='error' className='loginEmailError'>
+            Some Error Message
+          </Typography>
           <TextField
             id="login-password-input"
             label="Password"
@@ -82,8 +86,11 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <Typography color='error' className='loginPasswordError'>
+            Some Error Message
+          </Typography>
           <Button variant="outlined" className={classes.button} onClick={this.onLogin} >Login</Button>
-          {loginError ? <p>{loginError}</p> : null}
+          {loginError ? <Typography color='error'>{loginError}</Typography> : null}
         </form>
       </div>
     )
