@@ -1,0 +1,30 @@
+.mainWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.fourOFour {
+  color: white;
+  font-size: 8em;
+}
+
+.text {
+  color: white;
+}
+
+.button {
+  color: white;
+  width: 200px;
+  height: 60px;
+}
+
+.travolta {
+  width: 30%;
+  position: relative;
+  left: 1%;
+}

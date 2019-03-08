@@ -13,19 +13,8 @@ class Records extends Component {
     recordsToDisplay: null
   }
 
-  componentDidMount(){
-    this.setState({...this.state,
-      recordsToDisplay:this.props.records ?  Object.entries(this.props.records).map(record => {return{...record[1],uid:record[0]}}).filter(rec=>rec!==null):null
-    })
-  }
-
-  componentDidUpdate(prevProps,prevState){
-    if (prevProps === this.props) {
-      return;
-    }
-    this.setState({...this.state,
-      recordsToDisplay:  this.props.records ?  Object.entries(this.props.records).map(record => {return{...record[1],uid:record[0]}}).filter(rec=>rec!==null):null
-    })
+  extractRecords = () =>{
+    return Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null)
   }
 
   extractCategories = () => {
@@ -37,12 +26,27 @@ class Records extends Component {
   filterRecords = (subcategory) => {
     if (subcategory === "All") {
       this.setState({
-        recordsToDisplay:Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null)
+        recordsToDisplay: this.extractRecords()
       })
       return;
     }
     this.setState({
       recordsToDisplay:  Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record.subCategory === subcategory)
+    })
+  }
+
+  componentDidMount(){
+    this.setState({...this.state,
+      recordsToDisplay: this.extractRecords()
+    })
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    if (prevProps === this.props) {
+      return;
+    }
+    this.setState({...this.state,
+      recordsToDisplay:  this.extractRecords()
     })
   }
 
@@ -54,7 +58,7 @@ class Records extends Component {
           <SelectByCategory labels={this.extractCategories()} onFilter={this.filterRecords} />
           {console.log(this.state.recordsToDisplay)}
           {this.state.recordsToDisplay ? this.state.recordsToDisplay.map((rec) => {
-            return (rec ?
+            return (rec && rec.amount ?
               <Fragment key={rec.uid} >
                 <Record uid={rec.uid} {...rec} />
                 <Divider />

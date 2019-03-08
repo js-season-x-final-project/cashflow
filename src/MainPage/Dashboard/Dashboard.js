@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
                 />
               </Paper>
 
-              {this.props.filteredByData.length > 2 ?
+              {this.props.filteredByData.length > 2 && (this.props.endDate - this.props.startDate <= 604800000) ?
                 <Fragment>
                   <Paper className={classes.chart}>
                     <Radar

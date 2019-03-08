@@ -11,7 +11,6 @@ import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
 import Blog from '../MainPage/Blog/Blog';
 
-
 class MainPage extends React.Component {
 
   componentDidUpdate(prevProps) {
