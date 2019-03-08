@@ -3,7 +3,7 @@ import Header from './Header/Header'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { calculateExpenses, calculateIncomes, differentiateRecords,calculateDataByFilter } from '../actions/analyticsActions'
+import { calculateExpenses, calculateIncomes, differentiateRecords,calculateDataByFilter,calculateDataByDate } from '../actions/analyticsActions'
 import { withRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../MainPage/Dashboard/Dashboard';
@@ -16,9 +16,9 @@ class MainPage extends React.Component {
 
   componentDidUpdate(prevProps) {
     const p =  this.props.records ? Object.entries(this.props.records).map(rec => {return{...rec[1],rid:rec[0]}}) : [];
-    // console.log(this.props.recsData);
     this.props.differentiateRecords(p ,this.props.startDate, this.props.endDate);
     this.props.calculateDataByFilter();
+    this.props.calculateDataByDate();
     if (prevProps.records !== this.props.records) {
       this.props.calculateExpenses(p);
       this.props.calculateIncomes(p);
@@ -49,8 +49,8 @@ class MainPage extends React.Component {
 const mapStateToProps = state => {
   const hash = state.firebase.auth.uid;
   return {
-    records: state.firestore.data.users && hash ?state.firestore.data.users[hash].records: null,
-    // records: state.firestore.ordered.users ? state.firestore.ordered.users[0].records : null,
+    // records: state.firestore.data.users && hash ? console.log("true"): console.log("false"),
+    records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records: null,
     currentFilter: state.statisticData.currentFilter,
     startDate: state.statisticData.startDate,
     endDate: state.statisticData.endDate,
@@ -62,6 +62,7 @@ const mapDispatchToProps = dispatch => {
   return {
     differentiateRecords: (records,startDate,endDate) => dispatch(differentiateRecords(records,startDate,endDate)),
     calculateDataByFilter: () => dispatch(calculateDataByFilter()),
+    calculateDataByDate: () => dispatch(calculateDataByDate()),
     calculateExpenses: (arr) => dispatch(calculateExpenses(arr)),
     calculateIncomes: (arr) => dispatch(calculateIncomes(arr)),
   }
@@ -76,7 +77,7 @@ export default compose(
         collection: 'users',
         doc: props.auth.uid,
         subcollections: [
-          { collection: 'records' }
+          { collection: 'records' },
         ]
       }
     ] : []

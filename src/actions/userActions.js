@@ -1,9 +1,10 @@
-import { 
+import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     REGISTER_SUCCESS,
-    REGISTER_ERROR 
+    REGISTER_ERROR
 } from '../actions/actionTypes';
+import { actionTypes } from 'redux-firestore'
 
 
 
@@ -15,7 +16,7 @@ export const login = (credentials) => {
             credentials.password
         ).then(() => {
             dispatch({
-                 type: LOGIN_SUCCESS,
+                type: LOGIN_SUCCESS,
             })
         }).catch((error) => {
             dispatch({ type: LOGIN_ERROR, error })
@@ -26,7 +27,9 @@ export const login = (credentials) => {
 export const logout = () => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
-        firebase.auth().signOut();
+        firebase.auth().signOut().then(()=>{
+            dispatch({type: actionTypes.CLEAR_DATA})
+        });
     }
 }
 
@@ -39,10 +42,10 @@ export const register = (newUser) => {
             newUser.email,
             newUser.password
         ).then(async(response) => {
-           await firestore.collection('users').doc(response.user.uid).set({
+            firestore.collection('users').doc(response.user.uid).set({
                 email: newUser.email
             })
-            await dispatch({
+             await dispatch({
                 type: REGISTER_SUCCESS,
             });
         }).catch((error) => {

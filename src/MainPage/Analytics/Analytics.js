@@ -10,84 +10,86 @@ import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import classes from './Analytics.module.css';
 
-const analytics = props => {
-
-  return (
-    <Fragment>
-      <h1>Analytics</h1>
-      <div>
-        <p>Total expenses: {props.expenses} лв.</p>
-        <p>Total incomes: {props.incomes} лв.</p>
-      </div>
-      <Paper className={classes.section}>
-        <Table >
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Subcategory</TableCell>
-              <TableCell align="right">Note</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.expenseRecords ? props.expenseRecords.sort((c1, c2) => { return c1.date > c2.date ? 1 : -1 }).map(expense => (
-              <TableRow key={expense.id}>
-                <TableCell component="th" scope="row">
-                  {expense.category}
-                </TableCell>
-                <TableCell align="right">{expense.amount}</TableCell>
-                <TableCell align="right">{expense.date}</TableCell>
-                <TableCell align="right">{expense.subCategory}</TableCell>
-                <TableCell align="right">{expense.note}</TableCell>
+// const analytics = props => {
+class Analytics extends React.Component {
+  render() {
+    return (
+      <Fragment>
+        <h1>Analytics</h1>
+        <div>
+          <p>Total expenses: {this.props.expenses} лв.</p>
+          <p>Total incomes: {this.props.incomes} лв.</p>
+        </div>
+        <Paper className={classes.section}>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell>Category</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Subcategory</TableCell>
+                <TableCell align="right">Note</TableCell>
               </TableRow>
-            )) : null}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3} />
-              <TableCell colSpan={1}>Total expenses:</TableCell>
-              <TableCell align="right">{props.expenses} лв.</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </Paper>
-
-      <Paper className={classes.section}>
-        <Table >
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Subcategory</TableCell>
-              <TableCell align="right">Note</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.incomeRecords.map(expense => (
-              <TableRow key={expense.id}>
-                <TableCell component="th" scope="row">
-                  {expense.category}
-                </TableCell>
-                <TableCell align="right">{expense.amount}</TableCell>
-                <TableCell align="right">{expense.date}</TableCell>
-                <TableCell align="right">{expense.subCategory}</TableCell>
-                <TableCell align="right">{expense.note}</TableCell>
+            </TableHead>
+            <TableBody>
+              {this.props.expenseRecords ? this.props.expenseRecords.sort((c1, c2) => { return c1.date > c2.date ? 1 : -1 }).map(expense => (
+                <TableRow key={expense.id}>
+                  <TableCell component="th" scope="row">
+                    {expense.category}
+                  </TableCell>
+                  <TableCell align="right">{expense.amount}</TableCell>
+                  <TableCell align="right">{expense.date}</TableCell>
+                  <TableCell align="right">{expense.subCategory}</TableCell>
+                  <TableCell align="right">{expense.note}</TableCell>
+                </TableRow>
+              )) : null}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3} />
+                <TableCell colSpan={1}>Total expenses:</TableCell>
+                <TableCell align="right">{this.props.expenses} лв.</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3} />
-              <TableCell colSpan={1}>Total incomes:</TableCell>
-              <TableCell align="right">{props.incomes} лв.</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </Paper>
-    </Fragment>
-  )
+            </TableFooter>
+          </Table>
+        </Paper>
+
+        <Paper className={classes.section}>
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell>Category</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Subcategory</TableCell>
+                <TableCell align="right">Note</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.incomeRecords.map(expense => (
+                <TableRow key={expense.id}>
+                  <TableCell component="th" scope="row">
+                    {expense.category}
+                  </TableCell>
+                  <TableCell align="right">{expense.amount}</TableCell>
+                  <TableCell align="right">{expense.date}</TableCell>
+                  <TableCell align="right">{expense.subCategory}</TableCell>
+                  <TableCell align="right">{expense.note}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3} />
+                <TableCell colSpan={1}>Total incomes:</TableCell>
+                <TableCell align="right">{this.props.incomes} лв.</TableCell>
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </Paper>
+      </Fragment>
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -100,4 +102,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(withRouter(analytics));
+export default connect(mapStateToProps, null)(withRouter(Analytics));
