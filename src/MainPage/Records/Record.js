@@ -68,7 +68,7 @@ class Record extends Component {
               </IconButton>
             </div>
             <div className={classes.amount}>
-              <h4>{this.props.amount}</h4>
+              <h4 style={this.props.type === 'income' ? {color: 'green'} : {color: 'red'}}>{this.props.type === 'income' ? '+ ' : '- '}{this.props.amount}</h4>
             </div>
           </div>
 

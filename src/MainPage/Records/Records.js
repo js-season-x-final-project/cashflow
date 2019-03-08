@@ -3,30 +3,12 @@ import Record from './Record';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = {
-  recordsExpenses: {
-    width: 920,
-    margin: 'auto'
-  },
-}
+import classes from './Records.module.css';
 
 class Records extends Component {
 
-  componentDidUpdate(prevPros) {
-    // console.log(prevPros.records === this.props.records)
-  }
-
-
-  
-  drawRecords() {
-
-  }
-
   render() {
 
-    const { classes } = this.props;
     return (
       <Fragment>
         <Paper className={classes.recordsExpenses}>
@@ -53,4 +35,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(withStyles(styles)(Records));
+export default connect(mapStateToProps)(Records);

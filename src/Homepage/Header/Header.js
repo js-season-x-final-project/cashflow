@@ -46,6 +46,7 @@ class Header extends Component {
     return (
       <div className={classes.header}>
         <div className={classes.inner}>
+          
           <div className={classes.hiddenMenu}>
             <Button
               aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -67,15 +68,18 @@ class Header extends Component {
               <MenuItem onClick={() => this.props.history.push('/home/support')}>Support</MenuItem>
             </Menu>
           </div>
+
           <div className={classes.leftSide}>
             <Button className={classes.button} component={Link} to="/home">Home</Button>
             <Button className={classes.button} component={Link} to="/home/start">How to start</Button>
             <Button className={classes.button} component={Link} to="/home/team">Team</Button>
             <Button className={classes.button} component={Link} to="/home/support">Support</Button>
           </div>
+
           <div className={classes.authButton}>
             <Button variant="outlined" component={Link} to="/auth" >Get In</Button>
           </div>
+
         </div>
       </div>
     )
