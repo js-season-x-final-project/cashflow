@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { HorizontalBar, Pie, Radar, Line } from 'react-chartjs-2'
 import Calendar from '../../Components/Calendar/Calendar'
-import PickerDate from '../../Components/Calendar/NewCalendar'
 import Paper from '@material-ui/core/Paper';
 import Radios from '../../Components/Radios/Radios'
 import classes from './Dashboard.module.css';
