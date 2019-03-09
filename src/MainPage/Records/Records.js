@@ -14,7 +14,7 @@ class Records extends Component {
   }
 
   extractRecords = () =>{
-    return Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null)
+    return this.props.records ? Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null): null
   }
 
   extractCategories = () => {
@@ -24,7 +24,7 @@ class Records extends Component {
   }
 
   filterRecords = (subcategory) => {
-    if (subcategory === "All") {
+    if (subcategory === "All"&& this.props.records) {
       this.setState({
         recordsToDisplay: this.extractRecords()
       })

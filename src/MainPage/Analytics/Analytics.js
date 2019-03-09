@@ -64,6 +64,7 @@ class Analytics extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
+              {console.log(this.state.expenseRecs)}
               {this.state.expenseRecs ? this.state.expenseRecs.map((expense, index) => (
                 <TableRow key={index}>
                   <TableCell  onSelect={this.handleClick} component="th" scope="row">
