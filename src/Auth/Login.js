@@ -54,9 +54,7 @@ class Login extends Component {
   }
 
   checkEmail() {
-    if (!emailRegex.test(this.state.email)) {
-      
-    }
+    return !emailRegex.test(this.state.email) ? false : true
   }
 
   render() {
@@ -79,7 +77,6 @@ class Login extends Component {
             className={classes.textField}
             value={this.state.email}
             onChange={this.handleChange}
-            onBlur={() => console.log('Yes')}
           />
           <Typography color='error' className='loginEmailError'>
             Some Error Message
