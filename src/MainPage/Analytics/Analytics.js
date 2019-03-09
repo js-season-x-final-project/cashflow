@@ -4,6 +4,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import { expensesCats, incomeCats } from "../../App/categories"
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -59,6 +60,7 @@ class Analytics extends React.Component {
                     <Typography className={classes.leftSide}>{cat[0]}</Typography>
                     <Typography>{cat[2]}</Typography>
                   </ExpansionPanelSummary>
+                  <Divider />
                   {cat[1].map(subCat => {
                     return (
                       <ExpansionPanelDetails>
@@ -80,6 +82,7 @@ class Analytics extends React.Component {
                     <Typography className={classes.leftSide}>{cat[0]}</Typography>
                     <Typography>{cat[2]}</Typography>
                   </ExpansionPanelSummary>
+                  <Divider />
                   {cat[1].map(subCat => {
                     return (
                       <ExpansionPanelDetails>

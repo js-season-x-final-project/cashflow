@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { register } from '../actions/userActions';
 import { connect } from 'react-redux';
@@ -71,6 +72,9 @@ class Register extends Component {
             value={this.state.email}
             onChange={this.handleChange}
           />
+          <Typography color='error' className='registerEmailError'>
+            Some Error Message
+          </Typography>
           <TextField
             id="register-password-input"
             label="Password"
@@ -83,6 +87,9 @@ class Register extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <Typography color='error' className='registerPasswordError'>
+            Some Error Message
+          </Typography>
           <TextField
             id="register-passwordAgain-input"
             label="Password Again"
@@ -95,8 +102,11 @@ class Register extends Component {
             value={this.state.passwordAgain}
             onChange={this.handleChange}
           />
+          <Typography color='error' className='registerPasswordAgainError'>
+            Some Error Message
+          </Typography>
           <Button variant="outlined" className={classes.button} onClick={this.onRegister}>Register</Button>
-          {registerError ? <p>{registerError}</p> : null}
+          {registerError ? <Typography color='error'>{registerError}</Typography> : null}
         </form>
       </div>
     )

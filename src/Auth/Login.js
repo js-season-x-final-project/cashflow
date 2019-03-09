@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +34,8 @@ const styles = () => ({
   },
 });
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 class Login extends Component {
 
   state = {
@@ -50,12 +53,19 @@ class Login extends Component {
     this.props.login(this.state);
   }
 
+  checkEmail() {
+    if (!emailRegex.test(this.state.email)) {
+      
+    }
+  }
+
   render() {
 
     const { classes, loginError } = this.props;
 
     return (
       <div className="loginWrapper">
+        <Button className='backButton' component={Link} to='/'>←Back</Button>
         <h2>Login</h2>
         <form className={classes.container}>
           <TextField

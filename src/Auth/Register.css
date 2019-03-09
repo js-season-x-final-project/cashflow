@@ -1,15 +1,30 @@
 .registerWrapper {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 370px;
+  min-height: 540px;
   background-color: rgb(221, 221, 221);
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
   justify-content: center;
   align-items: center;
+}
+
+.registerWrapper > h2 {
+  margin-bottom: 20px;
 }
 
 .registerWrapper > .authButton {
   background-color: royalblue;
   color: white;
+}
+
+.registerEmailError {
+  visibility: hidden;
+}
+
+.registerPasswordError {
+  visibility: hidden;
+}
+
+.registerPasswordAgainError {
+  visibility: hidden;
 }
