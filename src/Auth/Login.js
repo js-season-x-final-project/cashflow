@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { login } from '../actions/userActions';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -32,6 +34,8 @@ const styles = () => ({
   },
 });
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 class Login extends Component {
 
   state = {
@@ -49,12 +53,19 @@ class Login extends Component {
     this.props.login(this.state);
   }
 
+  checkEmail() {
+    if (!emailRegex.test(this.state.email)) {
+      
+    }
+  }
+
   render() {
 
     const { classes, loginError } = this.props;
 
     return (
       <div className="loginWrapper">
+        <Button className='backButton' component={Link} to='/'>←Back</Button>
         <h2>Login</h2>
         <form className={classes.container}>
           <TextField
@@ -70,6 +81,9 @@ class Login extends Component {
             onChange={this.handleChange}
             onBlur={() => console.log('Yes')}
           />
+          <Typography color='error' className='loginEmailError'>
+            Some Error Message
+          </Typography>
           <TextField
             id="login-password-input"
             label="Password"
@@ -82,8 +96,11 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <Typography color='error' className='loginPasswordError'>
+            Some Error Message
+          </Typography>
           <Button variant="outlined" className={classes.button} onClick={this.onLogin} >Login</Button>
-          {loginError ? <p>{loginError}</p> : null}
+          {loginError ? <Typography color='error'>{loginError}</Typography> : null}
         </form>
       </div>
     )

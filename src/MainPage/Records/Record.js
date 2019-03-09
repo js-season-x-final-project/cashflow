@@ -10,6 +10,8 @@ import classes from './Record.module.css';
 
 class Record extends Component {
 
+
+  
   state = {
     record: {
       id: this.props.id,

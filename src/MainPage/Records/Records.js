@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import Record from './Record';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import SelectByCategory from '../../Components/Selects/ControlledSelect'
 import { connect } from 'react-redux';
 import classes from './Records.module.css';
-import { expensesCats, incomeCats } from '../../App/categories'
+import NestedList from '../../Components/List/List'
+import { expensesCats, incomeCats } from '../../App/categories';
 
 class Records extends Component {
 
@@ -14,24 +14,20 @@ class Records extends Component {
   }
 
   extractRecords = () =>{
-    return this.props.records ? Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null): null
+    return this.props.records ? Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>rec!==null) : null
   }
 
-  extractCategories = () => {
-    let exCats = expensesCats.map(ex => ex.subcategories).flat(1);
-    let inCats = incomeCats.map(inc => inc.subcategories).flat(1);
-    return [...exCats, ...inCats];
-  }
-
-  filterRecords = (subcategory) => {
-    if (subcategory === "All"&& this.props.records) {
+  filterRecords = (subcategory,category) => {
+    if (category === "All" && this.props.records) {
       this.setState({
         recordsToDisplay: this.extractRecords()
       })
       return;
     }
+    let filterValue = category || subcategory;
+    let filterKey = category ? "category":"subCategory";
     this.setState({
-      recordsToDisplay:  Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record.subCategory === subcategory)
+      recordsToDisplay: Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(record=> record && record[filterKey] === filterValue)
     })
   }
 
@@ -41,7 +37,7 @@ class Records extends Component {
     })
   }
 
-  componentDidUpdate(prevProps,prevState){
+  componentDidUpdate(prevProps){
     if (prevProps === this.props) {
       return;
     }
@@ -55,8 +51,11 @@ class Records extends Component {
     return (
       <div className={classes.mainWrapper}>
         <Paper className={classes.recordsExpenses}>
-          <SelectByCategory labels={this.extractCategories()} onFilter={this.filterRecords} />
-          {console.log(this.state.recordsToDisplay)}
+          <label>Expense Categories</label>
+          <NestedList categories = {expensesCats}onFilter={this.filterRecords}/>
+          <label>Income Categories</label>
+          <NestedList categories = {incomeCats}onFilter={this.filterRecords}/>
+          <Divider />
           {this.state.recordsToDisplay ? this.state.recordsToDisplay.map((rec) => {
             return (rec && rec.amount ?
               <Fragment key={rec.uid} >

@@ -10,6 +10,9 @@ import {changeFilter} from '../../actions/analyticsActions'
 import {connect} from 'react-redux'
 
 const styles = theme => ({
+  palette:{
+    primary:"green"
+  },
   root: {
     display: 'flex',
   },
@@ -19,6 +22,9 @@ const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
+  radiobtn:{
+    color: "green"
+  }
 });
 
 class RadioButtonsGroup extends React.Component {
@@ -47,7 +53,7 @@ class RadioButtonsGroup extends React.Component {
             onChange={this.handleChange}
           >
           {this.props.options.map((option, i)=>
-            <FormControlLabel key={i} value={option.value} control={<Radio />} label={option.label} />
+            <FormControlLabel className={classes.radiobtn} key={i} value={option.value}  control={<Radio />} label={option.label} />
           )}
           </RadioGroup>
         </FormControl>

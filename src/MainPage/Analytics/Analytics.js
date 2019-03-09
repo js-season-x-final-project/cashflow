@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import { expensesCats, incomeCats } from "../../App/categories"
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Paper } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableFooter from '@material-ui/core/TableFooter';
 import classes from './Analytics.module.css';
-import { expensesCats, incomeCats } from "../../App/categories"
-// const analytics = props => {
+
+
 class Analytics extends React.Component {
 
   state = {
@@ -30,11 +30,9 @@ class Analytics extends React.Component {
         array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)
       ]
     })
-
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
+  componentDidUpdate(prevProps) {
     if (prevProps.expenseRecords !== this.props.expenseRecords) {
       this.setState({
         expenseRecs: this.filtrate(this.props.expenseRecords, 0),
@@ -43,73 +41,56 @@ class Analytics extends React.Component {
     }
   }
 
-  handleClick = () => {
-    console.log('natisna me')
-  }
-
   render() {
     return (
       <Fragment>
-        <h1>Analytics</h1>
-        <div>
-          <p>Total expenses: {this.props.expenses} лв.</p>
-          <p>Total incomes: {this.props.incomes} лв.</p>
-        </div>
-        <Paper className={classes.section}>
-          <Table >
-            <TableHead>
-              <TableRow hover>
-                <TableCell>Category</TableCell>
-                <TableCell align="center">Amount</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {console.log(this.state.expenseRecs)}
-              {this.state.expenseRecs ? this.state.expenseRecs.map((expense, index) => (
-                <TableRow key={index}>
-                  <TableCell  onSelect={this.handleClick} component="th" scope="row">
-                    {expense[0]}
-                  </TableCell>
-                  <TableCell align="center">{expense[2]}</TableCell>
-                </TableRow>
-              )) : null}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TableCell >Total expenses:</TableCell>
-                <TableCell align="center"><strong>{this.state.expenseRecs ? this.state.expenseRecs.reduce((acc, rec) => acc + rec[2], 0) : null} лв.</strong></TableCell>
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </Paper>
+        <div className={classes.mainWrapper}>
+          <div className={classes.section}>
+            {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
+              return (
+                <ExpansionPanel>
+                  <ExpansionPanelSummary className={classes.header} expandIcon={<ExpandMoreIcon />}>
+                    <Typography className={classes.leftSide}>{cat[0]}</Typography>
+                    <Typography>{cat[2]}</Typography>
+                  </ExpansionPanelSummary>
+                  <Divider />
+                  {cat[1].map(subCat => {
+                    return (
+                      <ExpansionPanelDetails>
+                        <Typography className={classes.leftSide}>{subCat[0]}</Typography>
+                        <Typography>{subCat[1]}</Typography>
+                      </ExpansionPanelDetails>
+                    )
+                  })}
+                </ExpansionPanel>
+              )
+            }) : null}
+          </div>
 
-        <Paper className={classes.section}>
-          <Table >
-            <TableHead>
-              <TableRow>
-                <TableCell>Category</TableCell>
-                <TableCell align="right">Amount</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.state.incomeRecs ? this.state.incomeRecs.map((expense, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">
-                    {expense[0]}
-                  </TableCell>
-                  <TableCell align="right">{expense[2]}</TableCell>
-                </TableRow>
-              )) : null}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TableCell colSpan={3} />
-                <TableCell colSpan={1}>Total incomes:</TableCell>
-                <TableCell align="right"><strong>{this.state.incomeRecs ? this.state.incomeRecs.reduce((acc, rec) => acc + rec[2], 0) : null} лв.</strong></TableCell>
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </Paper>
+          <div className={classes.section}>
+            {this.state.incomeRecs ? this.state.incomeRecs.map(cat => {
+              return (
+                <ExpansionPanel>
+                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography className={classes.leftSide}>{cat[0]}</Typography>
+                    <Typography>{cat[2]}</Typography>
+                  </ExpansionPanelSummary>
+                  <Divider />
+                  {cat[1].map(subCat => {
+                    return (
+                      <ExpansionPanelDetails>
+                        <Typography className={classes.leftSide}>{subCat[0]}</Typography>
+                        <Typography>{subCat[1]}</Typography>
+                      </ExpansionPanelDetails>
+                    )
+                  })}
+                </ExpansionPanel>
+              )
+            }) : null}
+          </div>
+
+        </div>
+
       </Fragment>
     )
   }

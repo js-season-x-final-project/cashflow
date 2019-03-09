@@ -10,6 +10,14 @@ const expensesCats = [
     {
         category: 'Housing',
         subcategories: ['General - Housing', 'Bills', 'Maintenance', 'Mortgage', 'Rent']
+    },
+    {
+        category: 'Transportation',
+        subcategories: ['General - Transportation', 'Public Transport', 'Taxi', 'Business trips']
+    },
+    {
+        category: 'Vehicle',
+        subcategories: ['General - Vehicle', 'Fuel', 'Leasing', 'Parking', 'Rentals', 'Vehicle - Insurance', 'Vehicle - Maintenance']
     }
 ]
 

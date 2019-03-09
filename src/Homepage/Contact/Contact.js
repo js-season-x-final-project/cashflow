@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const support = props => {
+const contact = props => {
 
     return(
         <Fragment>
@@ -9,4 +9,4 @@ const support = props => {
     )
 }
 
-export default support
+export default contact

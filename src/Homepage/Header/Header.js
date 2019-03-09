@@ -65,7 +65,8 @@ class Header extends Component {
               <MenuItem onClick={() => this.props.history.push('/home')}>Home</MenuItem>
               <MenuItem onClick={() => this.props.history.push('/home/start')}>Start</MenuItem>
               <MenuItem onClick={() => this.props.history.push('/home/team')}>Team</MenuItem>
-              <MenuItem onClick={() => this.props.history.push('/home/support')}>Support</MenuItem>
+              <MenuItem onClick={() => this.props.history.push('/home/technologies')}>Technologies</MenuItem>
+              <MenuItem onClick={() => this.props.history.push('/home/contact')}>Support</MenuItem>
             </Menu>
           </div>
 
@@ -73,7 +74,8 @@ class Header extends Component {
             <Button className={classes.button} component={Link} to="/home">Home</Button>
             <Button className={classes.button} component={Link} to="/home/start">How to start</Button>
             <Button className={classes.button} component={Link} to="/home/team">Team</Button>
-            <Button className={classes.button} component={Link} to="/home/support">Support</Button>
+            <Button className={classes.button} component={Link} to="/home/technologies">Technologies</Button>
+            <Button className={classes.button} component={Link} to="/home/contact">Contact us</Button>
           </div>
 
           <div className={classes.authButton}>

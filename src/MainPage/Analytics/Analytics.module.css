@@ -1,3 +1,15 @@
+.mainWrapper {
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 20px 10px;
+}
+
 .section {
-  margin: 10px;
+  margin: 30px auto;
+  max-width: 960px;
+  background-color: rgb(231, 231, 231);
+}
+
+.leftSide {
+  flex-basis: 90%;
 }

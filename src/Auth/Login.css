@@ -1,15 +1,32 @@
 .loginWrapper {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 370px;
+  min-height: 540px;
   background-color: white;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
   justify-content: center;
   align-items: center;
+}
+
+.backButton {
+  position: relative;
+  top: -85px;
+  left: -148px;
+}
+
+.loginWrapper > h2 {
+  margin-bottom: 20px;
 }
 
 .loginWrapper > .authButton {
   background-color: #00cf8d;
   color: white;
+}
+
+.loginEmailError {
+  visibility: hidden;
+}
+
+.loginPasswordError {
+  visibility: hidden;
 }
