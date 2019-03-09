@@ -1,0 +1,10 @@
+.blogWrapper {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+}

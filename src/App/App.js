@@ -22,6 +22,7 @@ class App extends Component {
         <Route exact path='/main/records' component={Mainpage} />
         <Route exact path='/main/analytics' component={Mainpage} />
         <Route exact path='/main/blog' component={Mainpage} />
+        <Route exact path='/main/blog/:id' component={Mainpage} />
         <Route component={NotFound} />
       </Switch>
     );

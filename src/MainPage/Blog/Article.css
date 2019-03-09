@@ -1,0 +1,15 @@
+.articleWrapper {
+  min-width: 420px;
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+
+.articleTitle {
+  text-align: center;
+  padding: 20px 100px 80px 100px;
+}
+
+.articleParagraph {
+  padding: 0 100px 20px 100px;
+}

@@ -10,6 +10,7 @@ import Dashboard from '../MainPage/Dashboard/Dashboard';
 import Records from '../MainPage/Records/Records';
 import Analytics from '../MainPage/Analytics/Analytics';
 import Blog from '../MainPage/Blog/Blog';
+import Article from '../MainPage/Blog/Article';
 
 class MainPage extends React.Component {
 
@@ -39,6 +40,7 @@ class MainPage extends React.Component {
           <Route exact path='/main/records' component={Records} />
           <Route exact path='/main/analytics' component={Analytics} />
           <Route exact path='/main/blog' component={Blog} />
+          <Route exact path='/main/blog/:id' component={Article} />
         </Switch>
       </Fragment>
     )
