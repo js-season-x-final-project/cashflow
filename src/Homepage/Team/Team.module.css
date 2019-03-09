@@ -1,5 +1,8 @@
+.wrapper {
+  box-sizing: border-box;
+}
+
 .firstPart {
-  width: 100vw;
   height: 300px;
 }
 
@@ -10,30 +13,44 @@
   align-items: center;
   min-width: 420px;
   max-width: 960px;
+  height: 100%;
   margin: auto;
+  padding: 10px 20px;
   color: white;
+}
+
+.firstPartInner > h1 {
+  margin-bottom: 30px;
 }
 
 .secondPart {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 100%;
-  padding: 20px 0px;
+  padding: 50px 0px;
   background-color: white;
+  box-sizing: border-box;
 }
 
 .secondPartInner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   min-width: 420px;
   max-width: 960px;
+  box-sizing: border-box;
 }
 
-.bigAvatar {
-  width: 200px;
-  height: 200px;
+.card {
+  max-width: 300px;
+  min-width: 250px;
+  margin: 0 20px;
+}
+
+.media {
+  height: 0;
+  padding-top: 100%;
 }
