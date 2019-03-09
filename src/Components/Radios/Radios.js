@@ -11,7 +11,7 @@ import {connect} from 'react-redux'
 
 const styles = theme => ({
   palette:{
-    primary:"green"
+    primary:"#00cf8d"
   },
   root: {
     display: 'flex',

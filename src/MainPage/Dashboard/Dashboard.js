@@ -1,11 +1,19 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { HorizontalBar, Pie, Radar, Line } from 'react-chartjs-2'
+import { HorizontalBar, Bar, Radar, Line, Doughnut } from 'react-chartjs-2'
 import Calendar from '../../Components/Calendar/Calendar'
 import Paper from '@material-ui/core/Paper';
 import Radios from '../../Components/Radios/Radios'
 import classes from './Dashboard.module.css';
+import colors from 'nice-color-palettes/100'
+import { helpers } from 'react-redux-firebase';
+
+
+const colorsArr = () =>{
+  return colors.flat(1)
+}
+
 
 class Dashboard extends React.Component {
 
@@ -22,18 +30,6 @@ class Dashboard extends React.Component {
     }
   }
 
-  generateRandom() {
-    const COLORS = [
-      'rgba(255, 99, 132, 0.6)',
-      'rgba(54, 162, 235, 0.6)',
-      'rgba(255, 206, 86, 0.6)',
-      'rgba(75, 192, 192, 0.6)',
-      'rgba(153, 102, 255, 0.6)',
-      'rgba(255, 159, 64, 0.6)',
-      'rgba(255, 99, 132, 0.6)'
-    ]
-    return COLORS[Math.floor(Math.random() * COLORS.length)]
-  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.data === this.props.data) {
@@ -48,28 +44,29 @@ class Dashboard extends React.Component {
         labels: this.props.data.labels,
         datasets: [
           {
-            labels: ["Amount",'asdasd'],
+            labels: this.props.data.labels,
             data: this.props.data.values,
-            backgroundColor:  this.props.data.values.map(rec=>this.generateRandom())
+            backgroundColor: colorsArr().slice(Math.floor(Math.random()*450)),
           }
-        ]
+        ],
       },
       radarChartData: {
         labels: this.props.filteredByData.map(rec => rec[0]),
         datasets: [
           {
-            key: 1,
-            labels: this.props.filteredByData.map(rec => rec[0]),
+            label:["Expenses"],
             data: this.props.filteredByData.map(rec => rec[1]),
             backgroundColor: ['rgba(75, 192, 192, 0.6)'],
-            spanGaps: true
+            spanGaps: true,
+
           },
           {
-            key: 2,
-            labels: this.props.filteredByData.map(rec => rec[0]),
+
+            label: ["Incomes"],
             data: this.props.filteredByData.map(rec => rec[2]),
             backgroundColor: ['rgba(255, 159, 64, 0.6)'],
-            spanGaps: true
+            spanGaps: true,
+
           }
         ]
       },
@@ -77,9 +74,9 @@ class Dashboard extends React.Component {
         labels: ['Expenses', 'Incomes'],
         datasets: [
           {
-            labels: ['Amount'],
+            labels: ['Expenses',"Incomes"],
             data: [this.props.expenses, this.props.incomes],
-            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)']
+            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)'],
           }
         ]
       }
@@ -98,43 +95,47 @@ class Dashboard extends React.Component {
           {this.props.data.values.length > 0 ?
             <Fragment>
               <Paper className={classes.chart}>
-                <h2>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h2>
-                <HorizontalBar
+                <label>These are your stats for the period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</label>
+                <Bar
                   data={this.state.filteredChartData}
+                  options={{legend:false}}
+                  responsive
+                />
+            
+                <Doughnut
+                  data={this.state.filteredChartData}
+                  options={{legend:{
+                    position:"left"
+                  }}}
                   responsive
                 />
               </Paper>
 
-              <Paper className={classes.chart}>
-                <Pie
-                  data={this.state.filteredChartData}
-                  responsive
-                />
-              </Paper>
-
-              {this.props.filteredByData.length > 2 && (this.props.endDate - this.props.startDate <= 604800000) ?
+              {/* {this.props.filteredByData.length > 2 && (this.props.endDate - this.props.startDate <= 604800000) ? */}
                 <Fragment>
-                  <Paper className={classes.chart}>
+                  {/* <Paper className={classes.chart}>
                     <Radar
                       data={this.state.radarChartData}
                       redraw
                       responsive
                     />
-                  </Paper>
+                  </Paper> */}
 
-                  <Paper className={classes.chart}>
+                  <Paper className={classes.chart} style={{height:200}}>
                     <Line
                       data={this.state.radarChartData}
                       redraw
                       responsive
                     />
                   </Paper>
-                </Fragment> : null}
+                </Fragment> 
+                {/* : null} */}
             </Fragment> :
             <h3>You dont have what to see for this period :)</h3>}
           <Paper className={classes.chart}>
             <h3>Your lifetime stats for cashflow</h3>
             <HorizontalBar
+              options={{legend:false}}
               data={this.state.overallChartData}
               responsive
             />
