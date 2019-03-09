@@ -32,6 +32,7 @@ const styles = () => ({
   },
 });
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 class Register extends Component {
 
@@ -39,6 +40,10 @@ class Register extends Component {
     email: '',
     password: '',
     passwordAgain: '',
+    emailError: false,
+    passwordError: false,
+    passwordAgainError: false,
+    missingPassword2: false,
   }
 
   handleChange = event => {
@@ -47,9 +52,36 @@ class Register extends Component {
 
   onRegister = event => {
     event.preventDefault();
+    if (!this.state.emailError && !this.state.passwordError && !this.state.passwordAgainError && this.state.passwordAgain !== '') {
+      this.props.register(this.state);
+    }
+    if (this.state.passwordAgain === '') {
+      this.setState({ missingPassword2: true })
+    }
+  }
 
-    this.props.register(this.state);
-    this.setState({ email: '', password: '', passwordAgain: '' });
+  checkEmail() {
+    !emailRegex.test(this.state.email) 
+    ? 
+    this.setState({ emailError: true }) 
+    : 
+    this.setState({ emailError: false })
+  }
+
+  checkPassword() {
+    this.state.password.length < 6 
+    ? 
+    this.setState({ passwordError: true }) 
+    : 
+    this.setState({ passwordError: false })
+  }
+
+  checkPasswordAgain() {
+    this.state.passwordAgain !== this.state.password 
+    ? 
+    this.setState({ passwordAgainError: true }) 
+    : 
+    this.setState({ passwordAgainError: false, missingPassword2: false })
   }
 
   render() {
@@ -71,10 +103,11 @@ class Register extends Component {
             className={classes.textField}
             value={this.state.email}
             onChange={this.handleChange}
+            onBlur={() => this.checkEmail()}
           />
-          <Typography color='error' className='registerEmailError'>
-            Some Error Message
-          </Typography>
+          {this.state.emailError && <Typography color='error'>
+            Not valid email
+          </Typography>}
           <TextField
             id="register-password-input"
             label="Password"
@@ -86,10 +119,11 @@ class Register extends Component {
             className={classes.textField}
             value={this.state.password}
             onChange={this.handleChange}
+            onBlur={() => this.checkPassword()}
           />
-          <Typography color='error' className='registerPasswordError'>
-            Some Error Message
-          </Typography>
+          {this.state.passwordError && <Typography color='error'>
+            Password should be at least 6 character
+          </Typography>}
           <TextField
             id="register-passwordAgain-input"
             label="Password Again"
@@ -101,10 +135,14 @@ class Register extends Component {
             className={classes.textField}
             value={this.state.passwordAgain}
             onChange={this.handleChange}
+            onBlur={() => this.checkPasswordAgain()}
           />
-          <Typography color='error' className='registerPasswordAgainError'>
-            Some Error Message
-          </Typography>
+          {this.state.passwordAgainError && <Typography color='error'>
+            Mismatching passwords
+          </Typography>}
+          {this.state.missingPassword2 && <Typography color='error'>
+            Please enter password again
+          </Typography>}
           <Button variant="outlined" className={classes.button} onClick={this.onRegister}>Register</Button>
           {registerError ? <Typography color='error'>{registerError}</Typography> : null}
         </form>

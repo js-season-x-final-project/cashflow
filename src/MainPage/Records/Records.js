@@ -56,7 +56,7 @@ class Records extends Component {
           <label>Income Categories</label>
           <NestedList categories = {incomeCats}onFilter={this.filterRecords}/>
           <Divider />
-          {this.state.recordsToDisplay ? this.state.recordsToDisplay.map((rec) => {
+          {this.state.recordsToDisplay ? this.state.recordsToDisplay.reverse().map((rec) => {
             return (rec && rec.amount ?
               <Fragment key={rec.uid} >
                 <Record uid={rec.uid} {...rec} />

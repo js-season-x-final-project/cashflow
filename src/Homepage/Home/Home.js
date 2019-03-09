@@ -5,7 +5,7 @@ import finance from '../../assets/images/Homepage/finance.png';
 import pieChart from '../../assets/images/Homepage/pie-chart.png';
 import classes from './Home.module.css'
 
-const home = props => {
+const home = () => {
 
   return (
     <div className={classes.wrapper}>

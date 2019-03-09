@@ -13,3 +13,11 @@
 .leftSide {
   flex-basis: 90%;
 }
+
+.incomes {
+  color: #00cf8d;
+}
+
+.expenses {
+  color: red;
+}

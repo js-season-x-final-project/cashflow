@@ -41,6 +41,8 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
+    emailError: false,
+    passwordError: false,
   }
 
   handleChange = event => {
@@ -50,11 +52,25 @@ class Login extends Component {
 
   onLogin = event => {
     event.preventDefault();
-    this.props.login(this.state);
+    if (!(this.state.emailError && this.state.passwordError)) {
+      this.props.login(this.state);
+    }
   }
 
   checkEmail() {
-    return !emailRegex.test(this.state.email) ? false : true
+    !emailRegex.test(this.state.email) 
+    ? 
+    this.setState({ emailError: true }) 
+    : 
+    this.setState({ emailError: false })
+  }
+
+  checkPassword() {
+    this.state.password.length < 6 
+    ? 
+    this.setState({ passwordError: true }) 
+    : 
+    this.setState({ passwordError: false })
   }
 
   render() {
@@ -77,10 +93,11 @@ class Login extends Component {
             className={classes.textField}
             value={this.state.email}
             onChange={this.handleChange}
+            onBlur={() => this.checkEmail()}
           />
-          <Typography color='error' className='loginEmailError'>
-            Some Error Message
-          </Typography>
+          {this.state.emailError && <Typography color='error'>
+            Not valid email
+          </Typography>}
           <TextField
             id="login-password-input"
             label="Password"
@@ -92,10 +109,11 @@ class Login extends Component {
             className={classes.textField}
             value={this.state.password}
             onChange={this.handleChange}
+            onBlur={() => this.checkPassword()}
           />
-          <Typography color='error' className='loginPasswordError'>
-            Some Error Message
-          </Typography>
+          {this.state.passwordError && <Typography color='error'>
+            Password should be at least 6 character
+          </Typography>}
           <Button variant="outlined" className={classes.button} onClick={this.onLogin} >Login</Button>
           {loginError ? <Typography color='error'>{loginError}</Typography> : null}
         </form>

@@ -3,7 +3,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { expensesCats, incomeCats } from "../../App/categories"
 import { withRouter } from 'react-router';
@@ -42,23 +41,27 @@ class Analytics extends React.Component {
   }
 
   render() {
+
+    let id = 1;
+
     return (
       <Fragment>
         <div className={classes.mainWrapper}>
+
           <div className={classes.section}>
-            {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
+            {this.state.incomeRecs ? this.state.incomeRecs.map(cat => {
               return (
-                <ExpansionPanel>
-                  <ExpansionPanelSummary className={classes.header} expandIcon={<ExpandMoreIcon />}>
-                    <Typography className={classes.leftSide}>{cat[0]}</Typography>
-                    <Typography>{cat[2]}</Typography>
+                <ExpansionPanel key={id++}>
+                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <h5 className={classes.leftSide}>{cat[0]}</h5>
+                    <h5 className={classes.incomes}>{cat[2] !== 0 ? '+' : null}{cat[2]}</h5>
                   </ExpansionPanelSummary>
                   <Divider />
                   {cat[1].map(subCat => {
                     return (
-                      <ExpansionPanelDetails>
-                        <Typography className={classes.leftSide}>{subCat[0]}</Typography>
-                        <Typography>{subCat[1]}</Typography>
+                      <ExpansionPanelDetails key={id++}>
+                        <h5 className={classes.leftSide}>{subCat[0]}</h5>
+                        <h5 className={classes.incomes}>{subCat[1] !== 0 ? '+' : null}{subCat[1]}</h5>
                       </ExpansionPanelDetails>
                     )
                   })}
@@ -68,19 +71,19 @@ class Analytics extends React.Component {
           </div>
 
           <div className={classes.section}>
-            {this.state.incomeRecs ? this.state.incomeRecs.map(cat => {
+            {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
               return (
-                <ExpansionPanel>
-                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography className={classes.leftSide}>{cat[0]}</Typography>
-                    <Typography>{cat[2]}</Typography>
+                <ExpansionPanel key={id++}>
+                  <ExpansionPanelSummary className={classes.header} expandIcon={<ExpandMoreIcon />}>
+                    <h5 className={classes.leftSide}>{cat[0]}</h5>
+                    <h5 className={classes.expenses}>{cat[2] !== 0 ? '-' : null}{cat[2]}</h5>
                   </ExpansionPanelSummary>
                   <Divider />
                   {cat[1].map(subCat => {
                     return (
-                      <ExpansionPanelDetails>
-                        <Typography className={classes.leftSide}>{subCat[0]}</Typography>
-                        <Typography>{subCat[1]}</Typography>
+                      <ExpansionPanelDetails key={id++}>
+                        <h5 className={classes.leftSide}>{subCat[0]}</h5>
+                        <h5 className={classes.expenses}>{subCat[1] !== 0 ? '-' : null}{subCat[1]}</h5>
                       </ExpansionPanelDetails>
                     )
                   })}

@@ -23,7 +23,7 @@ const start = props => {
             <div className={classes.rightSide}>
               <h3>Managing your personal finance is like taking care of your health.</h3>
               <h3>Both are essential to lead and enjoy the richness of your life.</h3>
-              <h3>We would love to see our Wallet helping you in this regard.</h3>
+              <h3>We would love to see our Cashflow helping you in this regard.</h3>
             </div>
           </div>
         </div>
@@ -47,13 +47,13 @@ const start = props => {
                   <div className={classes.stepInfo}>
                     <h5>1</h5>
                     <Typography className={classes.paragraph}>
-                      Start by deciding which accounts you want to have in Wallet so that you can fully control your finances.
+                      Start by deciding which accounts you want to have in Cashflow so that you can fully control your finances.
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
+                      Cashflow supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet main screen has a primary tab called Accounts, where you simply add all accounts you need.
+                      Cashflow main screen has a primary tab called Accounts, where you simply add all accounts you need.
                     </Typography>
                     <Typography className={classes.paragraph}>
                       For each account you can connect to your bank for synchonization, or import files, or enter records manually
@@ -62,13 +62,13 @@ const start = props => {
                   <div className={classes.stepInfo}>
                     <h5>2</h5>
                     <Typography className={classes.paragraph}>
-                      Start by deciding which accounts you want to have in Wallet so that you can fully control your finances.
+                      Start by deciding which accounts you want to have in Cashflow so that you can fully control your finances.
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
+                      Cashflow supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet main screen has a primary tab called Accounts, where you simply add all accounts you need.
+                      Cashflow main screen has a primary tab called Accounts, where you simply add all accounts you need.
                     </Typography>
                     <Typography className={classes.paragraph}>
                       For each account you can connect to your bank for synchonization, or import files, or enter records manually
@@ -77,13 +77,13 @@ const start = props => {
                   <div className={classes.stepInfo}>
                     <h5>3</h5>
                     <Typography className={classes.paragraph}>
-                      Start by deciding which accounts you want to have in Wallet so that you can fully control your finances.
+                      Start by deciding which accounts you want to have in Cashflow so that you can fully control your finances.
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
+                      Cashflow supports current accounts, savings, credit cards, loans, but also your pocket money (cash)
                     </Typography>
                     <Typography className={classes.paragraph}>
-                      Wallet main screen has a primary tab called Accounts, where you simply add all accounts you need.
+                      Cashflow main screen has a primary tab called Accounts, where you simply add all accounts you need.
                     </Typography>
                     <Typography className={classes.paragraph}>
                       For each account you can connect to your bank for synchonization, or import files, or enter records manually

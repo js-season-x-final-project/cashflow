@@ -1,5 +1,7 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Technologies from '../../assets/images/Technologies/Logos.png';
 import classes from './Technologies.module.css';
 
 
@@ -8,17 +10,17 @@ const technologies = props => {
   return (
     <div className={classes.wrapper}>
 
-      <div className={classes.firstPart}>
-        <div className={classes.firstPartInner}>
+      <Paper className={classes.headerPaper}>
+        <Typography className={classes.header} variant='h4' >TECHNOLOGIES USED IN THE PROJECT</Typography>
+      </Paper>
 
-        </div>
-      </div>
+      <Paper className={classes.paper}>
+        <img className={classes.technologies} src={Technologies} alt='Technologies'/>
+      </Paper>
 
-      <div className={classes.secondPart}>
-        <div className={classes.secondPartInner}>
-
-        </div>
-      </div>
+      <Paper className={classes.paper}>
+        <img className={classes.technologies} src={Technologies} alt='Technologies'/>
+      </Paper>
 
     </div>
   )

@@ -16,15 +16,3 @@
   background-color: royalblue;
   color: white;
 }
-
-.registerEmailError {
-  visibility: hidden;
-}
-
-.registerPasswordError {
-  visibility: hidden;
-}
-
-.registerPasswordAgainError {
-  visibility: hidden;
-}
