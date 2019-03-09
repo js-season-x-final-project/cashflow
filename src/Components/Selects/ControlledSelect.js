@@ -46,7 +46,7 @@ class SelectByCategory extends React.Component {
           Open the select
         </Button>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">subcategories</InputLabel>
+          <InputLabel htmlFor="demo-controlled-open-select">Filter</InputLabel>
           <Select
             open={this.state.open}
             onClose={this.handleClose}

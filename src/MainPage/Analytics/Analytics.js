@@ -32,8 +32,7 @@ class Analytics extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
+  componentDidUpdate(prevProps) {
     if (prevProps.expenseRecords !== this.props.expenseRecords) {
       this.setState({
         expenseRecs: this.filtrate(this.props.expenseRecords, 0),
@@ -42,16 +41,10 @@ class Analytics extends React.Component {
     }
   }
 
-  handleClick = () => {
-    console.log('natisna me')
-  }
-
   render() {
     return (
       <Fragment>
-
         <div className={classes.mainWrapper}>
-
           <div className={classes.section}>
             {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
               return (
