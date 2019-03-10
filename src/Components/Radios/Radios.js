@@ -4,7 +4,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { changeFilter } from '../../actions/analyticsActions'
 import { connect } from 'react-redux'
@@ -51,7 +50,6 @@ class RadioButtonsGroup extends React.Component {
       <div className={classes.root}>
         <MuiThemeProvider theme={theme} >
           <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend">Sort By</FormLabel>
             <RadioGroup
               className={classes.group}
               value={this.state.value}
