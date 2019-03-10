@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker, DateRange } from 'react-date-range';
 import {connect} from 'react-redux'
 import {changePeriod} from '../../actions/analyticsActions'
+import './calendar.css'
+// import DateRange from 'react-date-range/dist/components/DateRange';
 
 class MyComponent extends Component {
 
@@ -21,10 +23,12 @@ class MyComponent extends Component {
 			key: 'selection',
 		}
 		return (
+			<div>
 			<DateRangePicker
 				ranges={[selectionRange]}
 				onChange={this.handleSelect}
 			/>
+			</div>
 		)
 	}
 }

@@ -1,0 +1,98 @@
+:root{
+    --themeColor: rgba(0,207,141,1);
+}
+
+.rdrStaticRange:hover .rdrStaticRangeLabel, .rdrStaticRange:focus .rdrStaticRangeLabel{
+    -webkit-box-shadow: inset 0px -2px 5px 0px rgba(0,207,141,1);
+    -moz-box-shadow: inset 0px -2px 5px 0px rgba(0,207,141,1);
+    box-shadow: inset 0px -2px 5px 0px rgba(0,207,141,1);
+}
+
+.rdrStaticRange:hover{
+    background-color: var(--themeColor)
+}
+
+.rangePicker{
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,1);
+    border-radius: 12px;  
+    background-color: white;
+}
+.rdrDateDisplay{
+    border-top-right-radius: 12px;
+}
+
+.rdrDateRangeWrapper{
+   border-bottom-right-radius: 12px;
+   border-top-right-radius: 12px;
+}
+
+.wrapperForCalendar{
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,1);
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin: 15px; 
+    width:58
+}
+
+.rdrDefinedRangesWrapper {
+   border-bottom-left-radius: 12px;
+   border-top-left-radius: 12px;
+   border--left-radius: 12px;
+}
+
+.rdrStaticRange:first-of-type{
+    border-top-left-radius: 12px;
+}
+
+.rdrDateRangePickerWrapper{
+    border-radius: 12px;
+    box-shadow:  0px 2px 5px 0px rgb(0,0,0);
+    box-sizing: border-box;
+    margin:20px;
+}
+
+.rdrDayHovered{
+    border-color: black;
+}
+
+
+
+@media screen and (max-width: 650px) {
+    .rdrDefinedRangesWrapper{
+        display:none;
+    }
+    .wrapperForCalendar{
+        width: 80%;
+    }
+    .rdrDateRangePickerWrapper *{
+        width: 90%;
+    }
+    .rdrDay, .rdrDay * {
+        width: 15px;
+        padding: 3px;
+    }
+    .rdrCalendarWrapper{
+        width: 100%;
+    }
+    .rdrCalendarWrapper> div{
+        width: 100%;
+    }
+    .rdrNextPrevButton{
+        width: 40px;
+    }
+    .rdrMonthPicker{
+        width: 100%;
+    }
+    .rdrMonthAndYearPickers>span:nth-child(2){
+        display: none;
+    }
+    .rdrMonthAndYearPickers select{
+        padding: 0px;
+    }
+  }
+
+@media screen and (max-width: 380px){
+    .rdrDateRangePickerWrapper{
+        width: 90%;
+    }
+}
