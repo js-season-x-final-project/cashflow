@@ -41,7 +41,6 @@ class Records extends Component {
   }
 
   componentDidMount(){
-    console.log("COMPONENT DID MOUNT [RECORDS]")
     this.setState({...this.state,
       recordsToDisplay: this.extractRecords()
     })
@@ -55,8 +54,16 @@ class Records extends Component {
       ...this.state,
       recordsToDisplay: this.extractRecords()
     })
-    console.log(this.state.recordsToDisplay);
-    console.log("COMPONENT DID UPDATE [RECORDS]")
+  }
+
+  returnDate = (digits) => {
+    if (digits) {
+      const date = new Date(digits);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`
+    }
   }
 
   render() {
@@ -65,8 +72,9 @@ class Records extends Component {
       <div className={classes.recordsWrapper}>
 
         <div className={classes.recordsHeader}>
-          <Paper square={true}>
+          <Paper square={true} className={classes.headTitles}>
             <h3>All records for the period:</h3>
+            <h3>{this.returnDate(this.props.startDate)} - {this.returnDate(this.props.endDate)}</h3>
           </Paper>
         </div>
 
@@ -82,7 +90,7 @@ class Records extends Component {
         </Paper>
 
         <Paper square={true} className={classes.recordsExpenses}>
-          {this.state.recordsToDisplay ? this.state.recordsToDisplay.reverse().map((rec) => {
+          {this.state.recordsToDisplay ? this.state.recordsToDisplay.sort((a, b) => b.id - a.id).map((rec) => {
 
             return (rec && rec.amount ?
               <Fragment key={rec.rid} >
@@ -107,6 +115,8 @@ const mapStateToProps = state => {
     expenseRecords: state.statisticData.expenseRecords,
     incomeRecords: state.statisticData.incomeRecords,
     records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
+    startDate: state.statisticData.startDate,
+    endDate: state.statisticData.endDate,
     auth: state.firebase.auth ? state.firebase.auth : null
   }
 }

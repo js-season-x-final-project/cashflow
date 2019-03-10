@@ -1,52 +1,52 @@
 .firstPart {
-    width: 100vw;
-    height: 300px;
+  width: 100vw;
+  height: 300px;
 }
 
 .firstPartInner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 420px;
-    max-width: 960px;
-    margin: auto;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 420px;
+  max-width: 960px;
+  margin: auto;
+  color: white;
 }
 
 .secondPart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100%;
-    padding: 20px 0px;
-    background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  padding: 20px 0px;
+  background-color: white;
 }
 
 .secondPartInner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 420px;
-    max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 420px;
+  max-width: 960px;
 }
 
 .firstPartInner > h2 {
-    color: rgb(228, 228, 228);
+  color: rgb(228, 228, 228);
 }
 
 .logo {
-    font-size: 4em;
-    letter-spacing: 0.15em;
-    font-family: 'Lobster', cursive;
-    margin-top: 60px;
+  font-size: 4em;
+  letter-spacing: 0.15em;
+  font-family: 'Lobster', cursive;
+  margin-top: 60px;
 }
 
 .badges {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 }

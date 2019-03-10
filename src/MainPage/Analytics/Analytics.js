@@ -6,6 +6,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import { expensesCats, incomeCats } from "../../App/categories"
+import { Fastfood } from '@material-ui/icons/';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import classes from './Analytics.module.css';
@@ -41,6 +42,16 @@ class Analytics extends React.Component {
     }
   }
 
+  returnDate = (digits) => {
+    if (digits) {
+      const date = new Date(digits);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`
+    }
+  }
+
   render() {
 
     let id = 1;
@@ -50,8 +61,9 @@ class Analytics extends React.Component {
         <div className={classes.mainWrapper}>
 
           <div className={classes.header}>
-            <Paper square={true}>
-              <h3>Records sorted by categories and subcategories for the period: {this.props.startDate} - {this.props.endDate}</h3>
+            <Paper square={true} className={classes.headTitles}>
+              <h3>Records sorted by categories and subcategories for the period:</h3>
+              <h3>{this.returnDate(this.props.startDate)} - {this.returnDate(this.props.endDate)}</h3>
             </Paper>
           </div>
 
@@ -63,6 +75,7 @@ class Analytics extends React.Component {
               return (
                 <ExpansionPanel square={true} key={id++}>
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    {console.log(cat)}
                     <h5 className={classes.leftSide}>{cat[0]}</h5>
                     <h5 className={classes.incomes}>{cat[2] !== 0 ? '+' : null}{cat[2]}</h5>
                   </ExpansionPanelSummary>

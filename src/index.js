@@ -8,12 +8,12 @@ import { Provider } from 'react-redux';
 import store from './config/store';
 
 store.firebaseAuthIsReady.then(() => {
-    ReactDOM.render(
+  ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>, document.getElementById('root'));
-    
-    serviceWorker.unregister();
+
+  serviceWorker.unregister();
 })

@@ -7,9 +7,13 @@
   margin: 40px auto;
 }
 
-.recordsHeader h3 {
+.headTitles {
   padding: 20px;
+}
+
+.recordsHeader h3 {
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .recordsFilter {

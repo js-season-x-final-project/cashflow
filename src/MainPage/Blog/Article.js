@@ -21,6 +21,7 @@ const article = props => {
 
   return (
     <div className='articleWrapper'>
+
       <Paper className={classes.paper}>
         <Button component={Link} to='/main/blog/'>←Back</Button>
         <Typography className='articleTitle' variant='h4'>{article.title}</Typography>
@@ -37,6 +38,7 @@ const article = props => {
           )
         })}
       </Paper>
+      
     </div>
   )
 }
