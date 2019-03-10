@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Paper from '@material-ui/core/Paper';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -48,10 +49,16 @@ class Analytics extends React.Component {
       <Fragment>
         <div className={classes.mainWrapper}>
 
+          <div className={classes.header}>
+            <Paper square={true}>
+              <h3>Records sorted by categories and subcategories for period:</h3>
+            </Paper>
+          </div>
+
           <div className={classes.section}>
             {this.state.incomeRecs ? this.state.incomeRecs.map(cat => {
               return (
-                <ExpansionPanel key={id++}>
+                <ExpansionPanel square={true} key={id++}>
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <h5 className={classes.leftSide}>{cat[0]}</h5>
                     <h5 className={classes.incomes}>{cat[2] !== 0 ? '+' : null}{cat[2]}</h5>
@@ -73,7 +80,7 @@ class Analytics extends React.Component {
           <div className={classes.section}>
             {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
               return (
-                <ExpansionPanel key={id++}>
+                <ExpansionPanel square={true} key={id++}>
                   <ExpansionPanelSummary className={classes.header} expandIcon={<ExpandMoreIcon />}>
                     <h5 className={classes.leftSide}>{cat[0]}</h5>
                     <h5 className={classes.expenses}>{cat[2] !== 0 ? '-' : null}{cat[2]}</h5>

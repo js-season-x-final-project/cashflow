@@ -50,14 +50,23 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  rigthSide: {
+  rightSide: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  authEmail: {
+    color: '#00cf8d'
   },
   '@media (max-width: 620px)': {
     hiddenMenu: {
       display: 'block'
     },
     mainButtons: {
+      display: 'none'
+    },
+    authEmail: {
       display: 'none'
     }
   }
@@ -141,8 +150,8 @@ class Header extends Component {
           </div>
 
           <div className={classes.rightSide}>
-            
-            <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
+            <h4 className={classes.authEmail}>{this.props.auth.email}</h4>
+            <Tooltip title={'Logout: ' + this.props.auth.email} classes={{ tooltip: classes.tooltip }}>
               <IconButton className={classes.menuButton} color="inherit" aria-label="Logout" onClick={this.props.logout} >
                 <LogoutIcon />
               </IconButton>
@@ -161,4 +170,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(withStyles(styles)(Header)))
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Header)))

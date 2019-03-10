@@ -52,7 +52,7 @@ class Login extends Component {
 
   onLogin = event => {
     event.preventDefault();
-    if (!(this.state.emailError && this.state.passwordError)) {
+    if (!this.state.emailError && !this.state.passwordError) {
       this.props.login(this.state);
     }
   }

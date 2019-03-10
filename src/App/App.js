@@ -16,7 +16,6 @@ class App extends Component {
         <Route exact path='/home/start' component={Homepage} />
         <Route exact path='/home/team' component={Homepage} />
         <Route exact path='/home/technologies' component={Homepage} />
-        <Route exact path='/home/contact' component={Homepage} />
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/main/dashboard' component={Mainpage} />
         <Route exact path='/main/records' component={Mainpage} />
