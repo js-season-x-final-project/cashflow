@@ -23,12 +23,10 @@ class MyComponent extends Component {
 			key: 'selection',
 		}
 		return (
-			<div>
 			<DateRangePicker
 				ranges={[selectionRange]}
 				onChange={this.handleSelect}
 			/>
-			</div>
 		)
 	}
 }

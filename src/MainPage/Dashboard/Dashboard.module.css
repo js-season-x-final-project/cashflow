@@ -1,5 +1,5 @@
 .chartsWrapper {
-  margin: 10px auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -17,7 +17,6 @@
   align-items: center;
   width: 170px;
   margin: 0px 15px;
-
 }
 
 .radioButtons:hover{
@@ -40,7 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  min-width:600px;
+  min-width:400px;
   max-width: 1200px;
 }
 
@@ -59,6 +58,7 @@
   display: flex;
   flex-direction: column;
   width: 340px;
+  margin-left: 15px;
 }
 
 .singleRecord{  
@@ -69,30 +69,47 @@
 
 
 .sortHeading{
+  display: block;
   position: absolute;
+  top: 0px;
+  margin: 10px auto;
   font-size: 1.2em;
-  top: -10px;
-  left: -10px;
-  display: inline-block;
   padding: 10px;
   border-radius: 5px;
   background-color: rgba(104, 98, 98,0.9)
 }
 
-.chipShowMore{
-  display: none;
+.BarChart{
+  width: 40vw;
 }
+
+.DoughnutChart{
+  width: 60vw;
+  padding: 50px;
+}
+
 
 @media screen and (max-width: 650px){
   .wrapperForUserInfo{
-    width: 90%;
+    width: 98vw;
+    padding:0px auto;
+    margin: 15px 0px;
+    align-items: center;
   }
-  .chipShowMore{
-    display: block;
+  .sortHeading{
+    display: none
+  }
+  .wrapperForUserInfo>*{
+    margin-top: 25px;
+  }
+  .calendarWrapper{
+    width: 95%;
   }
 }
-@media screen and (max-width: 380px){
-  .wrapperForUserInfo{
-      width: 90%;
+
+
+@media screen and (max-width:800px){
+  .wrapperForUserInfo>*{
+    margin-top: 40px;
   }
 }
