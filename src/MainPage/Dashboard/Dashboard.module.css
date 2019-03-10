@@ -1,10 +1,98 @@
 .chartsWrapper {
+  margin: 10px auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 1200px;
 }
 
 .chart {
   width: 400px;
   margin: 10px;
+}
+
+.radioButtons{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 170px;
+  margin: 0px 15px;
+
+}
+
+.radioButtons:hover{
+  border-radius: 12px;
+  color: white
+}
+
+.lifetimeChart{
+  width: 560px;
+}
+
+.calendarWrapper{
+  position: relative;
+}
+
+.wrapperForUserInfo{
+ box-sizing: border-box;
+ padding: 30px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  min-width:600px;
+  max-width: 1200px;
+}
+
+.wrapperForUserInfo > div {
+  box-shadow:  0px 2px 5px 0px rgb(0,0,0);
+}
+
+.greenLabel{
+  color: green;
+}
+.redLabel{
+  color: red;
+}
+
+.LastFiveRecords{
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+}
+
+.singleRecord{  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.sortHeading{
+  position: absolute;
+  font-size: 1.2em;
+  top: -10px;
+  left: -10px;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(104, 98, 98,0.9)
+}
+
+.chipShowMore{
+  display: none;
+}
+
+@media screen and (max-width: 650px){
+  .wrapperForUserInfo{
+    width: 90%;
+  }
+  .chipShowMore{
+    display: block;
+  }
+}
+@media screen and (max-width: 380px){
+  .wrapperForUserInfo{
+      width: 90%;
+  }
 }

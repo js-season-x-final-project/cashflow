@@ -22,7 +22,7 @@ class NestedList extends React.Component {
     category1: false,
     category2: false,
     category3: false,
-    category4: false
+    category4: false,
   };
   handleListItemClick = (event, category, value) => {
     if (category !== 0) {

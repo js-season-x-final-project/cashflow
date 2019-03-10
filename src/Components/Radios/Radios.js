@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import {changeFilter} from '../../actions/analyticsActions'
-import {connect} from 'react-redux'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { changeFilter } from '../../actions/analyticsActions'
+import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#00cf8d'
+    },
+  },
+});
 
 const styles = theme => ({
   root: {
@@ -24,13 +32,14 @@ const styles = theme => ({
 class RadioButtonsGroup extends React.Component {
   state = {
     value: 'subCategory',
+    fsize: 12
   };
 
   handleChange = event => {
     this.setState({ value: event.target.value });
   };
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.props.changeFilter(this.state.value);
   }
 
@@ -39,18 +48,19 @@ class RadioButtonsGroup extends React.Component {
 
     return (
       <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Sort By</FormLabel>
-          <RadioGroup
-            className={classes.group}
-            value={this.state.value}
-            onChange={this.handleChange}
-          >
-          {this.props.options.map((option, i)=>
-            <FormControlLabel key={i} value={option.value}  control={<Radio />} label={option.label} />
-          )}
-          </RadioGroup>
-        </FormControl>
+        <MuiThemeProvider theme={theme} >
+          <FormControl component="fieldset" className={classes.formControl}>
+            <RadioGroup
+              className={classes.group}
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              {this.props.options.map((option, i) =>
+                <FormControlLabel key={i} value={option.value} control={<Radio color="primary" />} label={option.label} />
+              )}
+            </RadioGroup>
+          </FormControl>
+        </MuiThemeProvider>
       </div>
     );
   }
@@ -60,10 +70,10 @@ RadioButtonsGroup.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = dispatch =>{
-  return{
-    changeFilter : (newFilter) => dispatch(changeFilter(newFilter))
+const mapDispatchToProps = dispatch => {
+  return {
+    changeFilter: (newFilter) => dispatch(changeFilter(newFilter))
   }
 }
 
-export default connect(null,mapDispatchToProps)(withStyles(styles)(RadioButtonsGroup));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(RadioButtonsGroup));

@@ -13,40 +13,27 @@
 }
 
 .rangePicker{
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,1);
-    border-radius: 12px;  
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,1); 
     background-color: white;
 }
-.rdrDateDisplay{
-    border-top-right-radius: 12px;
-}
 
-.rdrDateRangeWrapper{
-   border-bottom-right-radius: 12px;
-   border-top-right-radius: 12px;
-}
-
-
-.rdrDefinedRangesWrapper {
-   border-bottom-left-radius: 12px;
-   border-top-left-radius: 12px;
-   border--left-radius: 12px;
-   border-radius: 12px;
-}
-
-.rdrStaticRange:first-of-type{
+/* .rdrStaticRange:first-of-type{
     border-top-left-radius: 12px;
-}
+} */
 
 .rdrDateRangePickerWrapper{
-    border-radius: 12px;
+    /* border-radius: 12px; */
     box-shadow:  0px 2px 5px 0px rgb(0,0,0);
     box-sizing: border-box;
-    margin:20px;
+
 }
 
 .rdrDayHovered{
     border-color: black;
+}
+
+.rdrStaticRangeLabel{
+    text-align: center;
 }
 
 

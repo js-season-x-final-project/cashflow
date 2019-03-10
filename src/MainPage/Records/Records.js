@@ -13,8 +13,17 @@ class Records extends Component {
     recordsToDisplay: null
   }
 
-  extractRecords = () => {
-    return this.props.records ? Object.entries(this.props.records).map(record => { return record[1] ? { ...record[1], uid: record[0] } : null }).filter(rec => rec !== null) : null
+  // extractRecords = () =>{
+  //   console.log([...this.props.expenseRecords,...this.props.incomeRecords])
+  //   let subArray = [...this.props.expenseRecords,...this.props.incomeRecords]
+  //   return this.props.records ? Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>{
+  //     let na = new Date(rec.date).getTime();
+  //     return  rec !== null && na >= this.props.startDate && na <= this.props.endDate
+  //    }) : null
+  // }
+
+   extractRecords = () =>{
+    return this.props.records ? [...this.props.expenseRecords,...this.props.incomeRecords] : null
   }
 
   filterRecords = (subcategory, category) => {
@@ -27,13 +36,13 @@ class Records extends Component {
     let filterValue = category || subcategory;
     let filterKey = category ? "category" : "subCategory";
     this.setState({
-      recordsToDisplay: Object.entries(this.props.records).map(record => { return record[1] ? { ...record[1], uid: record[0] } : null }).filter(record => record && record[filterKey] === filterValue)
+      recordsToDisplay: this.extractRecords().filter(record=>record && record[filterKey] === filterValue)
     })
   }
 
-  componentDidMount() {
-    this.setState({
-      ...this.state,
+  componentDidMount(){
+    console.log("COMPONENT DID MOUNT [RECORDS]")
+    this.setState({...this.state,
       recordsToDisplay: this.extractRecords()
     })
   }
@@ -46,6 +55,8 @@ class Records extends Component {
       ...this.state,
       recordsToDisplay: this.extractRecords()
     })
+    console.log(this.state.recordsToDisplay);
+    console.log("COMPONENT DID UPDATE [RECORDS]")
   }
 
   render() {
@@ -72,9 +83,10 @@ class Records extends Component {
 
         <Paper square={true} className={classes.recordsExpenses}>
           {this.state.recordsToDisplay ? this.state.recordsToDisplay.reverse().map((rec) => {
+
             return (rec && rec.amount ?
-              <Fragment key={rec.uid} >
-                <Record uid={rec.uid} {...rec} />
+              <Fragment key={rec.rid} >
+                <Record uid={rec.rid} {...rec} />
                 <Divider />
               </Fragment>
               : null)
@@ -90,6 +102,10 @@ class Records extends Component {
 const mapStateToProps = state => {
   const hash = state.firebase.auth.uid
   return {
+    startDate: state.statisticData.startDate,
+    endDate: state.statisticData.endDate,
+    expenseRecords: state.statisticData.expenseRecords,
+    incomeRecords: state.statisticData.incomeRecords,
     records: state.firestore.data.users && hash ? state.firestore.data.users[hash].records : null,
     auth: state.firebase.auth ? state.firebase.auth : null
   }
