@@ -6,7 +6,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import { expensesCats, incomeCats } from "../../App/categories"
-import { Fastfood } from '@material-ui/icons/';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import classes from './Analytics.module.css';
@@ -28,7 +27,8 @@ class Analytics extends React.Component {
           scat,
           array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)
         ]),
-        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)
+        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0),
+        cat.icon
       ]
     })
   }
@@ -75,7 +75,6 @@ class Analytics extends React.Component {
               return (
                 <ExpansionPanel square={true} key={id++}>
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                    {console.log(cat)}
                     <h5 className={classes.leftSide}>{cat[0]}</h5>
                     <h5 className={classes.incomes}>{cat[2] !== 0 ? '+' : null}{cat[2]}</h5>
                   </ExpansionPanelSummary>
