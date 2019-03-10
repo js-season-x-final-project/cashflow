@@ -1,115 +1,90 @@
-.chartsWrapper {
-  margin: 20px auto;
+.dashboardWrapper {
+  padding: 40px 20px;
+}
+
+.wrapperForUserInfo {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 1200px;
-}
-
-.chart {
-  width: 400px;
-  margin: 10px;
-}
-
-.radioButtons{
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 170px;
-  margin: 0px 15px;
-}
-
-.radioButtons:hover{
-  border-radius: 12px;
-  color: white
-}
-
-.lifetimeChart{
-  width: 560px;
-}
-
-.calendarWrapper{
-  position: relative;
-}
-
-.wrapperForUserInfo{
- box-sizing: border-box;
- padding: 30px;
-  margin: 20px auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  min-width:400px;
-  max-width: 1200px;
-}
-
-.wrapperForUserInfo > div {
-  box-shadow:  0px 2px 5px 0px rgb(0,0,0);
-}
-
-.greenLabel{
-  color: green;
-}
-.redLabel{
-  color: red;
-}
-
-.LastFiveRecords{
-  display: flex;
-  flex-direction: column;
-  width: 340px;
-  margin-left: 15px;
-}
-
-.singleRecord{  
-  display: flex;
-  flex-direction: row;
+  max-width: 960px;
+  min-width: 420px;
+  margin: auto;
   justify-content: space-between;
 }
 
+.calendarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 15px 0;  
+}
 
-.sortHeading{
-  display: block;
-  position: absolute;
-  top: 0px;
-  margin: 10px auto;
-  font-size: 1.2em;
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  height: 530px;
+  justify-content: space-between;
+  margin: 15px 0;  
+}
+
+.LastFiveRecords {
+  min-width: 350px;
+  max-width: 650px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.redLabel {
+  color: red;
+}
+
+.radioButtons {
+  height: 210px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.sortHeading {
+  text-align: center;
+}
+
+.chartsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.BarChart {
   padding: 10px;
-  border-radius: 5px;
-  background-color: rgba(104, 98, 98,0.9)
+  margin: 10px;
+  min-width: 29vw;
 }
 
-.BarChart{
-  width: 40vw;
+.Doughnut {
+  padding: 10px;
+  margin: 10px;
+  min-width: 29vw;
 }
 
-.DoughnutChart{
-  width: 60vw;
-  padding: 50px;
+.Line {
+  padding: 10px;
+  margin: 10px;
+  min-width: 29vw;
 }
 
-
-@media screen and (max-width: 650px){
-  .wrapperForUserInfo{
-    width: 98vw;
-    padding:0px auto;
-    margin: 15px 0px;
-    align-items: center;
-  }
-  .sortHeading{
-    display: none
-  }
-  .wrapperForUserInfo>*{
-    margin-top: 25px;
-  }
-  .calendarWrapper{
-    width: 95%;
-  }
+.lifetimeChart {
+  padding: 10px;
+  margin: 10px;
+  min-width: 29vw;
 }
 
-
-@media screen and (max-width:800px){
-  .wrapperForUserInfo>*{
-    margin-top: 40px;
+@media (max-width: 985px) {
+  .wrapperForUserInfo {
+    justify-content: center;
+  }
+  .rightSide {
+    width: 579px;
   }
 }
