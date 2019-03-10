@@ -4,6 +4,16 @@
   padding: 20px 10px;
 }
 
+.header {
+  max-width: 960px;
+  margin: 20px auto;
+}
+
+.header h3 {
+  padding: 20px;
+  text-align: center;
+}
+
 .section {
   margin: 30px auto;
   max-width: 960px;

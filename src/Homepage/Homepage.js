@@ -6,7 +6,6 @@ import Home from './Home/Home';
 import Start from './Start/Start';
 import Team from './Team/Team';
 import Technologies from './Technologies/Technologies';
-import Contact from './Contact/Contact';
 import { withRouter } from 'react-router-dom';
 import './Homepage.css';
 
@@ -25,7 +24,6 @@ const homepage = props => {
           <Route exact path='/home/start' component={Start} />
           <Route exact path='/home/team' component={Team} />
           <Route exact path='/home/technologies' component={Technologies} />
-          <Route exact path='/home/contact' component={Contact} />
         </Switch>
       </div>
 
