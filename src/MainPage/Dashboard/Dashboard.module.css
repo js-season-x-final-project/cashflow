@@ -8,3 +8,17 @@
   width: 400px;
   margin: 10px;
 }
+
+.radioButtons{
+  display: flex;
+  align-items: center;
+  width: 170px;
+}
+
+.wrapperForUserInfo{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  min-width:600px;
+  max-width: 960px;
+}

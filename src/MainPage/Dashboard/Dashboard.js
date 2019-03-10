@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Radios from '../../Components/Radios/Radios'
 import classes from './Dashboard.module.css';
 import colors from 'nice-color-palettes/100'
-import { helpers } from 'react-redux-firebase';
 
 
 const colorsArr = () =>{
@@ -86,11 +85,17 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Fragment>
+        <div className={classes.wrapperForUserInfo}>
         <Calendar />
         <Paper className={classes.radioButtons}>
           <Radios options={this.state.properties.map(prop=> {return{value:prop,label:prop.toUpperCase()}})}/>
         </Paper>
+        <Paper className={classes.LastFiveRecords}>
+          
 
+        </Paper>
+
+        </div>
         <div className={classes.chartsWrapper}>
           {this.props.data.values.length > 0 ?
             <Fragment>
@@ -153,7 +158,6 @@ const mapStateToProps = state => {
     endDate: state.statisticData.endDate,
     expenses: state.statisticData.expenses,
     incomes: state.statisticData.incomes,
-    incomeRecords: state.statisticData.incomeRecords,
     data: state.statisticData.filtered,
     filteredByData: state.statisticData.filteredByData,
     auth: state.firebase.auth
