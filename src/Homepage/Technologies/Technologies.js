@@ -2,10 +2,11 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Technologies from '../../assets/images/Technologies/Logos.png';
+import ReduxDiagram from '../../assets/images/Technologies/Redux.png';
 import classes from './Technologies.module.css';
 
 
-const technologies = props => {
+const technologies = () => {
 
   return (
     <div className={classes.wrapper}>
@@ -19,7 +20,7 @@ const technologies = props => {
       </Paper>
 
       <Paper className={classes.paper}>
-        <img className={classes.technologies} src={Technologies} alt='Technologies'/>
+        <img className={classes.technologies} src={ReduxDiagram} alt='Technologies'/>
       </Paper>
 
     </div>

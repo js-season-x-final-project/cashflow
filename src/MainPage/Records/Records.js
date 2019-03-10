@@ -55,7 +55,7 @@ class Records extends Component {
 
         <div className={classes.recordsHeader}>
           <Paper square={true}>
-            <h3>Records sorted by categories and subcategories for period:</h3>
+            <h3>All records for the period:</h3>
           </Paper>
         </div>
 

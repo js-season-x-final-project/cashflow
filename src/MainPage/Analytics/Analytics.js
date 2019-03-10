@@ -51,11 +51,14 @@ class Analytics extends React.Component {
 
           <div className={classes.header}>
             <Paper square={true}>
-              <h3>Records sorted by categories and subcategories for period:</h3>
+              <h3>Records sorted by categories and subcategories for the period: {this.props.startDate} - {this.props.endDate}</h3>
             </Paper>
           </div>
 
           <div className={classes.section}>
+            <ExpansionPanelSummary>
+              <h4>INCOMES</h4>
+            </ExpansionPanelSummary>
             {this.state.incomeRecs ? this.state.incomeRecs.map(cat => {
               return (
                 <ExpansionPanel square={true} key={id++}>
@@ -75,9 +78,15 @@ class Analytics extends React.Component {
                 </ExpansionPanel>
               )
             }) : null}
+            <ExpansionPanelSummary>
+              <h5 className={classes.overall}>Overall: <span className={classes.incomes}>+{this.props.incomes}</span></h5>
+            </ExpansionPanelSummary>
           </div>
 
           <div className={classes.section}>
+            <ExpansionPanelSummary>
+              <h4>EXPENSES</h4>
+            </ExpansionPanelSummary>
             {this.state.expenseRecs ? this.state.expenseRecs.map(cat => {
               return (
                 <ExpansionPanel square={true} key={id++}>
@@ -97,6 +106,9 @@ class Analytics extends React.Component {
                 </ExpansionPanel>
               )
             }) : null}
+            <ExpansionPanelSummary>
+              <h5 className={classes.overall}>Overall: <span className={classes.expenses}>-{this.props.expenses}</span></h5>
+            </ExpansionPanelSummary>
           </div>
 
         </div>
@@ -112,6 +124,8 @@ const mapStateToProps = state => {
     incomes: state.statisticData.incomes,
     incomeRecords: state.statisticData.incomeRecords,
     expenseRecords: state.statisticData.expenseRecords,
+    startDate: state.statisticData.startDate,
+    endDate: state.statisticData.endDate,
     auth: state.firebase.auth
   }
 }
