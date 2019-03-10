@@ -55,19 +55,17 @@ class Dashboard extends React.Component {
         labels: this.props.filteredByData.map(rec => rec[0]),
         datasets: [
           {
-            label: ["Expenses"],
+            label: ["Incomes"],
             data: this.props.filteredByData.map(rec => rec[1]),
             backgroundColor: ['rgba(75, 192, 192, 0.6)'],
             spanGaps: true,
 
           },
           {
-
-            label: ["Incomes"],
+            label: ["Expenses"],
             data: this.props.filteredByData.map(rec => rec[2]),
             backgroundColor: ['rgba(255, 159, 64, 0.6)'],
             spanGaps: true,
-
           }
         ]
       },
@@ -89,54 +87,53 @@ class Dashboard extends React.Component {
       <Fragment>
         <div className={classes.wrapperForUserInfo}>
           <div className={classes.calendarWrapper}>
-            <h5 className={classes.sortHeading}>Choose Range</h5>
             <Calendar />
           </div>
+          <Paper square className={classes.LastFiveRecords}>
+            {this.props.expenseRecords.sort((c1, c2) => c1.date < c2.date ? 1 : -1).slice(0, 5).map(record => {
+              return (
+                <div classes={classes.singleRecord}>
+                  <div className={classes.leftAlign}>
+                    <h5> {record.subCategory} </h5>
+                    <p>{record.date}</p>
+                  </div>
+                  <div className={classes.rightAlign}>
+                    <p className={record.type === 'expense' ? classes.redLabel : classes.greenLabel}>{record.type}</p>
+                    <p className={record.type === 'expense' ? classes.redLabel : classes.greenLabel}>{Number(record.amount).toFixed(2)} {record.currency}.</p>
+                  </div>
+                  <Divider />
+                </div>
+              )
+            })}
+          </Paper>
           <Paper square className={classes.radioButtons}>
             <h5 className={classes.sortHeading}>Sort By</h5>
             <Radios options={this.state.properties.map(prop => { return { value: prop, label: prop.toUpperCase() } })} />
           </Paper>
-            <Paper square className={classes.LastFiveRecords}>
-              {this.props.expenseRecords.sort((c1, c2) => c1.date < c2.date ? 1 : -1).slice(0, 5).map(record => {
-                return (
-                  <div classes={classes.singleRecord}>
-                    <div className={classes.leftAlign}>
-                      <h5> {record.subCategory} </h5>
-                      <p>{record.date}</p>
-                    </div>
-                    <div className={classes.rightAlign}>
-                      <p className={record.type === 'expense' ? classes.redLabel : classes.greenLabel}>{record.type}</p>
-                      <p className={record.type === 'expense' ? classes.redLabel : classes.greenLabel}>{Number(record.amount).toFixed(2)} {record.currency}.</p>
-                    </div>
-                    <Divider />
-                  </div>
-                )
-              })}
-            </Paper>
 
         </div>
         <div className={classes.chartsWrapper}>
           {this.props.data.values.length > 0 ?
             <Fragment>
-              <Paper square className={classes.chart}>
+              <div className={classes.filteredData}>
+                <Paper className={classes.BarChart} >
+                  <label>Current Period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</label>
+                  <Bar
+                    data={this.state.filteredChartData}
+                    options={{ legend: false }}
+                    responsive
+                  />
+                </Paper>
                 <label>Current Period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</label>
-                <Bar
-                  data={this.state.filteredChartData}
-                  options={{ legend: false }}
-                  responsive
-                />
-
                 <Doughnut
                   data={this.state.filteredChartData}
                   options={{
-                    legend: {
-                      position: "left"
-                    }
+                    legend: false
                   }}
+                  width={400}
                   responsive
                 />
-              </Paper>
-
+              </div>
               {/* {this.props.filteredByData.length > 2 && (this.props.endDate - this.props.startDate <= 604800000) ? */}
               <Fragment>
                 <Paper square className={classes.chart} style={{ height: 200 }}>

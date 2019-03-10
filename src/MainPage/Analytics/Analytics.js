@@ -28,7 +28,8 @@ class Analytics extends React.Component {
           scat,
           array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)
         ]),
-        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)
+        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0),
+        cat.icon
       ]
     })
   }
