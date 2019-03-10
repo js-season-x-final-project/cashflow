@@ -71,7 +71,6 @@ class Header extends Component {
 
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
-    console.log(this.state)
   };
 
   handleClose = () => {
@@ -142,6 +141,7 @@ class Header extends Component {
           </div>
 
           <div className={classes.rightSide}>
+            
             <Tooltip title="Logout" classes={{ tooltip: classes.tooltip }}>
               <IconButton className={classes.menuButton} color="inherit" aria-label="Logout" onClick={this.props.logout} >
                 <LogoutIcon />
