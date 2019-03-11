@@ -61,27 +61,27 @@ class Register extends Component {
   }
 
   checkEmail() {
-    !emailRegex.test(this.state.email) 
-    ? 
-    this.setState({ emailError: true }) 
-    : 
-    this.setState({ emailError: false })
+    !emailRegex.test(this.state.email)
+      ?
+      this.setState({ emailError: true })
+      :
+      this.setState({ emailError: false })
   }
 
   checkPassword() {
-    this.state.password.length < 6 
-    ? 
-    this.setState({ passwordError: true }) 
-    : 
-    this.setState({ passwordError: false })
+    this.state.password.length < 6
+      ?
+      this.setState({ passwordError: true })
+      :
+      this.setState({ passwordError: false })
   }
 
   checkPasswordAgain() {
-    this.state.passwordAgain !== this.state.password 
-    ? 
-    this.setState({ passwordAgainError: true }) 
-    : 
-    this.setState({ passwordAgainError: false, missingPassword2: false })
+    this.state.passwordAgain !== this.state.password
+      ?
+      this.setState({ passwordAgainError: true })
+      :
+      this.setState({ passwordAgainError: false, missingPassword2: false })
   }
 
   render() {

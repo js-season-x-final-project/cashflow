@@ -32,7 +32,7 @@ const start = props => {
           <div className={classes.secondPartInside}> 
             <h2>Three Simple Steps to Get First Insight</h2>
             <div className={classes.balloons}>
-              <Balloon imgUrl={addAcc} alt='Add Account' title='Step 1' text='Add Accounts you want to see in one place' />
+              <Balloon imgUrl={addAcc} alt='Add Account' title='Step 1' text='Register new account' />
               <p className={classes.step}>></p>
               <Balloon imgUrl={addRec} alt='Add Record' title='Step 2' text='Upload transaction history' />          
               <p className={classes.step}>></p>

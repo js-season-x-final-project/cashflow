@@ -182,7 +182,7 @@ class Dashboard extends React.Component {
             <h3>You dont have what to see for this period :)</h3>}
 
           <Paper square className={classes.lifetimeChart}>
-            <h3>Your lifetime stats for cashflow</h3>
+            <h3 className={classes.sortHeading}>Your lifetime stats for Cashflow</h3>
             <HorizontalBar
               options={{
                 legend: false,
