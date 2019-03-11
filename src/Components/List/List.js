@@ -24,10 +24,19 @@ class NestedList extends React.Component {
     category3: false,
     category4: false,
   };
+
+  tabCloser =() =>{
+    let newState ={};
+    this.props.categories.forEach((e,i) => {
+      newState["category"+i] = false
+    });
+    return newState
+  }
+
   handleListItemClick = (event, category, value) => {
     if (category !== 0) {
       this.setState({
-        ...this.state,
+        ...this.tabCloser(),
         [category]: !this.state[category]
       })
       this.props.onFilter(0, value);
@@ -54,7 +63,7 @@ class NestedList extends React.Component {
           <ListItemText inset primary="All categories" />
         </ListItem>
         <Divider />
-        <Collapse in={this.state["all"]} timeout="auto" unmountOnExit key={this.id++}>
+        <Collapse in={this.state["all"]} timeout={3000} unmountOnExit key={this.id++}>
           {this.props.categories.map((cat, index) => {
             return (
               <Fragment key={this.id++}>
@@ -68,9 +77,9 @@ class NestedList extends React.Component {
                   {this.state["category" + index] ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Divider />
-                {cat.subcategories.map(subcat => {
+                {cat.subcategories.map(subcat => {  
                   return (
-                    <Collapse in={this.state["category" + index]} timeout="auto" unmountOnExit key={this.id++}>
+                    <Collapse in={this.state["category" + index]} timeout={3000} unmountOnExit key={this.id++}>
                       <List component="div" disablePadding>
                         <ListItem button className={classes.nested} onClick={(event) => this.handleListItemClick(event, 0, subcat)}>
                           <ListItemText className={classes.nestedLabel} inset primary={subcat} />

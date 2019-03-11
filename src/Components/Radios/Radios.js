@@ -20,13 +20,11 @@ const theme = createMuiTheme({
 const styles = theme => ({
   root: {
     display: 'flex',
+    height: 180,
   },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-  group: {
-    margin: `${theme.spacing.unit}px 0`,
-  },
+  radio: {
+    height: '80%',
+  }
 });
 
 class RadioButtonsGroup extends React.Component {
@@ -56,7 +54,7 @@ class RadioButtonsGroup extends React.Component {
               onChange={this.handleChange}
             >
               {this.props.options.map((option, i) =>
-                <FormControlLabel key={i} value={option.value} control={<Radio color="primary" />} label={option.label} />
+                <FormControlLabel key={i} value={option.value} control={<Radio color="primary" />} label={option.label} className={classes.radio} />
               )}
             </RadioGroup>
           </FormControl>

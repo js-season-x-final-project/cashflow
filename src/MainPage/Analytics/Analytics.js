@@ -6,7 +6,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import { expensesCats, incomeCats } from "../../App/categories"
-import { Fastfood } from '@material-ui/icons/';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import classes from './Analytics.module.css';
@@ -26,9 +25,9 @@ class Analytics extends React.Component {
         cat.category,
         cat.subcategories.map(scat => [
           scat,
-          array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)
+          Number(array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)).toFixed(2)
         ]),
-        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0),
+        Number(array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)).toFixed(2),
         cat.icon
       ]
     })
@@ -92,7 +91,7 @@ class Analytics extends React.Component {
               )
             }) : null}
             <ExpansionPanelSummary>
-              <h5 className={classes.overall}>Overall: <span className={classes.incomes}>+{this.props.incomes}</span></h5>
+              <h5 className={classes.overall}>Overall: <span className={classes.incomes}>+{Number(this.props.incomes).toFixed(2)}</span></h5>
             </ExpansionPanelSummary>
           </div>
 
@@ -120,7 +119,7 @@ class Analytics extends React.Component {
               )
             }) : null}
             <ExpansionPanelSummary>
-              <h5 className={classes.overall}>Overall: <span className={classes.expenses}>-{this.props.expenses}</span></h5>
+              <h5 className={classes.overall}>Overall: <span className={classes.expenses}>-{Number(this.props.expenses).toFixed(2)}</span></h5>
             </ExpansionPanelSummary>
           </div>
 
