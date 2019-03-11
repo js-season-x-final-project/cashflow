@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
   generateChartData() {
     this.setState({
       filteredChartData: {
-        labels: this.props.currentFilter==="amount" ?  this.props.expenseRecords.map(rec=>rec.subCategory) : this.props.data.labels,
+        labels: this.props.currentFilter === "amount" ? this.props.expenseRecords.map(rec => rec.subCategory) : this.props.data.labels,
         datasets: [
           {
             labels: this.props.data.labels,
@@ -155,16 +155,16 @@ class Dashboard extends React.Component {
               <Paper square className={classes.Doughnut} >
                 <Doughnut
                   data={this.state.filteredChartData}
-                  options={this.props.currentFilter==='amount' ? 
-                  {
-                    legend:false
-                  }
-                  :
-                  {
-                    legend: {
-                      position: 'left',
+                  options={this.props.data.labels.length >= 10 ?
+                    {
+                      legend: false
                     }
-                  }}
+                    :
+                    {
+                      legend: {
+                        position: 'left',
+                      }
+                    }}
 
                   responsive
                 />
@@ -184,7 +184,16 @@ class Dashboard extends React.Component {
           <Paper square className={classes.lifetimeChart}>
             <h3>Your lifetime stats for cashflow</h3>
             <HorizontalBar
-              options={{ legend: false }}
+              options={{
+                legend: false,
+                scales: {
+                  xAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }]
+                }
+              }}
               data={this.state.overallChartData}
               responsive
             />
@@ -206,7 +215,7 @@ const mapStateToProps = state => {
     data: state.statisticData.filtered,
     filteredByData: state.statisticData.filteredByData,
     auth: state.firebase.auth,
-    currentFilter:state.statisticData.currentFilter
+    currentFilter: state.statisticData.currentFilter
   }
 }
 export default connect(mapStateToProps)(withRouter(Dashboard));
