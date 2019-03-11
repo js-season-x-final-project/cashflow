@@ -114,10 +114,10 @@ class Header extends Component {
                 open={Boolean(anchorEl)}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={() => this.props.history.push('/main/dashboard')}>Dashboard</MenuItem>
-                <MenuItem onClick={() => this.props.history.push('/main/records')}>Records</MenuItem>
-                <MenuItem onClick={() => this.props.history.push('/main/analytics')}>Analytics</MenuItem>
-                <MenuItem onClick={() => this.props.history.push('/main/blog')}>Blog</MenuItem>
+                <MenuItem onClick={() => {this.handleClose();this.props.history.push('/main/dashboard')}}>Dashboard</MenuItem>
+                <MenuItem onClick={() => {this.handleClose();this.props.history.push('/main/records')}}>Records</MenuItem>
+                <MenuItem onClick={() => {this.handleClose();this.props.history.push('/main/analytics')}}>Analytics</MenuItem>
+                <MenuItem onClick={() => {this.handleClose();this.props.history.push('/main/blog')}}>Blog</MenuItem>
               </Menu>
             </div>
 

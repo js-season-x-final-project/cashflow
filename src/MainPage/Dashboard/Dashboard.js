@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
   generateChartData() {
     this.setState({
       filteredChartData: {
-        labels: this.props.data.labels,
+        labels: this.props.currentFilter==="amount" ?  this.props.expenseRecords.map(rec=>rec.subCategory) : this.props.data.labels,
         datasets: [
           {
             labels: this.props.data.labels,
@@ -155,11 +155,17 @@ class Dashboard extends React.Component {
               <Paper square className={classes.Doughnut} >
                 <Doughnut
                   data={this.state.filteredChartData}
-                  options={{
+                  options={this.props.currentFilter==='amount' ? 
+                  {
+                    legend:false
+                  }
+                  :
+                  {
                     legend: {
                       position: 'left',
                     }
                   }}
+
                   responsive
                 />
               </Paper>
@@ -199,7 +205,8 @@ const mapStateToProps = state => {
     incomes: state.statisticData.incomes,
     data: state.statisticData.filtered,
     filteredByData: state.statisticData.filteredByData,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    currentFilter:state.statisticData.currentFilter
   }
 }
 export default connect(mapStateToProps)(withRouter(Dashboard));

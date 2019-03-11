@@ -20,6 +20,7 @@
 
 .rdrDateRangePickerWrapper {
     box-sizing: border-box;
+    height: 100%;
 }
 
 .rdrDayHovered {
@@ -30,13 +31,21 @@
     text-align: center;
 }
 
+.rdrDateDisplay{
+    display: none;
+}
 
 
 @media screen and (max-width: 650px) {
+    .rdrDateRangePickerWrapper{
+        height: 100%
+    }
     .rdrDefinedRangesWrapper {
         display: none;
     }
-
+    .rdrCalendarWrapper.rdrDateRangeWrapper{
+        height: 100%;
+    }
     .rdrMonth{
         width: 100%;
         padding-left:0px;
@@ -65,6 +74,9 @@
         border-top-left-radius: 12px;
         margin: 0px auto;
         width: 100%;
+    }
+    .rdrMonthAndYearWrapper{
+        padding: 0px;
     }
 
 }

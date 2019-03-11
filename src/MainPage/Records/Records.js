@@ -12,16 +12,6 @@ class Records extends Component {
   state = {
     recordsToDisplay: null
   }
-
-  // extractRecords = () =>{
-  //   console.log([...this.props.expenseRecords,...this.props.incomeRecords])
-  //   let subArray = [...this.props.expenseRecords,...this.props.incomeRecords]
-  //   return this.props.records ? Object.entries(this.props.records).map(record => {return record[1]?{...record[1],uid:record[0]}:null}).filter(rec=>{
-  //     let na = new Date(rec.date).getTime();
-  //     return  rec !== null && na >= this.props.startDate && na <= this.props.endDate
-  //    }) : null
-  // }
-
    extractRecords = () =>{
     return this.props.records ? [...this.props.expenseRecords,...this.props.incomeRecords] : null
   }

@@ -5,8 +5,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import classes from './Team.module.css';
 import Alex from '../../assets/images/alex.jpg'
+import Simeon from '../../assets/images/simeon.jpg'
 
-const team = props => {
+const team = () => {
 
   return (
     <div className={classes.wrapper}>
@@ -14,7 +15,7 @@ const team = props => {
       <div className={classes.firstPart}>
         <div className={classes.firstPartInner}>
           <h1>Meet our awesome team</h1>
-          <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC</p>
+          <p>Being part of IT-Talents season X was so much fun for both of us, besides of all the things we've managed to learn. We are working together as a team since our intermediate project - EMAG Clone website. As students in two different parts of the building processes, we have met our expectations for each other. Our main goals for the projects were to learn as much as possible for all the newest and best technologies of our time and implement them in our code. For the past 2 weeks we worked very hard as a team to make this product so we hope you enjoy it! </p>
         </div>
       </div>
 
@@ -23,15 +24,27 @@ const team = props => {
           <Card className={classes.card}>
             <CardMedia className={classes.media} image={Alex} title='Alexander Zlatev' />
             <CardContent>
-              <Typography variant='h5'>Alexander Zlatev</Typography>
-              <Typography>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure </Typography>
+              <Typography variant='h5' className={classes.name} >Alexander Zlatev</Typography>
+              <div className={classes.info}>
+                <ul>
+                  <li>Technology enthusiast</li>
+                  <li>Graduated as an Architect, but only of buildings for now</li>
+                  <li>No coding experience background</li>
+                </ul>
+              </div>
             </CardContent>
           </Card>
           <Card className={classes.card}>
-            <CardMedia className={classes.media} title='Alexander Zlatev' />
+            <CardMedia className={classes.media} image={Simeon} title='Alexander Zlatev' />
             <CardContent>
-              <Typography variant='h5'>Simeon Gryncharov</Typography>
-              <Typography>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure </Typography>
+              <Typography variant='h5' className={classes.name} >Simeon Grancharov</Typography>
+              <div className={classes.info}>
+                <ul>
+                  <li>Studies master degree of Geodesy in University of Architecture, Civil Engineering and Geodesy, Sofia, Bulgaria.</li>
+                  <li>Graduating this year.</li>
+                  <li>Without experience in WEB Technologies before this course.</li>
+                </ul>
+              </div>
             </CardContent>
           </Card>
         </div>

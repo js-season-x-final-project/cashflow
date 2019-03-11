@@ -18,7 +18,6 @@ export const deleteRecord = record => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     let state = getState();
-    console.log(record);
     const userId = state.firebase.auth.uid;
     firestore.collection('users').doc(userId).collection('records').doc(record).delete()
       .then(() => {
@@ -36,7 +35,6 @@ export const editRecord = (recordID, record) => {
     const firestore = getFirestore();
     const state = getState();
     const userId = state.firebase.auth.uid;
-
     firestore.collection('users').doc(userId).collection('records').doc(recordID).set(record)
       .then(() => {
         dispatch({ type: EDIT_RECORD })

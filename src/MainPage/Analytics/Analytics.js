@@ -25,9 +25,9 @@ class Analytics extends React.Component {
         cat.category,
         cat.subcategories.map(scat => [
           scat,
-          array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)
+          Number(array.reduce((acc, rec) => rec.subCategory === scat ? acc + Number(rec.amount) : acc, 0)).toFixed(2)
         ]),
-        array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0),
+        Number(array.reduce((acc, rec) => { return cat.category === rec.category ? acc + Number(rec.amount) : acc }, 0)).toFixed(2),
         cat.icon
       ]
     })
@@ -91,7 +91,7 @@ class Analytics extends React.Component {
               )
             }) : null}
             <ExpansionPanelSummary>
-              <h5 className={classes.overall}>Overall: <span className={classes.incomes}>+{this.props.incomes}</span></h5>
+              <h5 className={classes.overall}>Overall: <span className={classes.incomes}>+{Number(this.props.incomes).toFixed(2)}</span></h5>
             </ExpansionPanelSummary>
           </div>
 
