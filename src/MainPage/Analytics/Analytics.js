@@ -119,7 +119,7 @@ class Analytics extends React.Component {
               )
             }) : null}
             <ExpansionPanelSummary>
-              <h5 className={classes.overall}>Overall: <span className={classes.expenses}>-{this.props.expenses}</span></h5>
+              <h5 className={classes.overall}>Overall:<span className={classes.expenses}>-{this.props.expenses}</span></h5>
             </ExpansionPanelSummary>
           </div>
 
