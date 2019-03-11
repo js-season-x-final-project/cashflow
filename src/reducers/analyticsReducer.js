@@ -26,12 +26,6 @@ const initialState = {
 }
 
 const analyticsReducer = (state = initialState, action) => {
-  //Post-processing
-
-  if (state !== initialState) {
-
-  }
-
   switch (action.type) {
     case DIFFERENTIATE_RECORDS: return {
       ...state,

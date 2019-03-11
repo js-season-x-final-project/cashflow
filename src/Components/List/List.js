@@ -34,7 +34,6 @@ class NestedList extends React.Component {
       return;
     }
     this.props.onFilter(value);
-    console.log(this.props);
   }
 
   id = 1;

@@ -76,7 +76,6 @@ class Analytics extends React.Component {
               return (
                 <ExpansionPanel square={true} key={id++}>
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                    {console.log(cat)}
                     <h5 className={classes.leftSide}>{cat[0]}</h5>
                     <h5 className={classes.incomes}>{cat[2] !== 0 ? '+' : null}{cat[2]}</h5>
                   </ExpansionPanelSummary>

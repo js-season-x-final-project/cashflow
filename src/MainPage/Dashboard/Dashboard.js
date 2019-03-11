@@ -120,7 +120,12 @@ class Dashboard extends React.Component {
                   <label>Current Period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</label>
                   <Bar
                     data={this.state.filteredChartData}
-                    options={{ legend: false }}
+                    options={{ legend: {
+                        horizontalAlignment: 'right',
+                        verticalAlignment: 'center',
+                        rotationPoint: 'left',
+                        offset: { y: -30 }
+                    } }}
                     responsive
                   />
                 </Paper>

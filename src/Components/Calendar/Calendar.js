@@ -5,7 +5,6 @@ import { DateRangePicker } from 'react-date-range';
 import {connect} from 'react-redux'
 import {changePeriod} from '../../actions/analyticsActions'
 import './calendar.css'
-// import DateRange from 'react-date-range/dist/components/DateRange';
 
 class MyComponent extends Component {
 

@@ -5,6 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import classes from './Team.module.css';
 import Alex from '../../assets/images/alex.jpg'
+import Simeon from '../../assets/images/simeon.jpg'
 
 const team = props => {
 
@@ -14,7 +15,7 @@ const team = props => {
       <div className={classes.firstPart}>
         <div className={classes.firstPartInner}>
           <h1>Meet our awesome team</h1>
-          <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC</p>
+          <p>Met in the beggining of October. We have made one other project together - EMAG Clone website. As students in two different parts of the building processes, we have met our expectations for each other. In the past two weeks we worked together as a team. We have succefully separated the taskas between us. </p>
         </div>
       </div>
 
@@ -24,14 +25,26 @@ const team = props => {
             <CardMedia className={classes.media} image={Alex} title='Alexander Zlatev' />
             <CardContent>
               <Typography variant='h5'>Alexander Zlatev</Typography>
-              <Typography>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure </Typography>
+              <Typography>
+                <ul>
+                  <li> Graduated from University of Architecture, Civil Engineering and Geodesy in 2015 with master degree in Architecture.</li>
+                  <li>No previous expirience with JavaScript, HTML or CSS.</li>
+                  <li>Some other info....</li>
+                </ul>
+              </Typography>
             </CardContent>
           </Card>
           <Card className={classes.card}>
-            <CardMedia className={classes.media} title='Alexander Zlatev' />
+            <CardMedia className={classes.media} image={Simeon} title='Alexander Zlatev' />
             <CardContent>
-              <Typography variant='h5'>Simeon Gryncharov</Typography>
-              <Typography>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure </Typography>
+              <Typography variant='h5'>Simeon Grancharov</Typography>
+              <Typography>
+                <ul>
+                  <li> Studies master degree of Geodesy in University of Architecture, Civil Engineering and Geodesy, Sofia, Bulgaria.</li>
+                  <li> Graduating this year.</li>
+                  <li>Without expirience in WEB Technologies before this course.</li>
+                </ul>
+              </Typography>
             </CardContent>
           </Card>
         </div>
