@@ -82,6 +82,16 @@ class Dashboard extends React.Component {
     })
   }
 
+  returnDate = (digits) => {
+    if (digits) {
+      const date = new Date(digits);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`
+    }
+  }
+
   render() {
     return (
       <div className={classes.dashboardWrapper}>
@@ -91,7 +101,7 @@ class Dashboard extends React.Component {
           <Paper square className={classes.calendarWrapper}>
             <h2>Choose period:</h2>
             <Calendar />
-            <h3>Current Period {new Date(this.props.startDate).toDateString()} to {new Date(this.props.endDate).toDateString()}</h3>
+            <h3>Current Period: {this.returnDate(this.props.startDate)} - {this.returnDate(this.props.endDate)}</h3>
           </Paper>
 
           <div className={classes.rightSide}>

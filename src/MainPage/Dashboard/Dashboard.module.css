@@ -1,5 +1,5 @@
 .dashboardWrapper {
-  padding: 40px 20px;
+  padding: 40px 40px;
 }
 
 .wrapperForUserInfo {
@@ -17,13 +17,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin: 15px 0;  
+  margin: 15px 0;
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 
 .rightSide {
   display: flex;
   flex-direction: column;
-  height: 530px;
+  max-height: 530px;
   justify-content: space-between;
   margin: 15px 0;  
 }
@@ -33,6 +35,7 @@
   max-width: 650px;
   padding: 0 20px;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .redLabel {
@@ -58,25 +61,25 @@
 
 .BarChart {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   min-width: 29vw;
 }
 
 .Doughnut {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   min-width: 29vw;
 }
 
 .Line {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   min-width: 29vw;
 }
 
 .lifetimeChart {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   min-width: 29vw;
 }
 
